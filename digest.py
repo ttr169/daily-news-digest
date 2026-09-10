@@ -137,13 +137,22 @@ def gnews_search(query: str, max_results: int = 8) -> list[dict]:
         return []
 
 
+_TAVILY_DEAD = False  # Tavily 一旦确认为失效，后续查询直接跳过，避免逐路空等
+
+
 def search(query: str, tavily_key: str, max_results: int = 8) -> list[dict]:
-    """双通道检索：Tavily 优先，失败或返回空则降级 Google News RSS。"""
-    if tavily_key:
+    """双通道检索：Tavily 优先，失败或返回空则降级 Google News RSS。
+
+    Tavily 失效（401/403 等）时置全局 _TAVILY_DEAD 标志，
+    避免 N 路查询各自重试一次、白白拖慢整体耗时。
+    """
+    global _TAVILY_DEAD
+    if tavily_key and not _TAVILY_DEAD:
         rs = tavily_search(query, tavily_key, max_results)
         if rs:
             return rs
-        print(f"[WARN] Tavily 无结果，降级 Google News RSS：{query}")
+        _TAVILY_DEAD = True
+        print("[WARN] Tavily 不可用，后续查询全部改用 Google News RSS。")
     return gnews_search(query, max_results)
 
 
