@@ -103,6 +103,50 @@ def tavily_search(query: str, api_key: str, max_results: int = 8) -> list[dict]:
         return []
 
 
+def gnews_search(query: str, max_results: int = 8) -> list[dict]:
+    """免密钥降级检索：Google News RSS。
+
+    Tavily 不可用时自动接管。RSS 自带 when:1d 时间窗，
+    且对新闻类检索的时效性好于通用搜索 API。
+    """
+    import urllib.parse
+    import xml.etree.ElementTree as ET
+
+    cjk = any("\u4e00" <= ch <= "\u9fff" for ch in query)
+    hl, gl, ceid = ("zh-CN", "CN", "CN:zh-Hans") if cjk else ("en-US", "US", "US:en")
+    q = urllib.parse.quote(f"{query} when:1d")
+    url = f"https://news.google.com/rss/search?q={q}&hl={hl}&gl={gl}&ceid={ceid}"
+    try:
+        r = requests.get(url, timeout=HTTP_TIMEOUT,
+                         headers={"User-Agent": "Mozilla/5.0 (compatible; daily-news-digest/1.0)"})
+        r.raise_for_status()
+        root = ET.fromstring(r.content)
+        out = []
+        for item in root.iter("item"):
+            out.append({
+                "title": (item.findtext("title") or "").strip(),
+                "url": (item.findtext("link") or "").strip(),
+                "published_date": (item.findtext("pubDate") or "").strip(),
+                "content": re.sub(r"<[^>]+>", "", (item.findtext("description") or "")).strip(),
+            })
+            if len(out) >= max_results:
+                break
+        return out
+    except Exception as e:  # noqa: BLE001
+        print(f"[WARN] Google News RSS 失败（{query}）：{e}")
+        return []
+
+
+def search(query: str, tavily_key: str, max_results: int = 8) -> list[dict]:
+    """双通道检索：Tavily 优先，失败或返回空则降级 Google News RSS。"""
+    if tavily_key:
+        rs = tavily_search(query, tavily_key, max_results)
+        if rs:
+            return rs
+        print(f"[WARN] Tavily 无结果，降级 Google News RSS：{query}")
+    return gnews_search(query, max_results)
+
+
 def build_context(searches: list[tuple[str, list[dict]]]) -> str:
     """把检索结果编成带编号的上下文，便于模型引用来源。"""
     blocks, n = [], 0
@@ -228,7 +272,10 @@ def send_email(subject: str, body_html: str, attachment: Path,
 
 def main() -> None:
     deepseek_key = require("DEEPSEEK_API_KEY")
-    tavily_key = require("TAVILY_API_KEY")
+    # Tavily 为可选：缺失或失效时自动降级 Google News RSS（免密钥）
+    tavily_key = (os.getenv("TAVILY_API_KEY") or "").strip()
+    if not tavily_key:
+        print("[WARN] 未提供 TAVILY_API_KEY，使用 Google News RSS 降级检索。")
     smtp_user = require("QQ_SMTP_USER")
     smtp_code = require("QQ_SMTP_CODE")
     mail_to = os.getenv("MAIL_TO", smtp_user).strip()
@@ -246,7 +293,7 @@ def main() -> None:
     searches: list[tuple[str, list[dict]]] = []
     total = 0
     for q in queries:
-        rs = tavily_search(q, tavily_key)
+        rs = search(q, tavily_key)
         searches.append((q, rs))
         total += len(rs)
         print(f"[INFO] 检索「{q}」→ {len(rs)} 条")
