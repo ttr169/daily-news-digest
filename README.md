@@ -11,7 +11,7 @@
 
 | 文件 | 作用 |
 |---|---|
-| `digest.py` | 主程序：7 路检索（Tavily 优先，自动降级 Google News RSS）→ DeepSeek 生成 HTML 报告 + 邮件正文 → QQ SMTP 投递 → 归档 |
+| `digest.py` | 主程序：11 路检索（Tavily 优先，自动降级 Google News RSS）→ DeepSeek 生成 HTML 报告 + 邮件正文 → QQ SMTP 投递 → 归档 |
 | `notify_failure.py` | 失败告警：发邮件 + 在仓库开 Issue。**自身永不失败**（始终 exit 0），避免「失败了且没人知道」 |
 | `.github/workflows/daily.yml` | 定时任务 + 幂等闸门 + 终检告警 |
 | `requirements.txt` | 仅 `requests` |
