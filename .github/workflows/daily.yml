@@ -2,25 +2,35 @@ name: 全球宏观+地缘 24h 简报
 
 on:
   # ⚠️ GitHub Actions 的 schedule 是「尽力而为」，不是定时保证：
-  #   高负载时会延迟，甚至整轮被直接丢弃。实测 2026-09-11：当天唯一一次定时机会
-  #   （08:30 JST）没有触发，仓库里 3 次运行全部是手动 workflow_dispatch。
-  #   另外，新建或改动 workflow 后，调度器需要 15–60 分钟才会「注册」这条 cron；
-  #   GitHub 官方给出的补救办法是「向默认分支推一次提交以重新同步计划任务」。
+  #   高负载时会延迟数小时，甚至整轮被直接丢弃。实测 2026-09-11：探针（*/5 * * * *）
+  #   在 45 分钟内 9 个边界全部零触发；官方口径是「drop（丢弃）」而非 delay。
+  #   另外，新建或改动 workflow 后，调度器需要 15–60 分钟才会「注册」这条 cron。
   #
-  #   对策：设 5 个补跑点 + 下面的幂等闸门。
-  #   - 分钟取 :13 / :33 / :53，避开整点前后的调度波峰，被服务到的概率更高；
-  #   - 任一次跑通，其后各点自动跳过，绝不重复投递；
-  #   - 5 次全部落空时，由最后一班的「终检告警」发信告知（见文件末尾）。
-  #   - 本文件所有时点都排在 10:00 JST 之前，好让本机 WorkBuddy 自动化
-  #     （10:00 主线 / 12:00 兜底）作为下一层接手而不与 GitHub 撞车。
+  #   对策：多点补跑 + 三重幂等，任一次跑通即全天跳过。
+  #   - 闸门 ①（本文件）：当日 archive/YYYY-MM-DD.html 已存在 → 跳过；
+  #   - 闸门 ②（digest.py，IMAP）：自己收件箱里已有当日简报 → 跳过。
+  #     ⚠️ 闸门 ② 是**跨通道**的：本机 WorkBuddy 早上投递过、或某个计划任务延迟到
+  #     下午才执行，都能被识别，不会重复发信。这也是能放心加「午后兜底」的原因。
+  #   - 全部落空时，由最后一班（20:33 JST）的「当日终检」告警（见文件末尾）。
+  #   - 分钟取 :13/:33/:53，避开整点前后的调度波峰，被服务到的概率更高。
   schedule:
     - cron: '33 23 * * *'   # 08:33 JST  主跑
     - cron: '53 23 * * *'   # 08:53 JST  补跑 1
     - cron: '13 0 * * *'    # 09:13 JST  补跑 2
     - cron: '33 0 * * *'    # 09:33 JST  补跑 3
-    - cron: '53 0 * * *'    # 09:53 JST  补跑 4 + 当日终检
-  # 允许在 Actions 页面手动触发（右上角 Run workflow），也是排障时的第一手段
+    - cron: '53 0 * * *'    # 09:53 JST  补跑 4
+    - cron: '33 4 * * *'    # 13:33 JST  午后兜底（早上全部落空时补上）
+    - cron: '33 11 * * *'   # 20:33 JST  终检班次（仍无投递则告警）
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: '试跑：完整走一遍流程，但不发信、不归档（排障用）'
+        type: boolean
+        default: false
+      force:
+        description: '强制重跑：忽略归档闸门与邮箱查重（⚠️ 会真的再发一封邮件）'
+        type: boolean
+        default: false
 
 # 同一时刻只允许一个实例，避免手工触发与定时撞车
 concurrency:
@@ -40,13 +50,20 @@ jobs:
       - name: 检出仓库
         uses: actions/checkout@v4
 
-      # 幂等闸门：当日 archive 已存在 = 今天已成功投递，后续步骤全部跳过
+      # 幂等闸门 ①：当日 archive 已存在 = 今天已成功投递，后续步骤全部跳过
+      # （闸门 ② 在 digest.py 内部：IMAP 查收件箱，覆盖「本机已投递」等本闸门看不到的情况）
       - name: 幂等检查（今日已归档则跳过）
         id: gate
+        env:
+          FORCE: ${{ github.event.inputs.force }}
+          DRY:   ${{ github.event.inputs.dry_run }}
         run: |
           DAY=$(date -u -d '+9 hours' +%Y-%m-%d)
           echo "day=$DAY" >> "$GITHUB_OUTPUT"
-          if [ -f "archive/${DAY}.html" ]; then
+          if [ "$FORCE" = "true" ] || [ "$DRY" = "true" ]; then
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "▶ 手动强制 / 试跑，忽略归档闸门。"
+          elif [ -f "archive/${DAY}.html" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
             echo "⏭ ${DAY} 已归档，跳过本轮，避免重复投递。"
           else
@@ -76,12 +93,17 @@ jobs:
           QQ_SMTP_USER:     ${{ secrets.QQ_SMTP_USER }}
           QQ_SMTP_CODE:     ${{ secrets.QQ_SMTP_CODE }}
           MAIL_TO:          ${{ secrets.MAIL_TO }}
+          SKIP_DEDUPE:      ${{ github.event.inputs.force }}
+          DRY_RUN:          ${{ github.event.inputs.dry_run }}
         run: python digest.py
 
       # 仅在完全成功时归档。若失败也归档，会被幂等闸门误判为「已投递」而放弃重试；
-      # 不归档则可让下一个补跑点接手。
+      # 不归档则可让下一个补跑点接手。试跑（dry_run）不归档。
       - name: 归档当日报告
-        if: steps.gate.outputs.skip == 'false' && steps.run_digest.outcome == 'success'
+        if: |
+          steps.gate.outputs.skip == 'false'
+          && steps.run_digest.outcome == 'success'
+          && github.event.inputs.dry_run != 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -114,21 +136,25 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python notify_failure.py
 
-      # 当日终检：最后一班（09:53 JST）跑完仍没有当日归档 = 5 次机会全部落空，
-      # 基本可以确定是计划任务被 GitHub 丢弃了。主动告警，不让它静默漏跑。
-      - name: 当日终检告警（最后一班仍无归档）
-        if: always() && github.event.schedule == '53 0 * * *' && steps.run_digest.outcome != 'failure'
+      # 当日终检：最后一班（20:33 JST）跑完，邮箱账本里仍然没有今天的简报
+      # = 当天所有通道全线失手。主动告警，不让它静默漏跑。
+      # 判据用 digest.py --check（查收件箱）而不是 archive 文件：
+      # 本机 WorkBuddy 投递成功时仓库里不会有归档，用文件判会误报。
+      - name: 当日终检告警（最后一班仍无投递）
+        if: |
+          always()
+          && github.event.schedule == '33 11 * * *'
+          && steps.run_digest.outcome != 'failure'
         env:
           QQ_SMTP_USER: ${{ secrets.QQ_SMTP_USER }}
           QQ_SMTP_CODE: ${{ secrets.QQ_SMTP_CODE }}
           MAIL_TO:      ${{ secrets.MAIL_TO }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FAIL_REASON:  "今天 5 个补跑点时点都已过，但 archive/ 里仍没有当日报告 —— 计划任务很可能被 GitHub 调度器整轮丢弃了。"
+          FAIL_REASON:  "今天所有定时班次都已过，但邮箱账本里仍没有当日简报 —— 定时通道可能被 GitHub 调度器整轮丢弃了。"
         run: |
-          DAY=$(date -u -d '+9 hours' +%Y-%m-%d)
-          if [ ! -f "archive/${DAY}.html" ]; then
-            echo "⚠️ ${DAY} 仍无归档，发送终检告警。"
-            python notify_failure.py || true
+          if python digest.py --check; then
+            echo "✅ 当日终检：邮箱账本确认今日已投递。"
           else
-            echo "✅ ${DAY} 已归档，无需告警。"
+            echo "⚠️ 当日终检：邮箱账本里没有今天的简报，发送告警。"
+            python notify_failure.py || true
           fi
