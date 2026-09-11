@@ -4,7 +4,9 @@
 全球宏观 + 地缘政治 24 小时简报 · GitHub Actions 版
 
 流程：
-  1. 双通道检索（11 路，限定 24 小时窗口；Tavily 优先，失败降级 Google News RSS）
+  0. 跨通道查重：IMAP 查自己收件箱，今日已投递则直接退出（防重复投递，见 already_delivered）
+  1. 检索（11 路聚焦查询，限定 24 小时窗口）
+     主通道 Tavily；缺失/失效时降级为**免密钥双引擎 RSS**（Google News + Bing News 合并去重）
   2. DeepSeek 生成自包含 HTML 报告（深绿主题 / card-based / 移动优先 / 打印就绪）
   3. DeepSeek 生成精简邮件正文（Top 5 + KPI 表 + 日历）
   4. QQ 邮箱 SMTP 投递（HTML 正文 + HTML 附件）
@@ -12,12 +14,13 @@
 
 必需环境变量（GitHub Actions Secrets）：
   DEEPSEEK_API_KEY  DeepSeek API Key
-  TAVILY_API_KEY    Tavily 搜索 API Key（https://app.tavily.com ，免费额度 1000 次/月）
   QQ_SMTP_USER      发件 QQ 邮箱，如 ttr169@qq.com
   QQ_SMTP_CODE      QQ 邮箱「授权码」（不是登录密码）
 可选：
+  TAVILY_API_KEY    Tavily 搜索 API Key（缺失或失效会自动降级到免密钥 RSS，不影响运行）
   MAIL_TO           收件人，默认同 QQ_SMTP_USER
   DEEPSEEK_MODEL    默认 deepseek-chat
+  SKIP_DEDUPE       置 1 可跳过邮箱查重（仅排障用）
 """
 
 from __future__ import annotations
@@ -28,6 +31,7 @@ import re
 import smtplib
 import ssl
 import sys
+import time
 from email.header import Header
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
@@ -52,6 +56,10 @@ SMTP_PORT = 465
 
 HTTP_TIMEOUT = 60
 LLM_TIMEOUT = 600
+LLM_ATTEMPTS = 3        # LLM 连续失败上限（含首次），失败间隔指数退避
+SMTP_ATTEMPTS = 3       # 邮件投递重试次数
+
+UA = {"User-Agent": "Mozilla/5.0 (compatible; daily-news-digest/1.0)"}
 
 
 def die(msg: str) -> "None":
@@ -69,7 +77,7 @@ def require(name: str) -> str:
 # ---------------------------------------------------------------- 检索
 
 def build_queries(now: dt.datetime) -> list[str]:
-    """中英双语、覆盖宏观/地缘/能源/AI 的 11 路查询。
+    """中英双语、覆盖宏观/地缘/能源/AI 的 11 路聚焦查询。
 
     ⚠️ 查询式必须「聚焦」—— 一条查询只放一个主题，**并且不要写日期**。
     2026-09-11 实测（Google News RSS + when:1d，同一时段同一批话题）：
@@ -101,7 +109,7 @@ def build_queries(now: dt.datetime) -> list[str]:
     ]
 
 
-def tavily_search(query: str, api_key: str, max_results: int = 6) -> list[dict]:
+def tavily_search(query: str, api_key: str, max_results: int = 4) -> list[dict]:
     payload = {
         "api_key": api_key,
         "query": query,
@@ -116,16 +124,12 @@ def tavily_search(query: str, api_key: str, max_results: int = 6) -> list[dict]:
         r.raise_for_status()
         return r.json().get("results", []) or []
     except Exception as e:  # noqa: BLE001
-        print(f"[WARN] 检索失败（{query}）：{e}")
+        print(f"[WARN] Tavily 检索失败（{query}）：{e}")
         return []
 
 
-def gnews_search(query: str, max_results: int = 6) -> list[dict]:
-    """免密钥降级检索：Google News RSS。
-
-    Tavily 不可用时自动接管。RSS 自带 when:1d 时间窗，
-    且对新闻类检索的时效性好于通用搜索 API。
-    """
+def gnews_search(query: str, max_results: int = 4) -> list[dict]:
+    """免密钥检索引擎 A：Google News RSS（自带 when:1d 24 小时时间窗）。"""
     import urllib.parse
     import xml.etree.ElementTree as ET
 
@@ -134,8 +138,7 @@ def gnews_search(query: str, max_results: int = 6) -> list[dict]:
     q = urllib.parse.quote(f"{query} when:1d")
     url = f"https://news.google.com/rss/search?q={q}&hl={hl}&gl={gl}&ceid={ceid}"
     try:
-        r = requests.get(url, timeout=HTTP_TIMEOUT,
-                         headers={"User-Agent": "Mozilla/5.0 (compatible; daily-news-digest/1.0)"})
+        r = requests.get(url, timeout=HTTP_TIMEOUT, headers=UA)
         r.raise_for_status()
         root = ET.fromstring(r.content)
         out = []
@@ -154,11 +157,92 @@ def gnews_search(query: str, max_results: int = 6) -> list[dict]:
         return []
 
 
+def bing_news_search(query: str, max_results: int = 4) -> list[dict]:
+    """免密钥检索引擎 B：Bing News RSS。
+
+    与 Google News 互补，价值有两层：
+      1. **冗余** —— Google News RSS 在批量请求下会限流甚至整批返空，双引擎保证不会「全部检索无结果」；
+      2. **召回差异** —— 实测同一话题两边命中并不重合（Bing 常能补到 Google 漏掉的一手源）。
+    """
+    import urllib.parse
+    import xml.etree.ElementTree as ET
+
+    url = f"https://www.bing.com/news/search?q={urllib.parse.quote(query)}&format=RSS"
+    try:
+        r = requests.get(url, timeout=HTTP_TIMEOUT, headers=UA)
+        r.raise_for_status()
+        root = ET.fromstring(r.content)
+        out = []
+        for item in root.iter("item"):
+            out.append({
+                "title": (item.findtext("title") or "").strip(),
+                "url": (item.findtext("link") or "").strip(),
+                "published_date": (item.findtext("pubDate") or "").strip(),
+                "content": re.sub(r"<[^>]+>", "", (item.findtext("description") or "")).strip(),
+            })
+            if len(out) >= max_results:
+                break
+        return out
+    except Exception as e:  # noqa: BLE001
+        print(f"[WARN] Bing News RSS 失败（{query}）：{e}")
+        return []
+
+
+def _norm_title(t: str) -> str:
+    """标题归一化，用于跨引擎去重（只留字母/数字/汉字）。"""
+    return re.sub(r"[^0-9a-z\u4e00-\u9fff]+", "", (t or "").lower())
+
+
+MAX_AGE_HOURS = 48   # RSS 条目的时效硬闸门（比 24h 窗口稍宽，避免因时区/发布延迟误杀）
+
+
+def _is_recent(item: dict, max_age_hours: int = MAX_AGE_HOURS) -> bool:
+    """pubDate 可解析时做时效过滤；解析不出来就保留（宁多勿误杀）。
+
+    ⚠️ 这个过滤不是可选项：Bing News RSS 会混入**陈年**结果 —— 实测查询
+    「伊朗 以色列 霍尔木兹 红海」返回的唯一条目 pubDate 是 **2012-12-25**。
+    不加过滤，这些旧闻会被当作「过去 24 小时事件」污染报告。
+    Google News 侧已由 `when:1d` 限定，这里做统一兜底。
+    """
+    from email.utils import parsedate_to_datetime
+
+    raw = (item.get("published_date") or "").strip()
+    if not raw:
+        return True
+    try:
+        ts = parsedate_to_datetime(raw)
+    except Exception:  # noqa: BLE001
+        return True
+    if ts is None:
+        return True
+    if ts.tzinfo is None:
+        ts = ts.replace(tzinfo=dt.timezone.utc)
+    age = dt.datetime.now(dt.timezone.utc) - ts.astimezone(dt.timezone.utc)
+    return age <= dt.timedelta(hours=max_age_hours)
+
+
+def rss_search(query: str, max_results: int = 4) -> list[dict]:
+    """双引擎 RSS 合并检索：Google News + Bing News，时效过滤 + 标题去重。"""
+    merged, seen = [], set()
+    for engine in (gnews_search, bing_news_search):
+        for item in engine(query, max_results):
+            if not _is_recent(item):
+                print(f"[WARN] 丢弃过期条目（{item.get('published_date')}）："
+                      f"{(item.get('title') or '')[:50]}")
+                continue
+            key = _norm_title(item.get("title") or "")
+            if not key or key in seen:
+                continue
+            seen.add(key)
+            merged.append(item)
+    return merged
+
+
 _TAVILY_DEAD = False  # Tavily 一旦确认为失效，后续查询直接跳过，避免逐路空等
 
 
-def search(query: str, tavily_key: str, max_results: int = 6) -> list[dict]:
-    """双通道检索：Tavily 优先，失败或返回空则降级 Google News RSS。
+def search(query: str, tavily_key: str, max_results: int = 4) -> list[dict]:
+    """检索路由：Tavily 优先，缺失/失效/返空则走免密钥双引擎 RSS。
 
     Tavily 失效（401/403 等）时置全局 _TAVILY_DEAD 标志，
     避免 N 路查询各自重试一次、白白拖慢整体耗时。
@@ -169,18 +253,18 @@ def search(query: str, tavily_key: str, max_results: int = 6) -> list[dict]:
         if rs:
             return rs
         _TAVILY_DEAD = True
-        print("[WARN] Tavily 不可用，后续查询全部改用 Google News RSS。")
-    return gnews_search(query, max_results)
+        print("[WARN] Tavily 不可用，后续查询全部改用免密钥双引擎 RSS。")
+    return rss_search(query, max_results)
 
 
-MAX_CONTEXT_ITEMS = 70   # 硬上限：无论检索通道返回多少，编进提示词的素材不超过这个数
+MAX_CONTEXT_ITEMS = 80   # 硬上限：无论检索通道返回多少，编进提示词的素材不超过这个数
 
 
 def build_context(searches: list[tuple[str, list[dict]]]) -> str:
     """把检索结果编成带编号的上下文，便于模型引用来源。
 
-    设总量硬上限 `MAX_CONTEXT_ITEMS`：Tavily 恢复后每路最多 6 条 × 11 路 = 66 条，
-    尚在上限内；但若日后加大 max_results，这里能兜住提示词体积，避免超上下文窗口。
+    设总量硬上限 `MAX_CONTEXT_ITEMS`：双引擎 RSS 每路最多 8 条 × 11 路 = 88 条，
+    略高于上限时截断尾部；上限的作用是兜住提示词体积，避免超上下文窗口。
     """
     blocks, n = [], 0
     for q, results in searches:
@@ -267,7 +351,13 @@ def strip_fences(text: str) -> str:
 
 # ---------------------------------------------------------------- LLM
 
-def llm_call(messages: list[dict], api_key: str, max_tokens: int, temperature: float = 0.3) -> str:
+def llm_call(messages: list[dict], api_key: str, max_tokens: int,
+             temperature: float = 0.3, attempts: int = LLM_ATTEMPTS) -> str:
+    """调用 DeepSeek，带指数退避重试。
+
+    日报是「一天必须有一份」的任务，单次 5xx / 超时不应该让整条链路失败 ——
+    这也是补跑点存在的意义，但直接重试成本更低、还不会让用户少收一封。
+    """
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
     body = {
         "model": DEEPSEEK_MODEL,
@@ -276,15 +366,64 @@ def llm_call(messages: list[dict], api_key: str, max_tokens: int, temperature: f
         "max_tokens": max_tokens,
         "stream": False,
     }
-    r = requests.post(DEEPSEEK_URL, headers=headers, json=body, timeout=LLM_TIMEOUT)
-    r.raise_for_status()
-    return r.json()["choices"][0]["message"]["content"]
+    last = ""
+    for i in range(1, attempts + 1):
+        try:
+            r = requests.post(DEEPSEEK_URL, headers=headers, json=body, timeout=LLM_TIMEOUT)
+            if r.status_code in (429, 500, 502, 503, 504):
+                raise RuntimeError(f"HTTP {r.status_code}: {r.text[:200]}")
+            r.raise_for_status()
+            return r.json()["choices"][0]["message"]["content"]
+        except Exception as e:  # noqa: BLE001
+            last = f"{type(e).__name__}: {e}"
+            print(f"[WARN] LLM 调用失败（第 {i}/{attempts} 次）：{last}")
+            if i < attempts:
+                time.sleep(min(2 ** i * 3, 30))
+    die(f"LLM 连续 {attempts} 次调用失败，终止运行：{last}")
+
+
+# ---------------------------------------------------------------- 跨通道查重
+
+def already_delivered(day: str, smtp_user: str, smtp_code: str) -> bool:
+    """用 IMAP 查自己的收件箱，判断当日简报是否已经投递过。
+
+    **为什么必须有这个东西**：GitHub Actions 的 `schedule` 在高负载下不只是被丢弃，
+    还会被**延迟数小时**执行 —— 一个 08:33 的计划任务完全可能 13:00 才真正跑起来，
+    而那时本机 WorkBuddy 已经投递过了。仓库里的 `archive/` 闸门看不到本机投递
+    （本机不 push 回仓库），所以需要一个**跨通道**的账本。
+
+    邮件本身就是最好的账本：本简报是自发自收（MAIL_TO 默认等于发件人），
+    投递成功后必然落在自己的收件箱里，且对「GitHub 投递」和「本机投递」一视同仁。
+
+    失败一律返回 False（fail-open）：宁可偶发重复，也绝不漏发。
+    """
+    import imaplib
+
+    try:
+        M = imaplib.IMAP4_SSL("imap.qq.com", 993, timeout=30)
+        try:
+            M.login(smtp_user, smtp_code)
+            M.select("INBOX", readonly=True)
+            _typ, data = M.search(None, "SUBJECT", f'"{day}"')
+            ids = (data[0] or b"").split()
+            if ids:
+                print(f"[SKIP] 收件箱已存在 {len(ids)} 封主题含「{day}」的邮件 —— 今日已投递过。")
+            return bool(ids)
+        finally:
+            try:
+                M.logout()
+            except Exception:  # noqa: BLE001
+                pass
+    except Exception as e:  # noqa: BLE001
+        print(f"[WARN] 邮箱查重不可用（{type(e).__name__}: {e}），按「未投递」继续。")
+        return False
 
 
 # ---------------------------------------------------------------- 邮件
 
 def send_email(subject: str, body_html: str, attachment: Path,
-               smtp_user: str, smtp_code: str, mail_to: str) -> None:
+               smtp_user: str, smtp_code: str, mail_to: str,
+               attempts: int = SMTP_ATTEMPTS) -> None:
     msg = MIMEMultipart("mixed")
     msg["From"] = formataddr((str(Header("全球宏观简报", "utf-8")), smtp_user))
     msg["To"] = mail_to
@@ -299,21 +438,31 @@ def send_email(subject: str, body_html: str, attachment: Path,
                     filename=("utf-8", "", attachment.name))
     msg.attach(part)
 
-    ctx = ssl.create_default_context()
-    with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=ctx, timeout=60) as s:
-        s.login(smtp_user, smtp_code)
-        s.sendmail(smtp_user, [mail_to], msg.as_string())
-    print(f"[OK] 邮件已投递 → {mail_to}")
+    last = ""
+    for i in range(1, attempts + 1):
+        try:
+            ctx = ssl.create_default_context()
+            with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, context=ctx, timeout=60) as s:
+                s.login(smtp_user, smtp_code)
+                s.sendmail(smtp_user, [mail_to], msg.as_string())
+            print(f"[OK] 邮件已投递 → {mail_to}（第 {i} 次尝试）")
+            return
+        except Exception as e:  # noqa: BLE001
+            last = f"{type(e).__name__}: {e}"
+            print(f"[WARN] 邮件投递失败（第 {i}/{attempts} 次）：{last}")
+            if i < attempts:
+                time.sleep(min(2 ** i * 3, 30))
+    raise RuntimeError(f"邮件连续 {attempts} 次投递失败：{last}")
 
 
 # ---------------------------------------------------------------- 主流程
 
 def main() -> None:
     deepseek_key = require("DEEPSEEK_API_KEY")
-    # Tavily 为可选：缺失或失效时自动降级 Google News RSS（免密钥）
+    # Tavily 为可选：缺失或失效时自动降级免密钥双引擎 RSS
     tavily_key = (os.getenv("TAVILY_API_KEY") or "").strip()
     if not tavily_key:
-        print("[WARN] 未提供 TAVILY_API_KEY，使用 Google News RSS 降级检索。")
+        print("[WARN] 未提供 TAVILY_API_KEY，使用免密钥双引擎 RSS 检索（Google News + Bing News）。")
     smtp_user = require("QQ_SMTP_USER")
     smtp_code = require("QQ_SMTP_CODE")
     mail_to = os.getenv("MAIL_TO", smtp_user).strip()
@@ -325,6 +474,15 @@ def main() -> None:
     stamp = now.strftime("%Y-%m-%d %H:%M")
 
     print(f"[INFO] 运行日期(JST): {day}　监测窗口: {window_start} → {window_end} JST")
+
+    # 0) 跨通道查重：本机 / 上一次延迟的计划任务可能已经投递过
+    dry_run = (os.getenv("DRY_RUN") or "").strip().lower() in ("1", "true", "yes")
+    skip_dedupe = dry_run or (os.getenv("SKIP_DEDUPE") or "").strip().lower() in ("1", "true", "yes")
+    if skip_dedupe:
+        print("[WARN] 已跳过邮箱查重（force / dry_run）。")
+    elif already_delivered(day, smtp_user, smtp_code):
+        print("[DONE] 今日已投递，跳过本轮（不检索、不生成、不发信）。")
+        return
 
     # 1) 检索
     queries = build_queries(now)
@@ -374,6 +532,16 @@ def main() -> None:
         print("[WARN] 邮件正文异常，改用报告摘要回退。")
         mail_body = f'<div style="font-family:sans-serif">今日简报已生成，完整内容见附件。</div>'
 
+    # 3.5) 试跑出口：能走到这里说明检索 + 两次 LLM 调用都成功了，
+    #      但不投递、不归档 —— 用于在不打扰收件人的前提下验证改动。
+    if dry_run:
+        draft = ROOT / f".dryrun-{day}.html"
+        draft.write_text(report, encoding="utf-8")
+        print(f"[OK] DRY_RUN：报告已写入 {draft.name}"
+              f"（{len(report.encode('utf-8'))/1024:.1f} KB），不投递、不归档。")
+        print("[DONE] 试跑完成。")
+        return
+
     # 4) 落盘
     ARCHIVE.mkdir(exist_ok=True)
     out = ARCHIVE / f"{day}.html"
@@ -391,4 +559,15 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    # --check：只查邮箱账本（今日是否已投递），供 workflow 的「当日终检」使用。
+    # 退出码 0 = 今日已投递；1 = 未投递或无法确认（让调用方决定是否告警）。
+    if "--check" in sys.argv:
+        _u = (os.getenv("QQ_SMTP_USER") or "").strip()
+        _c = (os.getenv("QQ_SMTP_CODE") or "").strip()
+        if not (_u and _c):
+            print("[WARN] 缺少 QQ_SMTP_USER / QQ_SMTP_CODE，无法查询账本。")
+            sys.exit(1)
+        _day = dt.datetime.now(JST).strftime("%Y-%m-%d")
+        sys.exit(0 if already_delivered(_day, _u, _c) else 1)
+
     main()
