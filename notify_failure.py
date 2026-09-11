@@ -10,14 +10,19 @@
   QQ_SMTP_USER / QQ_SMTP_CODE / MAIL_TO   邮件（缺失则跳过邮件，不报错）
   GITHUB_TOKEN                             开 Issue（需在 workflow 里显式传入）
   GITHUB_REPOSITORY / GITHUB_RUN_ID / GITHUB_SERVER_URL   GitHub 自动注入
+  FAIL_REASON                              可选，覆盖默认的失败原因文案
+
+⚠️ 不要在本模块顶层 import requests：最需要告警的场景恰恰是
+   `pip install` 失败（requests 装不上），此时顶层 import 会让本脚本直接
+   崩溃 —— 那就从「简报失败但会告警」退化成「失败且无告警」。因此改为
+   在 open_issue() 内部惰性 import，并兜住 ImportError。
+   邮件通道只用标准库，任何情况下都能用。
 """
 
 from __future__ import annotations
 
 import datetime as dt
 import os
-
-import requests
 
 JST = dt.timezone(dt.timedelta(hours=9))
 STAMP = dt.datetime.now(JST).strftime("%Y-%m-%d %H:%M")
@@ -28,6 +33,7 @@ RUN_ID = os.getenv("GITHUB_RUN_ID", "")
 RUN_URL = f"{SERVER}/{REPO}/actions/runs/{RUN_ID}" if REPO and RUN_ID else "(运行链接不可用)"
 
 TITLE = f"【简报生成失败】{STAMP} JST"
+REASON = os.getenv("FAIL_REASON", "").strip() or "「生成简报并投递」这一步返回了非零退出码。"
 
 
 def send_mail() -> None:
@@ -50,9 +56,10 @@ def send_mail() -> None:
         f'<b style="font-size:16px">{TITLE}</b></div>'
         '<p style="margin-top:14px">GitHub Actions 上的「全球宏观+地缘 24h 简报」本次运行<b>未成功</b>，'
         '因此今天<b>没有</b>简报邮件投递。</p>'
+        f'<p><b>判定原因：</b>{REASON}</p>'
         '<p>常见原因：<br>'
-        '1. Secrets 未配置或已失效（DeepSeek / Tavily / QQ 授权码）<br>'
-        '2. 检索全部无结果（Tavily 额度用尽或网络问题）<br>'
+        '1. Secrets 未配置或已失效（DeepSeek / QQ 授权码）<br>'
+        '2. 检索全部无结果（网络问题或额度用尽）<br>'
         '3. 模型未返回合法 HTML</p>'
         f'<p>查看日志：<a href="{RUN_URL}">{RUN_URL}</a></p>'
         '<p style="font-size:12px;color:#7d9c8a">确认修复后，可在 Actions 页面点 '
@@ -77,6 +84,13 @@ def open_issue() -> None:
     if not (token and REPO):
         print("[WARN] 无 GITHUB_TOKEN，跳过开 Issue。")
         return
+    # 惰性 import：pip install 失败的场景下 requests 可能不存在，但邮件已发出去，
+    # 这里只降级为「不开 Issue」，绝不向外抛异常。
+    try:
+        import requests
+    except ImportError as e:  # noqa: BLE001
+        print(f"[WARN] 缺少 requests，跳过开 Issue：{e}")
+        return
     try:
         r = requests.post(
             f"https://api.github.com/repos/{REPO}/issues",
@@ -87,7 +101,7 @@ def open_issue() -> None:
             },
             json={
                 "title": TITLE,
-                "body": f"简报运行失败，请查看日志：{RUN_URL}\n\n"
+                "body": f"简报运行失败（{REASON}），请查看日志：{RUN_URL}\n\n"
                         f"（此 Issue 由 notify_failure.py 自动创建）",
                 "labels": ["automated"],
             },
@@ -102,7 +116,7 @@ def open_issue() -> None:
                     "Accept": "application/vnd.github+json",
                     "Content-Type": "application/json",
                 },
-                json={"title": TITLE, "body": f"简报运行失败，请查看日志：{RUN_URL}"},
+                json={"title": TITLE, "body": f"简报运行失败（{REASON}），请查看日志：{RUN_URL}"},
                 timeout=30,
             )
         print(f"[OK] 已开 Issue（HTTP {r.status_code}）")
