@@ -1,9 +1,13 @@
 name: 全球宏观+地缘 24h 简报
 
 on:
-  # 每天东京时间 08:30（= UTC 前一日 23:30）
+  # GitHub Actions 的 schedule 在高负载时会延迟甚至完全跳过（2026-09-11 实测：
+  # 08:30 那一班整整 48 分钟没有触发）。因此设置三个递增的补跑点，
+  # 配合下面的幂等闸门：任一次跑通，其后各点自动跳过，不会重复投递。
   schedule:
-    - cron: '30 23 * * *'
+    - cron: '30 23 * * *'   # 08:30 JST  主跑
+    - cron: '10 0 * * *'    # 09:10 JST  第一次补跑
+    - cron: '50 0 * * *'    # 09:50 JST  第二次补跑
   # 允许在 Actions 页面手动触发（右上角 Run workflow）
   workflow_dispatch:
 
@@ -25,18 +29,35 @@ jobs:
       - name: 检出仓库
         uses: actions/checkout@v4
 
+      # 幂等闸门：当日 archive 已存在 = 今天已成功投递，后续步骤全部跳过
+      - name: 幂等检查（今日已归档则跳过）
+        id: gate
+        run: |
+          DAY=$(date -u -d '+9 hours' +%Y-%m-%d)
+          echo "day=$DAY" >> "$GITHUB_OUTPUT"
+          if [ -f "archive/${DAY}.html" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "⏭ ${DAY} 已归档，跳过本轮，避免重复投递。"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "▶ ${DAY} 未归档，开始生成。"
+          fi
+
       - name: 配置 Python
+        if: steps.gate.outputs.skip == 'false'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: pip
 
       - name: 安装依赖
+        if: steps.gate.outputs.skip == 'false'
         run: pip install -r requirements.txt
 
-      # continue-on-error：即使邮件投递失败，也要保证「归档」这一步照常执行
+      # continue-on-error：即使邮件投递失败，也要保证流程走到告警步骤
       - name: 生成简报并投递
         id: run_digest
+        if: steps.gate.outputs.skip == 'false'
         continue-on-error: true
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
@@ -46,8 +67,10 @@ jobs:
           MAIL_TO:          ${{ secrets.MAIL_TO }}
         run: python digest.py
 
+      # 仅在完全成功时归档。若失败也归档，会被幂等闸门误判为「已投递」而放弃重试；
+      # 不归档则可让下一个补跑点接手。
       - name: 归档当日报告
-        if: always()
+        if: steps.gate.outputs.skip == 'false' && steps.run_digest.outcome == 'success'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -55,7 +78,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "无新增归档，跳过提交。"
           else
-            git commit -m "chore: archive $(date -u +%Y-%m-%d) digest"
+            git commit -m "chore: archive $(date -u -d '+9 hours' +%Y-%m-%d) digest"
             git pull --rebase origin "${GITHUB_REF_NAME}" || true
             git push
           fi
