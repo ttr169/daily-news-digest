@@ -4,7 +4,7 @@
 全球宏观 + 地缘政治 24 小时简报 · GitHub Actions 版
 
 流程：
-  1. Tavily 并行检索（7 路，限定 24 小时窗口）
+  1. 双通道检索（11 路，限定 24 小时窗口；Tavily 优先，失败降级 Google News RSS）
   2. DeepSeek 生成自包含 HTML 报告（深绿主题 / card-based / 移动优先 / 打印就绪）
   3. DeepSeek 生成精简邮件正文（Top 5 + KPI 表 + 日历）
   4. QQ 邮箱 SMTP 投递（HTML 正文 + HTML 附件）
@@ -69,22 +69,39 @@ def require(name: str) -> str:
 # ---------------------------------------------------------------- 检索
 
 def build_queries(now: dt.datetime) -> list[str]:
-    """中英双语、覆盖宏观/地缘/能源/AI 的 7 路查询。"""
-    cn = f"{now.year}年{now.month}月{now.day}日"
-    en_md = f"{now.strftime('%B')} {now.day} {now.year}"      # September 8 2026
-    en_m = f"{now.strftime('%B')} {now.year}"                 # September 2026
+    """中英双语、覆盖宏观/地缘/能源/AI 的 11 路查询。
+
+    ⚠️ 查询式必须「聚焦」—— 一条查询只放一个主题，**并且不要写日期**。
+    2026-09-11 实测（Google News RSS + when:1d，同一时段同一批话题）：
+
+        「伊朗 中东 俄罗斯 乌克兰 台海 最新 2026年9月11日 重大事件」 → 1 条
+        「Iran Russia Ukraine Middle East Taiwan major news ...」    → 1 条
+        「伊朗 以色列 霍尔木兹 红海」                                → 8 条
+        「俄乌 停火 谈判 制裁」                                      → 3 条
+        「Iran Israel Houthi Red Sea conflict」                      → 8 条
+
+    原因：Google News 把长查询当近似 AND 处理，关键词堆叠 + 把日期写进查询
+    会大幅压低召回 —— 结果是地缘板块（本报告的核心）每路只拿到 1 条素材。
+    **时间窗交给检索端**（RSS 的 when:1d / Tavily 的 days=1），查询里不要再写日期。
+    """
     return [
-        f"央行 货币政策 决议 重大新闻 {cn}",
-        f"伊朗 中东 俄罗斯 乌克兰 台海 最新 {cn} 重大事件",
-        f"central bank policy decision {en_m} Fed ECB BOJ important",
-        f"Iran Russia Ukraine Middle East Taiwan major news {en_md} breaking",
-        f"crude oil price OPEC news {en_m} WTI Brent geopolitical supply",
-        f"global macro breaking news {en_md} financial markets geopolitical",
-        f"AI 科技 重大新闻 {cn} 英伟达 OpenAI 数据中心",
+        # —— 中文（zh-CN / CN）——
+        "央行 利率决议 降息 加息 美联储",
+        "伊朗 以色列 霍尔木兹 红海 冲突",
+        "俄乌 停火 谈判 制裁",
+        "台海 中美 军事 演习",
+        "原油 油价 OPEC",
+        "英伟达 OpenAI 人工智能 芯片 数据中心",
+        # —— 英文（en-US / US）——
+        "Fed ECB BOJ interest rate decision markets",
+        "Iran Israel Houthi Red Sea conflict",
+        "Russia Ukraine war ceasefire talks",
+        "oil price OPEC Brent WTI supply",
+        "Nvidia OpenAI AI datacenter chips",
     ]
 
 
-def tavily_search(query: str, api_key: str, max_results: int = 8) -> list[dict]:
+def tavily_search(query: str, api_key: str, max_results: int = 6) -> list[dict]:
     payload = {
         "api_key": api_key,
         "query": query,
@@ -103,7 +120,7 @@ def tavily_search(query: str, api_key: str, max_results: int = 8) -> list[dict]:
         return []
 
 
-def gnews_search(query: str, max_results: int = 8) -> list[dict]:
+def gnews_search(query: str, max_results: int = 6) -> list[dict]:
     """免密钥降级检索：Google News RSS。
 
     Tavily 不可用时自动接管。RSS 自带 when:1d 时间窗，
@@ -140,7 +157,7 @@ def gnews_search(query: str, max_results: int = 8) -> list[dict]:
 _TAVILY_DEAD = False  # Tavily 一旦确认为失效，后续查询直接跳过，避免逐路空等
 
 
-def search(query: str, tavily_key: str, max_results: int = 8) -> list[dict]:
+def search(query: str, tavily_key: str, max_results: int = 6) -> list[dict]:
     """双通道检索：Tavily 优先，失败或返回空则降级 Google News RSS。
 
     Tavily 失效（401/403 等）时置全局 _TAVILY_DEAD 标志，
@@ -156,14 +173,23 @@ def search(query: str, tavily_key: str, max_results: int = 8) -> list[dict]:
     return gnews_search(query, max_results)
 
 
+MAX_CONTEXT_ITEMS = 70   # 硬上限：无论检索通道返回多少，编进提示词的素材不超过这个数
+
+
 def build_context(searches: list[tuple[str, list[dict]]]) -> str:
-    """把检索结果编成带编号的上下文，便于模型引用来源。"""
+    """把检索结果编成带编号的上下文，便于模型引用来源。
+
+    设总量硬上限 `MAX_CONTEXT_ITEMS`：Tavily 恢复后每路最多 6 条 × 11 路 = 66 条，
+    尚在上限内；但若日后加大 max_results，这里能兜住提示词体积，避免超上下文窗口。
+    """
     blocks, n = [], 0
     for q, results in searches:
         lines = [f"\n===== 查询：{q} ====="]
         if not results:
             lines.append("（无结果）")
         for r in results:
+            if n >= MAX_CONTEXT_ITEMS:
+                break
             n += 1
             title = (r.get("title") or "").strip()
             url = (r.get("url") or "").strip()
@@ -171,6 +197,9 @@ def build_context(searches: list[tuple[str, list[dict]]]) -> str:
             content = re.sub(r"\s+", " ", (r.get("content") or "").strip())[:1400]
             lines.append(f"[{n}] {title}\n    来源: {url}\n    时间: {published}\n    摘要: {content}")
         blocks.append("\n".join(lines))
+        if n >= MAX_CONTEXT_ITEMS:
+            blocks.append(f"\n（已达素材上限 {MAX_CONTEXT_ITEMS} 条，其余查询结果略去）")
+            break
     return "\n".join(blocks)
 
 
