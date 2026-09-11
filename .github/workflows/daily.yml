@@ -1,14 +1,25 @@
 name: 全球宏观+地缘 24h 简报
 
 on:
-  # GitHub Actions 的 schedule 在高负载时会延迟甚至完全跳过（2026-09-11 实测：
-  # 08:30 那一班整整 48 分钟没有触发）。因此设置三个递增的补跑点，
-  # 配合下面的幂等闸门：任一次跑通，其后各点自动跳过，不会重复投递。
+  # ⚠️ GitHub Actions 的 schedule 是「尽力而为」，不是定时保证：
+  #   高负载时会延迟，甚至整轮被直接丢弃。实测 2026-09-11：当天唯一一次定时机会
+  #   （08:30 JST）没有触发，仓库里 3 次运行全部是手动 workflow_dispatch。
+  #   另外，新建或改动 workflow 后，调度器需要 15–60 分钟才会「注册」这条 cron；
+  #   GitHub 官方给出的补救办法是「向默认分支推一次提交以重新同步计划任务」。
+  #
+  #   对策：设 5 个补跑点 + 下面的幂等闸门。
+  #   - 分钟取 :13 / :33 / :53，避开整点前后的调度波峰，被服务到的概率更高；
+  #   - 任一次跑通，其后各点自动跳过，绝不重复投递；
+  #   - 5 次全部落空时，由最后一班的「终检告警」发信告知（见文件末尾）。
+  #   - 本文件所有时点都排在 10:00 JST 之前，好让本机 WorkBuddy 自动化
+  #     （10:00 主线 / 12:00 兜底）作为下一层接手而不与 GitHub 撞车。
   schedule:
-    - cron: '30 23 * * *'   # 08:30 JST  主跑
-    - cron: '10 0 * * *'    # 09:10 JST  第一次补跑
-    - cron: '50 0 * * *'    # 09:50 JST  第二次补跑
-  # 允许在 Actions 页面手动触发（右上角 Run workflow）
+    - cron: '33 23 * * *'   # 08:33 JST  主跑
+    - cron: '53 23 * * *'   # 08:53 JST  补跑 1
+    - cron: '13 0 * * *'    # 09:13 JST  补跑 2
+    - cron: '33 0 * * *'    # 09:33 JST  补跑 3
+    - cron: '53 0 * * *'    # 09:53 JST  补跑 4 + 当日终检
+  # 允许在 Actions 页面手动触发（右上角 Run workflow），也是排障时的第一手段
   workflow_dispatch:
 
 # 同一时刻只允许一个实例，避免手工触发与定时撞车
@@ -79,16 +90,45 @@ jobs:
             echo "无新增归档，跳过提交。"
           else
             git commit -m "chore: archive $(date -u -d '+9 hours' +%Y-%m-%d) digest"
-            git pull --rebase origin "${GITHUB_REF_NAME}" || true
-            git push
+            # 推送失败必须重试：否则下一班补跑看不到归档，会重复发一封邮件
+            for i in 1 2 3; do
+              if git push; then
+                echo "✅ 归档已推送（第 ${i} 次尝试）。"
+                break
+              fi
+              echo "⚠️ 第 ${i} 次推送失败，rebase 后重试 …"
+              git pull --rebase origin "${GITHUB_REF_NAME}" || true
+              sleep 5
+            done
           fi
 
-      # 失败告警：静默失败比失败本身更糟，这一步保证你一定会知道
+      # 失败告警：静默失败比失败本身更糟，这一步保证你一定会知道。
+      # 注意 run_digest 带 continue-on-error，它的失败不会让 failure() 变真，
+      # 所以必须同时判 outcome —— 否则最需要告警的场景反而不会告警。
       - name: 失败告警（邮件 + Issue）
-        if: steps.run_digest.outcome == 'failure'
+        if: failure() || steps.run_digest.outcome == 'failure'
         env:
           QQ_SMTP_USER: ${{ secrets.QQ_SMTP_USER }}
           QQ_SMTP_CODE: ${{ secrets.QQ_SMTP_CODE }}
           MAIL_TO:      ${{ secrets.MAIL_TO }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python notify_failure.py
+
+      # 当日终检：最后一班（09:53 JST）跑完仍没有当日归档 = 5 次机会全部落空，
+      # 基本可以确定是计划任务被 GitHub 丢弃了。主动告警，不让它静默漏跑。
+      - name: 当日终检告警（最后一班仍无归档）
+        if: always() && github.event.schedule == '53 0 * * *' && steps.run_digest.outcome != 'failure'
+        env:
+          QQ_SMTP_USER: ${{ secrets.QQ_SMTP_USER }}
+          QQ_SMTP_CODE: ${{ secrets.QQ_SMTP_CODE }}
+          MAIL_TO:      ${{ secrets.MAIL_TO }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FAIL_REASON:  "今天 5 个补跑点时点都已过，但 archive/ 里仍没有当日报告 —— 计划任务很可能被 GitHub 调度器整轮丢弃了。"
+        run: |
+          DAY=$(date -u -d '+9 hours' +%Y-%m-%d)
+          if [ ! -f "archive/${DAY}.html" ]; then
+            echo "⚠️ ${DAY} 仍无归档，发送终检告警。"
+            python notify_failure.py || true
+          else
+            echo "✅ ${DAY} 已归档，无需告警。"
+          fi
