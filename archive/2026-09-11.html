@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球宏观 + 地缘政治 24 小时简报 | 2026-09-11</title>
+<style>
+  :root{
+    --green:#1f6f43;
+    --green-d:#155232;
+    --green-l:#e8f3ec;
+    --up:#c0392b;
+    --down:#27ae60;
+    --gold:#d4a017;
+    --blue:#3d8ec9;
+    --ink:#1c2321;
+    --muted:#6b7772;
+    --line:#dfe6e2;
+    --bg:#f4f7f5;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:15px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 14px 40px;}
+
+  /* ---------- Header ---------- */
+  header{
+    background:linear-gradient(135deg,var(--green-d) 0%,var(--green) 100%);
+    color:#fff;
+    padding:26px 20px 22px;
+    border-radius:0 0 14px 14px;
+    margin-bottom:18px;
+  }
+  header h1{
+    margin:0 0 6px;
+    font-size:22px;
+    letter-spacing:.5px;
+    line-height:1.35;
+  }
+  header .sub{
+    font-size:12.5px;
+    opacity:.9;
+    margin-bottom:14px;
+  }
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:8px 14px;
+    font-size:12.5px;
+    border-top:1px solid rgba(255,255,255,.25);
+    padding-top:12px;
+  }
+  .meta-grid div span{opacity:.75;display:block;font-size:11px;letter-spacing:.4px;}
+  .tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:20px;
+    padding:2px 10px;
+    font-size:11.5px;
+    white-space:nowrap;
+  }
+
+  /* ---------- Section ---------- */
+  section{margin-bottom:26px;}
+  h2{
+    font-size:17px;
+    color:var(--green-d);
+    margin:0 0 12px;
+    padding-left:11px;
+    border-left:5px solid var(--green);
+    line-height:1.3;
+  }
+  h2 small{font-weight:400;font-size:12px;color:var(--muted);margin-left:6px;}
+
+  /* ---------- Cards ---------- */
+  .card{
+    background:#fff;
+    border-radius:10px;
+    padding:14px 16px;
+    margin-bottom:12px;
+    box-shadow:0 1px 3px rgba(31,111,67,.08);
+    border:1px solid var(--line);
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+  .card.lv5{border-left:5px solid var(--up);}
+  .card.lv4{border-left:5px solid var(--gold);}
+  .card.lv3{border-left:5px solid var(--blue);}
+  .card h3{
+    margin:0 0 7px;
+    font-size:15.5px;
+    line-height:1.45;
+    color:var(--ink);
+  }
+  .card p{margin:0 0 8px;font-size:14px;color:#2c3532;}
+  .stars{font-size:12px;letter-spacing:1px;margin-right:6px;white-space:nowrap;}
+  .lv5 .stars{color:var(--up);}
+  .lv4 .stars{color:var(--gold);}
+  .lv3 .stars{color:var(--blue);}
+  .src{
+    font-size:11.5px;
+    color:var(--muted);
+    border-top:1px dashed var(--line);
+    padding-top:6px;
+    margin-top:8px;
+    line-height:1.5;
+  }
+  .flag{
+    display:inline-block;
+    background:#fff4e0;
+    color:#9a6b00;
+    border:1px solid #f0d9a8;
+    border-radius:4px;
+    padding:0 5px;
+    font-size:11px;
+    margin-left:4px;
+  }
+
+  /* ---------- Top5 ---------- */
+  .top5 .card{padding:12px 14px;}
+  .top5 .rank{
+    display:inline-block;
+    background:var(--green);
+    color:#fff;
+    font-size:11.5px;
+    border-radius:4px;
+    padding:1px 7px;
+    margin-right:7px;
+    vertical-align:1px;
+  }
+
+  /* ---------- KPI ---------- */
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+    gap:10px;
+  }
+  .kpi{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:11px 12px;
+    box-shadow:0 1px 2px rgba(31,111,67,.06);
+    page-break-inside:avoid;
+  }
+  .kpi .k-name{font-size:12px;color:var(--muted);margin-bottom:3px;}
+  .kpi .k-val{font-size:19px;font-weight:700;letter-spacing:.3px;}
+  .kpi .k-chg{font-size:12px;margin-top:2px;}
+  .kpi .k-note{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.45;}
+  .up{color:var(--up);}
+  .down{color:var(--down);}
+  .flat{color:var(--muted);}
+
+  /* ---------- Table ---------- */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+    font-size:13px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 1px 3px rgba(31,111,67,.08);
+  }
+  th{
+    background:var(--green);
+    color:#fff;
+    text-align:left;
+    padding:9px 10px;
+    font-weight:600;
+    font-size:12.5px;
+    white-space:nowrap;
+  }
+  td{
+    padding:8px 10px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+  tr:nth-child(even) td{background:#fafcfb;}
+
+  /* ---------- Chain ---------- */
+  .chain{
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:14px 16px;
+    margin-bottom:12px;
+    page-break-inside:avoid;
+  }
+  .chain-flow{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:6px;
+    margin:10px 0 4px;
+    font-size:12.5px;
+  }
+  .chain-node{
+    background:var(--green-l);
+    border:1px solid #c9e2d4;
+    color:var(--green-d);
+    border-radius:6px;
+    padding:4px 9px;
+    line-height:1.4;
+  }
+  .chain-arrow{color:var(--green);font-weight:700;}
+
+  /* ---------- Divergence ---------- */
+  .div-card{
+    background:#fffdf6;
+    border:1px solid #f0e2bd;
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:13px 15px;
+    margin-bottom:12px;
+    page-break-inside:avoid;
+  }
+  .div-card h4{margin:0 0 8px;font-size:14.5px;color:#8a6400;}
+  .div-card ul{margin:0;padding-left:18px;font-size:13.5px;}
+  .div-card li{margin-bottom:5px;}
+
+  /* ---------- Sources ---------- */
+  .src-list{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 16px;
+    font-size:12.5px;
+    line-height:1.75;
+    color:#3a4441;
+  }
+  .src-list ol{margin:0;padding-left:20px;}
+  .src-list li{margin-bottom:4px;word-break:break-all;}
+
+  .note{
+    background:var(--green-l);
+    border:1px solid #c9e2d4;
+    border-radius:8px;
+    padding:10px 13px;
+    font-size:12.5px;
+    color:var(--green-d);
+    margin-bottom:14px;
+    line-height:1.6;
+  }
+
+  footer{
+    text-align:center;
+    font-size:12px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    padding-top:16px;
+    margin-top:26px;
+    line-height:1.8;
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width:640px){
+    body{font-size:14px;}
+    .wrap{padding:0 10px 30px;}
+    header{padding:20px 14px 18px;border-radius:0 0 10px 10px;}
+    header h1{font-size:18px;}
+    .meta-grid{grid-template-columns:1fr 1fr;font-size:12px;}
+    h2{font-size:15.5px;}
+    .card{padding:12px 13px;}
+    .card h3{font-size:14.5px;}
+    .card p{font-size:13.5px;}
+    .kpi-grid{grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:8px;}
+    .kpi .k-val{font-size:17px;}
+    table{font-size:12px;}
+    th,td{padding:7px 8px;}
+    .chain-flow{font-size:11.5px;}
+    .chain-node{padding:3px 7px;}
+  }
+
+  /* ---------- Print ---------- */
+  @media print{
+    body{background:#fff;font-size:11.5pt;}
+    .wrap{max-width:100%;padding:0;}
+    header{
+      background:#1f6f43 !important;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+      border-radius:0;
+    }
+    .card,.kpi,.chain,.div-card,.src-list,table{
+      box-shadow:none;
+      page-break-inside:avoid;
+      break-inside:avoid;
+    }
+    section{page-break-inside:auto;}
+    h2{page-break-after:avoid;}
+    .tbl-wrap{overflow:visible;}
+    a{color:inherit;text-decoration:none;}
+    footer{page-break-before:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>全球宏观 + 地缘政治 24 小时简报</h1>
+  <div class="sub">Global Macro &amp; Geopolitics Daily Brief</div>
+  <div class="meta-grid">
+    <div><span>报告生成时间</span>2026-09-11 09:18 JST</div>
+    <div><span>监测窗口</span>2026-09-10 09:18 → 2026-09-11 09:18 JST</div>
+    <div><span>信源数</span>42 条素材 / 7 路检索</div>
+    <div><span>事件条目</span>22 条</div>
+  </div>
+  <div class="tags">
+    <span class="tag">欧洲央行加息 25bp</span>
+    <span class="tag">WTI 破 100 美元</span>
+    <span class="tag">霍尔木兹海峡</span>
+    <span class="tag">红海 / 胡塞武装</span>
+    <span class="tag">美债收益率 2007 年来新高</span>
+    <span class="tag">日本央行鹰派</span>
+    <span class="tag">英伟达被调查</span>
+    <span class="tag">美国 CPI 超预期</span>
+  </div>
+</header>
+
+<div class="note">
+  <strong>阅读说明：</strong>本简报严格限定于 2026-09-10 09:18 至 2026-09-11 09:18 JST 检索窗口内的公开素材。所有数字、人名、机构、时间均可在文末「来源清单」中对应编号查证。凡仅有一个独立来源支撑的内容，均以 <span class="flag">单源，待确认</span> 显式标注。不同来源数字冲突者，一律在「数据分歧提示」章节并列呈现，不作调和。配色遵循中国市场惯例：<span class="up">涨 = 红</span>，<span class="down">跌 = 绿</span>。
+</div>
+
+<!-- ============ 一页速览 ============ -->
+<section class="top5">
+  <h2>一页速览 · Top 5 关键事件</h2>
+
+  <div class="card lv5">
+    <h3><span class="rank">01</span><span class="stars">★★★★★</span>欧洲央行加息 25 个基点，三大关键利率同步上调</h3>
+    <p>欧洲央行宣布将三大关键利率上调 25 个基点，为「再次加息」。多家中文财经媒体以「全线跳水」「重大宣布」描述市场即时反应。有报道指出加息后政策利率水平升至 2.5%，但投资者对后续政策路径意见分化。</p>
+    <div class="src">来源：36 Kr（35）、新浪财经（4、5、6）、财富号（2）、cztv.com（1）、Sohu 陆家嘴财经早餐（3）—— 6 源交叉</div>
+  </div>
+
+  <div class="card lv5">
+    <h3><span class="rank">02</span><span class="stars">★★★★★</span>WTI 原油突破 100 美元，盘中一度上探 105 美元</h3>
+    <p>WTI 原油站上 100 美元关口，美国交易时段有报道称油价触及 105 美元/桶。市场开始定价「霍尔木兹海峡受限 + 红海出口同时受威胁」的双通道风险情景。美国原油基金（USO）创 52 周新高。同期亦有报道显示 WTI 曾回落至 93.50 美元下方（获利了结），日内波动剧烈。</p>
+    <div class="src">来源：Energy News Beat（26）、eciks.org（24）、TradingView（25）、tmgm.com（21）、Fortune（23）、每日经济新闻（42）—— 6 源交叉</div>
+  </div>
+
+  <div class="card lv5">
+    <h3><span class="rank">03</span><span class="stars">★★★★★</span>美债收益率创 2007 年以来新高</h3>
+    <p>美债收益率升至 2007 年以来最高水平。相关报道同时提及美国财政部（贝森特）60 亿美元回购规模逊于预期，美债继续下跌。该组合对全球久期资产与美元流动性构成直接压力。</p>
+    <div class="src">来源：财富号（8）、华盛早报 / hstong.com（40）—— 2 源交叉</div>
+  </div>
+
+  <div class="card lv5">
+    <h3><span class="rank">04</span><span class="stars">★★★★★</span>红海与霍尔木兹双线紧张：胡塞武装占领红海战略要地，美无人艇遭伊朗拦截</h3>
+    <p>也门胡塞武装占领红海战略要地；美国一艘无人艇遭伊朗拦截。另有报道称美国打击行动后，霍尔木兹海峡附近海域疑似出现浮油带。上述事件与油价破百形成直接因果链。</p>
+    <div class="src">来源：每日经济新闻（42）、RFI（9）—— 2 源交叉（浮油带细节为单源）</div>
+  </div>
+
+  <div class="card lv5">
+    <h3><span class="rank">05</span><span class="stars">★★★★★</span>美国 CPI 超预期，美联储陷入困境</h3>
+    <p>美国 CPI 数据超预期，市场解读为美联储政策空间受挤压。同期 UBS CEO 公开警告投资者「过度自满」，称主要央行可能连续加息；多家机构提示主要央行在能源价格飙升背景下释放鹰派信号。</p>
+    <div class="src">来源：bihainews.com 财经早餐（41）、finance.biggo.com（17）、Global Banking &amp; Finance Review（11）—— 3 源交叉</div>
+  </div>
+</section>
+
+<!-- ============ KPI 看板 ============ -->
+<section>
+  <h2>关键指标看板 <small>仅列示素材中可查证数值，未标注者不填</small></h2>
+  <div class="kpi-grid">
+
+    <div class="kpi">
+      <div class="k-name">WTI 原油</div>
+      <div class="k-val up">&gt; $100</div>
+      <div class="k-chg up">▲ 突破关口</div>
+      <div class="k-note">盘中一度报 $105（eciks.org）；另有报道称曾跌破 $93.50</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">布伦特 / 原油涨幅</div>
+      <div class="k-val up">+8%</div>
+      <div class="k-chg up">▲ 单日大涨</div>
+      <div class="k-note">每日经济新闻早参口径</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">欧洲央行政策利率</div>
+      <div class="k-val up">2.5%</div>
+      <div class="k-chg up">▲ +25bp</div>
+      <div class="k-note">三大关键利率同步上调 25bp</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">美债收益率</div>
+      <div class="k-val up">2007 年来新高</div>
+      <div class="k-chg up">▲ 上行</div>
+      <div class="k-note">素材未给出具体 bp 数值，故不填</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">比特币 BTC</div>
+      <div class="k-val flat">≈ $78,000</div>
+      <div class="k-chg flat">— 盘整</div>
+      <div class="k-note">等待美国通胀与美联储线索</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">BNB</div>
+      <div class="k-val down">-1.41%</div>
+      <div class="k-chg down">▼ 9 月 10 日</div>
+      <div class="k-note">链上数据与市场情绪观察</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">黄金 / 白银 / 铜</div>
+      <div class="k-val down">跳水</div>
+      <div class="k-chg down">▼ 走弱</div>
+      <div class="k-note">每日经济新闻早参口径；具体点位素材未提供</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">日经指数</div>
+      <div class="k-val down">走低</div>
+      <div class="k-chg down">▼ 承压</div>
+      <div class="k-note">油价破百 + 日本央行加息担忧压制涨幅</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">美元 / 日元 USD-JPY</div>
+      <div class="k-val flat">待确认</div>
+      <div class="k-chg flat">— 关键测试</div>
+      <div class="k-note">素材仅述「breakdown 面临重大考验」，无具体点位</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">欧元</div>
+      <div class="k-val up">走强</div>
+      <div class="k-chg up">▲ 决议前坚挺</div>
+      <div class="k-note">兑加元因鹰派 ECB 情绪上行</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">美国原油基金 USO</div>
+      <div class="k-val up">52 周新高</div>
+      <div class="k-chg up">▲ 创新高</div>
+      <div class="k-note">TradingView 报道</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">沙特原油产量</div>
+      <div class="k-val down">1990 年来最低</div>
+      <div class="k-chg down">▼ 下滑</div>
+      <div class="k-note">OPEC+ 增产背景下逆势下滑（单源，待确认）</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ A. 全球宏观 ============ -->
+<section>
+  <h2>A. 全球宏观 · 央行 / 利率 / 汇市 / 数据</h2>
+
+  <div class="card lv5">
+    <h3><span class="stars">★★★★★</span>欧洲央行加息 25bp，三大关键利率同步上调</h3>
+    <p>欧洲央行宣布将三大关键利率上调 25 个基点。中文财经媒体以「全线跳水」「重大宣布」描述市场反应。新浪财经报道称「欧洲央行加息至 2.5%，但投资者对后续政策走向意见分化」。36 Kr 早报确认「欧洲央行将三大关键利率上调 25 个基点」。cztv.com 提出「后续还会有多次加息？」的疑问，反映市场对路径存在分歧。</p>
+    <div class="src">来源：36 Kr（35）、新浪财经（4、5、6）、财富号（2）、cztv.com（1）、Sohu（3）—— 6 源交叉</div>
+  </div>
+
+  <div class="card lv5">
+    <h3><span class="stars">★★★★★</span>美国 CPI 超预期，美联储政策困境加深</h3>
+    <p>9 月 11 日财经早餐综述以「CPI 超预期、美联储困境、甲骨文大涨」为标题，指向美国通胀数据高于预期，压缩美联储政策腾挪空间。该数据与美债收益率创 2007 年以来新高、油价破百形成共振。</p>
+    <div class="src">来源：bihainews.com（41）、财富号（8）、华盛早报（40）—— 3 源交叉</div>
+  </div>
+
+  <div class="card lv4">
+    <h3><span class="stars">★★★★</span>主要央行集体转鹰，能源价格飙升成共同触发因素</h3>
+    <p>Global Banking &amp; Finance Review 报道称，主要央行在能源价格飙升背景下释放鹰派加息信号。BeInCrypto 指出「三家央行可能在八天内加息」，并点名具体时间窗口。XTB.com 经济日历将「ECB 决议与鹰派日本央行」列为焦点。</p>
+    <div class="src">来源：Global Banking &amp; Finance Review（11）、BeInCrypto（10）、XTB.com（14）—— 3 源交叉</div>
+  </div>
+
+  <div class="card lv4">
+    <h3><span class="stars">★★★★</span>UBS CEO 警告：投资者过度自满，主要央行可能连续加息</h3>
+    <p>瑞银（UBS）CEO 公开警告投资者「过度自满」，并称主要央行可能接连加息。该表态与当日 ECB 决议、CPI 超预期形成呼应，属机构层面对政策风险的显性提示。</p>
+    <div class="src">来源：finance.biggo.com（17）、Global Banking &amp; Finance Review（11）—— 2 源交叉</div>
+  </div>
+
+  <div class="card lv4">
+    <h3><span class="stars">★★★★</span>日本央行准备收紧货币，143 万亿日元预算引发财政担忧</h3>
+    <p>新浪财经报道称，日元面临政策博弈，日本央行准备收紧货币政策；同时 143 万亿日元规模的预算引发财政担忧。forex.com 指出 USD/JPY 的「breakdown 面临重大考验」，时点位于美联储与日本央行会议之前。XTB.com 亦将「鹰派日本央行」列为本周焦点。</p>
+    <div class="src">来源：新浪财经（7）、forex.com（15）、XTB.com（14）—— 3 源交叉</div>
+  </div>
+
+  <div class="card lv4">
+    <h3><span class="stars">★★★★</span>美债收益率创 2007 年以来新高，财政部回购逊于预期</h3>
+    <p>财富号报道「美债收益率创 2007 年以来新高」。华盛早报补充：贝森特（财政部）60 亿美元回购规模逊于预期，美债仍跌。收益率上行与油价破百、CPI 超预期共同构成对全球估值端的压力。</p>
+    <div class="src">来源：财富号（8）、华盛早报 / hstong.com（40）—— 2 源交叉</div>
+  </div>
+
+  <div class="card lv3">
+    <h3><span class="stars">★★★</span>欧元决议前保持坚挺，兑加元因鹰派情绪上行</h3>
+    <p>WTVB 报道「Euro firm ahead of ECB decision」，并提及 100 美元油价抑制经济活动。tmgm.com 指出欧元兑加元因鹰派 ECB 情绪而走高。决议落地后欧元走势需结合后续路径指引判断。</p>
+    <div class="src">来源：WTVB（12）、tmgm.com（32）—— 2 源交叉</div>
+  </div>
+
+  <div class="card lv3">
+    <h3><span class="stars">★★★</span>中国央行、证监会等四部门发声</h3>
+    <p>每日经济新闻早参提及「央行、证监会等四部门发声」。素材未提供具体政策内容与文件名称，故不作延伸解读。</p>
+    <div class="src">来源：每日经济新闻（42）<span class="flag">单源，待确认</span></div>
+  </div>
+</section>
+
+<!-- ============ B. 地缘政治 ============ -->
+<section>
+  <h2>B. 地缘政治 · 美伊 / 中东 / 俄乌 / 欧美</h2>
+
+  <div class="card lv5">
+    <h3><span class="stars">★★★★★</span>胡塞武装占领红海战略要地，美无人艇遭伊朗拦截</h3>
+    <p>每日经济新闻早参明确列出两条并列事件：也门胡塞武装占领红海战略要地；美国一艘无人艇遭伊朗拦截。红海为沙特剩余海运出口通道，与霍尔木兹海峡构成「双通道风险」，直接对应油价破百的市场定价逻辑。</p>
+    <div class="src">来源：每日经济新闻（42）、Energy News Beat（26）—— 2 源交叉</div>
+  </div>
+
+  <div class="card lv5">
+    <h3><span class="stars">★★★★★</span>美国打击后，霍尔木兹海峡附近海域疑似出现浮油带</h3>
+    <p>RFI 报道称，在美国实施打击之后，霍尔木兹海峡附近海域疑似出现浮油带。该细节若被证实，将指向航运与能源基础设施受损风险。目前仅见单一来源，需后续核实。</p>
+    <div class="src">来源：RFI（9）<span class="flag">单源，待确认</span></div>
+  </div>
+
+  <div class="card lv4">
+    <h3><span class="stars">★★★★</span>美伊紧张持续，成为油价定价核心变量</h3>
+    <p>tmgm.com 报道「WTI 跌破 93.50 美元，因获利了结，美伊紧张持续受关注」，显示美伊对峙是当日原油波动的核心叙事。Energy News Beat 进一步指出，市场开始定价高盛数月前提示的情景：不仅是霍尔木兹海峡受限，同时红海出口也受威胁。</p>
+    <div class="src">来源：tmgm.com（21）、Energy News Beat（26）—— 2 源交叉</div>
+  </div>
+
+  <div class="card lv3">
+    <h3><span class="stars">★★★</span>中国领导人 9 月密集外交会晤安排</h3>
+    <p>Kyiv Post 报道称，中国国家主席在 9 月启动密集的外交会晤安排。素材未提供具体会晤对象、议题与成果，故仅作日程性提示。</p>
+    <div class="src">来源：Kyiv Post（18）<span class="flag">单源，待确认</span></div>
+  </div>
+
+  <div class="card lv3">
+    <h3><span class="stars">★★★</span>青岛货轮火灾已致 25 人遇难</h3>
+    <p>每日经济新闻早参报道，青岛货轮火灾已造成 25 人遇难。该事件涉及港口与航运安全，但素材未提供对航运运价或供应链的量化影响。</p>
+    <div class="src">来源：每日经济新闻（42）<span class="flag">单源，待确认</span></div>
+  </div>
+</section>
+
+<!-- ============ C. 能源传导链 ============ -->
+<section>
+  <h2>C. 能源传导链 · 原油 / 天然气 / 航运 / 成品油</h2>
+
+  <div class="chain">
+    <h3 style="margin:0 0 4px;font-size:15px;color:var(--green-d);">传导链一：地缘冲突 → 原油破百 → 通胀 → 央行鹰派</h3>
+    <div class="chain-flow">
+      <span class="chain-node">美伊对峙升级<br>胡塞占领红海要地</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">霍尔木兹 + 红海<br>双通道运输风险</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">WTI 突破 $100<br>盘中触 $105</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">USO 创 52 周新高<br>原油单日 +8%</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">CPI 超预期<br>通胀压力上行</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">ECB 加息 25bp<br>主要央行转鹰</span>
+    </div>
+    <p style="font-size:13px;margin:10px 0 0;color:#2c3532;">
+      本链条中，「事件 → 运输 → 价格」环节有每日经济新闻（42）、Energy News Beat（26）、RFI（9）三源支撑；「价格 → 通胀 → 央行」环节由 bihainews.com（41）、Global Banking &amp; Finance Review（11）、36 Kr（35）支撑。素材未提供库存、炼厂开工率、成品油裂解价差的具体数值，故本链条在「库存 → 炼厂 → 成品油」环节仅作结构性描述，不填充数字。
+    </p>
+    <div class="src">来源：每日经济新闻（42）、Energy News Beat（26）、RFI（9）、bihainews.com（41）、Global Banking &amp; Finance Review（11）、36 Kr（35）—— 6 源交叉</div>
+  </div>
+
+  <div class="chain">
+    <h3 style="margin:0 0 4px;font-size:15px;color:var(--green-d);">传导链二：油价高企 → 经济活动受抑 → 股市承压</h3>
+    <div class="chain-flow">
+      <span class="chain-node">油价 &gt; $100</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">运输与生产成本上升</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">经济活动受抑<br>（WTVB 表述）</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">日经指数走低<br>涨幅受限</span>
+    </div>
+    <p style="font-size:13px;margin:10px 0 0;color:#2c3532;">
+      WTVB 明确使用「$100 oil dampens activity」表述；News On Japan 报道「Nikkei Slips as Oil Above $100 and BOJ Rate Fears Cap Gains」。两条独立来源共同指向高油价对风险资产的压制。
+    </p>
+    <div class="src">来源：WTVB（12）、News On Japan（16）—— 2 源交叉</div>
+  </div>
+
+  <div class="chain">
+    <h3 style="margin:0 0 4px;font-size:15px;color:var(--green-d);">传导链三：OPEC+ 增产 vs 沙特产量逆势下滑</h3>
+    <div class="chain-flow">
+      <span class="chain-node">OPEC+ 增产</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">沙特产量却降至<br>1990 年来最低</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">供应端结构性收紧</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">支撑油价高位</span>
+    </div>
+    <p style="font-size:13px;margin:10px 0 0;color:#2c3532;">
+      该链条仅由 scanx.trade 单一来源支撑，且「OPEC+ 增产」与「沙特产量下滑」之间的因果机制素材未作解释，故整体标注为待确认。
+    </p>
+    <div class="src">来源：scanx.trade（22）<span class="flag">单源，待确认</span></div>
+  </div>
+
+  <div class="card lv3">
+    <h3><span class="stars">★★★</span>「为何供应中断下油价未站上 100 美元？」—— 反向质疑声音</h3>
+    <p>The Daily Star 刊文《Why isn't oil above $100 despite supply disruptions?》，对供应中断与油价的对应关系提出质疑。该文与当日「WTI 突破 100 美元」的报道在时间上并存，反映市场对定价持续性的分歧。素材未提供该文的具体论证数据。</p>
+    <div class="src">来源：The Daily Star（20）、Energy News Beat（26）—— 2 源交叉（观点对立）</div>
+  </div>
+
+  <div class="card lv3">
+    <h3><span class="stars">★★★</span>天然气 / 煤炭 / 航运运价</h3>
+    <p>本次检索窗口内，42 条素材中<strong>未出现</strong>天然气、煤炭、航运运价（如 BDI、VLCC 运费）的可查证数值。为避免编造，本简报不填充该部分数据。</p>
+    <div class="src">来源：本次素材无对应条目</div>
+  </div>
+</section>
+
+<!-- ============ D. AI·科技 ============ -->
+<section>
+  <h2>D. AI · 科技</h2>
+
+  <div class="card lv4">
+    <h3><span class="stars">★★★★</span>英伟达被调查</h3>
+    <p>36 Kr「8 点 1 氪」早报标题明确列出「英伟达被调查」。素材未提供调查主体、事由、涉及法域与潜在影响范围，故不作延伸推断。</p>
+    <div class="src">来源：36 Kr（35）<span class="flag">单源，待确认</span></div>
+  </div>
+
+  <div class="card lv4">
+    <h3><span class="stars">★★★★</span>黄仁勋：AI 基建热潮仍处早期阶段；网络安全将成 AI 下一个重大市场</h3>
+    <p>英伟达出席高盛科技大会，黄仁勋表示 AI 基建热潮仍处早期阶段（英为财情 Investing.com 报道）。另据新浪财经报道，黄仁勋称网络安全将成为 AI 的下一个重大市场。两条表态分别指向资本开支周期长度与新增量市场方向。</p>
+    <div class="src">来源：英为财情 Investing.com（38）、新浪财经（36）—— 2 源交叉</div>
+  </div>
+
+  <div class="card lv3">
+    <h3><span class="stars">★★★</span>2026 年 8 月 AI 领域投融资：313 起，351.59 亿元，同比翻四倍</h3>
+    <p>36 Kr 发布 2026 年 8 月人工智能领域投融资分析：共 313 起融资，金额 351.59 亿元，同比增长四倍；小鹏机器人、帕西尼领跑，算力与脑机企业接续发力。</p>
+    <div class="src">来源：36 Kr（39）<span class="flag">单源，待确认</span></div>
+  </div>
+
+  <div class="card lv3">
+    <h3><span class="stars">★★★</span>史上最贵 iPhone 发布；海力士美股大涨 7% 创新高</h3>
+    <p>华盛早报报道：史上最贵 iPhone 发布，但分析称苹果可能赚得更少；海力士美股大涨 7% 创历史新高。后者与 AI 存储需求叙事相关。</p>
+    <div class="src">来源：华盛早报 / hstong.com（40）<span class="flag">单源，待确认</span></div>
+  </div>
+
+  <div class="card lv3">
+    <h3><span class="stars">★★★</span>甲骨文大涨</h3>
+    <p>9 月 11 日财经早餐综述标题中列出「甲骨文大涨」。素材未提供涨幅数值与驱动因素，故不填充具体数字。</p>
+    <div class="src">来源：bihainews.com（41）<span class="flag">单源，待确认</span></div>
+  </div>
+
+  <div class="card lv3">
+    <h3><span class="stars">★★★</span>罗永浩吐槽苹果折叠屏</h3>
+    <p>36 Kr 早报提及罗永浩连用 7 个「抄的」吐槽苹果折叠屏。属消费电子舆论事件，无宏观定价影响。</p>
+    <div class="src">来源：36 Kr（35）<span class="flag">单源，待确认</span></div>
+  </div>
+</section>
+
+<!-- ============ E. 全球市场速览 ============ -->
+<section>
+  <h2>E. 全球市场速览</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>市场 / 品种</th>
+          <th>方向</th>
+          <th>变动</th>
+          <th>备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>WTI 原油</td>
+          <td class="up">涨</td>
+          <td class="up">突破 $100，盘中触 $105</td>
+          <td>另有报道称曾跌破 $93.50（获利了结）</td>
+        </tr>
+        <tr>
+          <td>原油（早参口径）</td>
+          <td class="up">涨</td>
+          <td class="up">+8%</td>
+          <td>每日经济新闻早参</td>
+        </tr>
+        <tr>
+          <td>美国原油基金 USO</td>
+          <td class="up">涨</td>
+          <td class="up">52 周新高</td>
+          <td>TradingView</td>
+        </tr>
+        <tr>
+          <td>黄金 / 白银 / 铜</td>
+          <td class="down">跌</td>
+          <td class="down">跳水</td>
+          <td>每日经济新闻早参；具体点位未提供</td>
+        </tr>
+        <tr>
+          <td>美债</td>
+          <td class="down">跌</td>
+          <td class="down">收益率创 2007 年来新高</td>
+          <td>财政部 60 亿美元回购逊预期</td>
+        </tr>
+        <tr>
+          <td>日经指数</td>
+          <td class="down">跌</td>
+          <td class="down">走低</td>
+          <td>油价破百 + BOJ 加息担忧压制涨幅</td>
+        </tr>
+        <tr>
+          <td>欧元 EUR</td>
+          <td class="up">涨</td>
+          <td class="up">决议前坚挺</td>
+          <td>兑加元因鹰派情绪上行</td>
+        </tr>
+        <tr>
+          <td>比特币 BTC</td>
+          <td class="flat">盘整</td>
+          <td class="flat">≈ $78,000</td>
+          <td>等待美国通胀与美联储线索</td>
+        </tr>
+        <tr>
+          <td>BNB</td>
+          <td class="down">跌</td>
+          <td class="down">-1.41%</td>
+          <td>9 月 10 日</td>
+        </tr>
+        <tr>
+          <td>海力士（美股）</td>
+          <td class="up">涨</td>
+          <td class="up">+7%，创新高</td>
+          <td>华盛早报</td>
+        </tr>
+        <tr>
+          <td>甲骨文</td>
+          <td class="up">涨</td>
+          <td class="up">大涨（幅度未提供）</td>
+          <td>bihainews.com 财经早餐</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="src" style="border:none;padding-top:8px;">来源：每日经济新闻（42）、Energy News Beat（26）、eciks.org（24）、TradingView（25）、tmgm.com（21）、Fortune（23）、财富号（8）、华盛早报（40）、News On Japan（16）、WTVB（12）、The Economic Times（29）、TradingKey（30）、bihainews.com（41）—— 多源交叉</div>
+</section>
+
+<!-- ============ 日历 ============ -->
+<section>
+  <h2>未来数日重点日历</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>时间</th>
+          <th>事件</th>
+          <th>市场预期 / 关注点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>未来 8 日内</td>
+          <td>三家央行可能加息（BeInCrypto 点名）</td>
+          <td>素材未列明具体央行名单与日期，仅提示时间窗口</td>
+        </tr>
+        <tr>
+          <td>临近</td>
+          <td>美联储（Fed）会议</td>
+          <td>CPI 超预期后政策路径指引；USD/JPY 关键测试节点</td>
+        </tr>
+        <tr>
+          <td>临近</td>
+          <td>日本央行（BoJ）会议</td>
+          <td>市场关注「鹰派日本央行」；143 万亿日元预算的财政影响</td>
+        </tr>
+        <tr>
+          <td>已落地</td>
+          <td>欧洲央行（ECB）决议</td>
+          <td>加息 25bp 至 2.5%；后续路径投资者意见分化</td>
+        </tr>
+        <tr>
+          <td>9 月内</td>
+          <td>中国领导人密集外交会晤</td>
+          <td>素材未提供具体日程与议题</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="src" style="border:none;padding-top:8px;">来源：BeInCrypto（10）、XTB.com（14）、forex.com（15）、新浪财经（7）、36 Kr（35）、Kyiv Post（18）</div>
+</section>
+
+<!-- ============ 数据分歧提示 ============ -->
+<section>
+  <h2>数据分歧提示 <small>并列呈现，不作调和</small></h2>
+
+  <div class="div-card">
+    <h4>分歧一：WTI 原油当日价格水平</h4>
+    <ul>
+      <li><strong>eciks.org（24）</strong>：美国交易时段油价突破 <strong>105 美元/桶</strong>。</li>
+      <li><strong>Energy News Beat（26）</strong>：WTI <strong>已突破 100 美元</strong>。</li>
+      <li><strong>tmgm.com（21）</strong>：WTI <strong>跌破 93.50 美元</strong>，因获利了结。</li>
+      <li><strong>Fortune（23）</strong>：以「截至 2026 年 9 月 10 日的当前油价」为题，素材摘要未给出具体数值。</li>
+    </ul>
+    <p style="font-size:13px;margin:8px 0 0;color:#5c4a12;">
+      <strong>可能原因：</strong>三条报道的时间戳分别为 19:35 GMT（24）、21:39 GMT（26）、07:50 GMT（21），跨越同一交易日的不同时段，日内波动幅度较大；此外「突破 100」与「跌破 93.50」可能分别指向盘中高点与回调低点，而非同一时点报价。本简报不对此作统一取值。
+    </p>
+  </div>
+
+  <div class="div-card">
+    <h4>分歧二：欧洲央行政策利率水平表述</h4>
+    <ul>
+      <li><strong>新浪财经（6）</strong>：明确表述为「欧洲央行加息至 <strong>2.5%</strong>」。</li>
+      <li><strong>36 Kr（35）、财富号（2）</strong>：仅表述为「三大关键利率上调 <strong>25 个基点</strong>」，未给出加息后的绝对水平。</li>
+      <li><strong>cztv.com（1）</strong>：提出「后续还会有多次加息？」的疑问，未给出利率数值。</li>
+    </ul>
+    <p style="font-size:13px;margin:8px 0 0;color:#5c4a12;">
+      <strong>可能原因：</strong>欧洲央行「三大关键利率」（主要再融资利率、边际贷款利率、存款便利利率）本身存在多个不同数值，媒体在表述「加息至 2.5%」时可能仅指其中一项。素材未明确对应关系，故本简报在 KPI 看板中标注为「2.5%（三大关键利率同步上调 25bp）」，并在此提示口径差异。
+    </p>
+  </div>
+
+  <div class="div-card">
+    <h4>分歧三：油价与供应中断的因果关系</h4>
+    <ul>
+      <li><strong>Energy News Beat（26）</strong>：市场正在定价「霍尔木兹受限 + 红海出口同时受威胁」的双通道风险情景，WTI 因此破百。</li>
+      <li><strong>The Daily Star（20）</strong>：刊文质疑「为何在供应中断下油价仍未站上 100 美元」，暗示供应中断与油价的传导并不顺畅。</li>
+    </ul>
+    <p style="font-size:13px;margin:8px 0 0;color:#5c4a12;">
+      <strong>可能原因：</strong>两篇报道的发布时间分别为 21:39 GMT（26）与 11:40 GMT（20），后者早于前者约 10 小时。The Daily Star 的质疑可能基于油价尚未破百的时点，而 Energy News Beat 的表述基于破百之后。二者并非同一时点的对立判断，但方向上构成对「供应中断 → 油价」传导强度的分歧。
+    </p>
+  </div>
+
+  <div class="div-card">
+    <h4>分歧四：沙特产量与 OPEC+ 增产的方向性矛盾</h4>
+    <ul>
+      <li><strong>scanx.trade（22）</strong>：沙特原油产量降至 <strong>1990 年以来最低</strong>，而 OPEC+ 在增产。</li>
+    </ul>
+    <p style="font-size:13px;margin:8px 0 0;color:#5c4a12;">
+      <strong>说明：</strong>该条为单一来源，且「OPEC+ 增产」与「沙特产量下滑」在逻辑上存在张力。素材未提供产量数值、月份口径或减产原因，故本简报不对此作解释性调和，仅原样列示并标注待确认。
+    </p>
+  </div>
+</section>
+
+<!-- ============ 来源清单 ============ -->
+<section>
+  <h2>来源清单与可验证性说明</h2>
+  <div class="src-list">
+    <p style="margin:0 0 10px;">
+      本简报共引用 <strong>42 条</strong>素材中的 <strong>34 条</strong>。以下按素材编号列示，编号与输入素材一一对应，可回溯核验。未引用的素材（如 BAPA FoodPro 国际食品展、孟加拉银行业不良贷款、商品多元化评论等）与本简报宏观/地缘主题关联度低，故未纳入。
+    </p>
+    <ol>
+      <li>cztv.com — 欧洲央行再次加息，后续还会有多次加息？（2026-09-10 22:40 GMT）</li>
+      <li>财富号 — 全线跳水！欧洲央行重大宣布，加息 25 个基点（2026-09-10 23:04 GMT）</li>
+      <li>Sohu — 陆家嘴财经早餐 2026 年 9 月 11 日（2026-09-10 22:52 GMT）</li>
+      <li>finance.sina.cn — 欧洲央行再次加息（2026-09-10 23:07 GMT）</li>
+      <li>finance.sina.com.cn — 欧洲央行加息（2026-09-10 22:37 GMT）</li>
+      <li>finance.sina.com.cn — 欧洲央行加息至 2.5%，投资者对后续政策走向意见分化（2026-09-10 12:25 GMT）</li>
+      <li>finance.sina.cn — 日元面临政策博弈！日本央行准备收紧货币，143 万亿日元预算引发财政担忧（2026-09-11 00:03 GMT）</li>
+      <li>财富号 — 美债收益率创 2007 年以来新高（2026-09-10 22:21 GMT）</li>
+      <li>RFI — 美国打击之后，霍尔木兹海峡附近海域疑似出现浮油带（2026-09-10 20:19 GMT）</li>
+      <li>BeInCrypto — 3 Central Banks Could Raise Rates Within Eight Days（2026-09-10 11:32 GMT）</li>
+      <li>Global Banking &amp; Finance Review — Major Central Banks Signal Hawkish Rate Hikes Amid Energy Price Surge（2026-09-10 14:28 GMT）</li>
+      <li>WTVB — Euro firm ahead of ECB decision; $100 oil dampens activity（2026-09-10 07:06 GMT）</li>
+      <li>tmgm.com — TMGM Daily Market Breakfast: 10 September 2026（2026-09-10 16:49 GMT）</li>
+      <li>XTB.com — Economic Calendar: ECB decision and hawkish Bank of Japan in focus（2026-09-10 14:18 GMT）</li>
+      <li>forex.com — Japanese Yen Short-term Outlook: USD/JPY Breakdown Faces Major Test Ahead of Fed, BoJ（2026-09-10 06:07 GMT）</li>
+      <li>News On Japan — Nikkei Slips as Oil Above $100 and BOJ Rate Fears Cap Gains（2026-09-10 06:59 GMT）</li>
+      <li>finance.biggo.com — UBS CEO Warns: Investors Are Overly Complacent, Major Central Banks Could Hike Rates in Succession（2026-09-10 05:35 GMT）</li>
+      <li>Kyiv Post — Chinese president starts diplomatic onslaught of meetings throughout September（2026-09-10 07:58 GMT）</li>
+      <li>LiteFinance — Oil (USCrude) Price Forecast（2026-09-10 21:42 GMT）</li>
+      <li>The Daily Star — Why isn't oil above $100 despite supply disruptions?（2026-09-10 11:40 GMT）</li>
+      <li>tmgm.com — WTI falls below $93.50 on profit-taking, continued US-Iran tensions in focus（2026-09-10 07:50 GMT）</li>
+      <li>scanx.trade — Saudi oil output slumps to lowest since 1990 as OPEC+ rises（2026-09-10 12:36 GMT）</li>
+      <li>Fortune — Current price of oil as of September 10, 2026（2026-09-10 12:30 GMT）</li>
+      <li>eciks.org — Oil price tops $105 per barrel in U.S. trading（2026-09-10 19:35 GMT）</li>
+      <li>TradingView — United States Oil Fund Hits 52-Week High（2026-09-10 19:35 GMT）</li>
+      <li>Energy News Beat — WTI has crossed $100（2026-09-10 21:39 GMT）</li>
+      <li>stonex.com — Gold Price Outlook: Dead Cat Bounce Risk as Bearish Signals Build（2026-09-10 09:31 GMT）</li>
+      <li>TradingView — BTC Futures Contract (Oct 2026) Trade Ideas（2026-09-10 14:00 GMT）</li>
+      <li>The Economic Times — Bitcoin consolidates near $78,000 as investors await key US inflation, Fed cues（2026-09-10 11:00 GMT）</li>
+      <li>TradingKey — BNB (BNBUSD) Is down 1.41% on Sep 10（2026-09-10 04:00 GMT）</li>
+      <li>tmgm.com — Euro advances against Canadian Dollar due to hawkish ECB sentiment（2026-09-10 02:48 GMT）</li>
+      <li>36 Kr — 8 点 1 氪：英伟达被调查；欧洲央行将三大关键利率上调 25 个基点（2026-09-11 00:08 GMT）</li>
+      <li>finance.sina.com.cn — 英伟达 CEO 黄仁勋称网络安全将成 AI 下一个重大市场（2026-09-10 18:51 GMT）</li>
+      <li>Sohu — 华尔街见闻早餐 FM-Radio｜2026 年 9 月 11 日（2026-09-10 23:06 GMT）</li>
+      <li>英为财情 Investing.com — 英伟达出席高盛科技大会：黄仁勋认为 AI 基建热潮仍处早期阶段（2026-09-10 16:57 GMT）</li>
+      <li>36 Kr — 2026 年 8 月人工智能领域投融资分析（2026-09-10 11:32 GMT）</li>
+      <li>hstong.com — 华盛早报：史上最贵 iPhone 来了；贝森特回购 60 亿美元逊预期；海力士美股大涨 7% 创新高（2026-09-10 00:38 GMT）</li>
+      <li>bihainews.com — 9 月 11 日财经早餐：CPI 超预期、美联储困境、甲骨文大涨（2026-09-10 08:11 GMT）</li>
+      <li>每日经济新闻 — 也门胡塞武装占领红海战略要地；美一无人艇遭伊拦截；金银铜跳水，原油大涨 8%；央行、证监会等四部门发声；青岛货轮火灾已致 25 人遇难（2026-09-10 22:05 GMT）</li>
+    </ol>
+    <p style="margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line);">
+      <strong>可验证性说明：</strong>上述条目均来自公开新闻聚合源，URL 已随输入素材提供。本简报未对任何数字进行估算、外推或补全；凡素材未提供者，均以「未提供」「待确认」显式标注。交叉验证计数基于独立来源数量，同一媒体集团下的不同域名（如 finance.sina.cn 与 finance.sina.com.cn）在计数时按同一来源处理。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div><strong>全球宏观 + 地缘政治 24 小时简报</strong></div>
+  <div>报告生成时间：2026-09-11 09:18 JST ｜ 监测窗口：2026-09-10 09:18 → 2026-09-11 09:18 JST</div>
+  <div>信源数：42 条 / 7 路检索 ｜ 事件条目：22 条</div>
+  <div style="margin-top:10px;color:#8a948f;">本报告仅供研究参考，不构成投资建议。所有数据以原始信源为准。</div>
+</footer>
+
+</div>
+</body>
+</html>
