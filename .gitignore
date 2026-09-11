@@ -3,3 +3,7 @@
 secrets.json
 __pycache__/
 *.pyc
+
+# 本地排障产物
+probe_report.html
+.tmp/
