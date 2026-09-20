@@ -1,0 +1,690 @@
+这是为您生成的全球宏观与地缘政治24小时简报HTML代码。它采用卡片式布局，将44条信源整理为速览、KPI看板、宏观、地缘、能源、AI、市场、日历、数据分歧等模块，并遵循中国市场涨红跌绿惯例，适合快速浏览与打印。
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球宏观 + 地缘政治 24 小时简报 | 2026-09-20</title>
+<style>
+  :root{
+    --green:#1f6f43;
+    --red:#c0392b;
+    --gold:#d4a017;
+    --blue:#3d8ec9;
+    --bg:#f4f6f5;
+    --card:#ffffff;
+    --text:#1c2b24;
+    --muted:#5f6f66;
+    --line:#e0e6e2;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:15px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:16px;}
+  header{
+    background:linear-gradient(135deg,#1f6f43 0%,#175534 100%);
+    color:#fff;
+    border-radius:14px;
+    padding:22px 20px;
+    margin-bottom:18px;
+  }
+  header h1{
+    margin:0 0 10px;
+    font-size:22px;
+    line-height:1.35;
+    letter-spacing:.3px;
+  }
+  header .meta{
+    font-size:13px;
+    opacity:.92;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 16px;
+    margin-bottom:12px;
+  }
+  header .meta span{white-space:nowrap;}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;}
+  .tag{
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:999px;
+    padding:3px 11px;
+    font-size:12px;
+    letter-spacing:.2px;
+  }
+  h2.sec{
+    font-size:17px;
+    color:var(--green);
+    margin:26px 0 12px;
+    padding-left:11px;
+    border-left:5px solid var(--green);
+    line-height:1.3;
+  }
+  .card{
+    background:var(--card);
+    border-radius:11px;
+    padding:15px 16px;
+    margin-bottom:13px;
+    box-shadow:0 1px 4px rgba(31,111,67,.07);
+    border:1px solid var(--line);
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+  .card.lv5{border-left:5px solid var(--red);}
+  .card.lv4{border-left:5px solid var(--gold);}
+  .card.lv3{border-left:5px solid var(--blue);}
+  .card h3{
+    margin:0 0 8px;
+    font-size:15.5px;
+    line-height:1.45;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    gap:8px;
+  }
+  .stars{font-size:12px;letter-spacing:1px;white-space:nowrap;}
+  .stars.s5{color:var(--red);}
+  .stars.s4{color:var(--gold);}
+  .stars.s3{color:var(--blue);}
+  .card p{margin:0 0 8px;font-size:14px;color:#2c3a33;}
+  .src{
+    font-size:11.5px;
+    color:var(--muted);
+    border-top:1px dashed var(--line);
+    padding-top:7px;
+    margin-top:9px;
+    line-height:1.5;
+  }
+  .single{
+    color:var(--gold);
+    font-weight:600;
+  }
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(158px,1fr));
+    gap:11px;
+  }
+  .kpi{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 13px;
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+  .kpi .k-name{font-size:12.5px;color:var(--muted);margin-bottom:5px;}
+  .kpi .k-val{font-size:19px;font-weight:700;line-height:1.2;}
+  .kpi .k-note{font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.45;}
+  .up{color:var(--red);}
+  .down{color:var(--green);}
+  .flat{color:var(--muted);}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    background:var(--card);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:13px;
+  }
+  th{
+    background:#eaf1ec;
+    color:var(--green);
+    text-align:left;
+    padding:9px 10px;
+    font-weight:600;
+    font-size:13px;
+    border-bottom:1px solid var(--line);
+  }
+  td{
+    padding:9px 10px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+  .chain{
+    background:#f0f6f2;
+    border:1px dashed #b9d3c4;
+    border-radius:9px;
+    padding:11px 13px;
+    font-size:13.5px;
+    line-height:1.85;
+    margin:10px 0 4px;
+    color:#1c3a2a;
+  }
+  .chain b{color:var(--green);}
+  .note-box{
+    background:#fff8e8;
+    border:1px solid #ecd9a8;
+    border-radius:10px;
+    padding:13px 15px;
+    font-size:13.5px;
+    line-height:1.7;
+    margin-bottom:13px;
+  }
+  .note-box strong{color:#8a6a10;}
+  ul.plain{margin:6px 0 0;padding-left:19px;font-size:13.5px;}
+  ul.plain li{margin-bottom:5px;}
+  footer{
+    margin-top:26px;
+    padding:16px;
+    text-align:center;
+    font-size:12.5px;
+    color:var(--muted);
+    border-top:2px solid var(--green);
+    line-height:1.7;
+  }
+  .src-list{font-size:12.5px;color:#3a4a42;line-height:1.75;}
+  .src-list li{margin-bottom:4px;}
+  @media (max-width:640px){
+    .wrap{padding:10px;}
+    header{padding:17px 14px;border-radius:11px;}
+    header h1{font-size:18px;}
+    header .meta{font-size:12px;gap:4px 12px;}
+    h2.sec{font-size:15.5px;margin:20px 0 10px;}
+    .card{padding:12px 12px;border-radius:9px;}
+    .card h3{font-size:14.5px;}
+    .card p{font-size:13.5px;}
+    .kpi-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
+    .kpi .k-val{font-size:16.5px;}
+    table{font-size:12.5px;}
+    th,td{padding:7px 7px;}
+    .chain{font-size:12.5px;padding:9px 10px;}
+  }
+  @media print{
+    body{background:#fff;font-size:12px;}
+    .wrap{max-width:100%;padding:0;}
+    header{background:#1f6f43 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .card,.kpi,table,.note-box,.chain{
+      box-shadow:none;
+      page-break-inside:avoid;
+      break-inside:avoid;
+    }
+    h2.sec{page-break-after:avoid;}
+    .card.lv5{border-left:5px solid #c0392b !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .card.lv4{border-left:5px solid #d4a017 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .card.lv3{border-left:5px solid #3d8ec9 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    th{background:#eaf1ec !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>全球宏观 + 地缘政治 24 小时简报</h1>
+  <div class="meta">
+    <span>报告生成：2026-09-20 10:27 JST</span>
+    <span>监测窗口：2026-09-19 10:27 → 2026-09-20 10:27 JST</span>
+    <span>信源：44 条 / 11 路检索</span>
+    <span>事件条目：22 条</span>
+  </div>
+  <div class="tags">
+    <span class="tag">美联储鹰派</span>
+    <span class="tag">霍尔木兹风险</span>
+    <span class="tag">胡塞武装</span>
+    <span class="tag">红海航运</span>
+    <span class="tag">俄乌停火</span>
+    <span class="tag">对俄制裁</span>
+    <span class="tag">AI算力</span>
+    <span class="tag">原油库存</span>
+    <span class="tag">日元</span>
+  </div>
+</header>
+
+<!-- ============ 一页速览 ============ -->
+<h2 class="sec">一页速览 · Top 5 关键事件</h2>
+
+<div class="card lv5">
+  <h3><span class="stars s5">★★★★★</span>美联储按兵不动但释放鹰派信号，年内利率预期由降息转向加息</h3>
+  <p>美联储本次会议维持利率不变，但政策声明与沟通释放鹰派信号，市场对年内利率路径的预期由「降息」转为「加息」。摩根大通（小摩）就本次决议给出五类情境剖析，并称「不加息概率极低」。黄金在决议后承压，XAU/USD 维持弱势。全球股市在央行收紧通胀的基调下表现分化。</p>
+  <div class="src">来源：财联社[1]、财联社（小摩）[3]、forex.com[18]、Yahoo Finance[22]（4 源交叉）</div>
+</div>
+
+<div class="card lv5">
+  <h3><span class="stars s5">★★★★★</span>胡塞武装称以弹道导弹袭击沙特首都，利雅得发布空中威胁警报</h3>
+  <p>胡塞武装宣称对沙特首都利雅得发动弹道导弹袭击。利雅得居民收到沙特官方发布的紧急空中威胁警报，随后收到「解除警报」信息。美国驻以色列使馆就胡塞—沙特冲突发布安全警报，并提示美国公民保持警惕。沙特与也门胡塞武装的冲突显著升级，红海与曼德海峡方向风险上升。</p>
+  <div class="src">来源：BBC[23]、EA WorldView[24]、MSN/印度快报[29]、MSN（美使馆警报）[27]（4 源交叉）</div>
+</div>
+
+<div class="card lv5">
+  <h3><span class="stars s5">★★★★★</span>霍尔木兹海峡仍处关闭状态，油价与航运风险溢价高企</h3>
+  <p>EnergyNow 报道称，在特朗普设定的期限前，霍尔木兹海峡仍处关闭状态，对伊朗的打击行动加剧，油价上行。另有分析指出，随着伊朗冲突持续，霍尔木兹风险加剧，油价预计维持高位。与此同时，红海航运流量在胡塞推进背景下出现反弹。上述信息与「美伊谈判预期冲击油价、国际原油期货单日暴跌超7%」的报道方向相反，构成显著数据分歧（见「数据分歧提示」）。</p>
+  <div class="src">来源：EnergyNow[39]、EnergyNow[38]、Times of India[30]、汽车之家[13]（4 源交叉，方向存在分歧）</div>
+</div>
+
+<div class="card lv5">
+  <h3><span class="stars s5">★★★★★</span>美国原油库存降至 2004 年以来最低，专家警告今夏油价或至 200 美元/桶</h3>
+  <p>财联社报道，美国原油库存降至 2004 年以来最低水平，有专家警告今夏油价可能升至 200 美元/桶。该判断与 IEA 下调需求预测、油价因中东供应上升而回落至战前水平的报道形成对比，需并列观察。</p>
+  <div class="src">来源：财联社[12]、EnergyNow[36]、EnergyNow[37]（3 源交叉，方向存在分歧）</div>
+</div>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>特朗普签署最严厉对俄制裁法案；俄乌拟 10 月举行三方会谈讨论有限停火</h3>
+  <p>特朗普签署被描述为「最严厉」的对俄制裁法案。普京指责乌克兰破坏和平谈判。另有报道称，乌克兰、美国、俄罗斯将于 10 月举行三方会谈，讨论有限停火；美方特使 Witkoff 与 Kushner 曾于 9 月 5 日前往莫斯科推动谈判。美国国务院批准向乌克兰出售潜在价值 26 亿美元的防空军事装备。</p>
+  <div class="src">来源：Sohu[10]、Kyiv Post[31]、MSN[35]、The Hill[33]（4 源交叉）</div>
+</div>
+
+<!-- ============ KPI 看板 ============ -->
+<h2 class="sec">关键指标看板</h2>
+<div class="kpi-grid">
+
+  <div class="kpi">
+    <div class="k-name">布伦特原油（8月均价参考）</div>
+    <div class="k-val flat">$88.08</div>
+    <div class="k-note">2026 年 8 月 Brent 触及 $88.08，亚洲炼厂需求与投机资金推动[40]</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">原油期货（单日变动）</div>
+    <div class="k-val down">-7% 以上</div>
+    <div class="k-note">美伊谈判预期冲击，国际原油期货单日暴跌超 7%[13]（单源，待确认）</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">油价方向（霍尔木兹）</div>
+    <div class="k-val up">上行</div>
+    <div class="k-note">霍尔木兹仍关闭、打击加剧，油价上行[39]；风险加剧油价预计高位[38]</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">美国原油库存</div>
+    <div class="k-val up">2004 年以来最低</div>
+    <div class="k-note">财联社报道，专家警告今夏油价或至 200 美元/桶[12]（单源，待确认）</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">黄金 XAU/USD</div>
+    <div class="k-val down">承压</div>
+    <div class="k-note">美联储决议后金价维持压力[18]；黄金与加息关系讨论升温[2]</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">标普 500（SPX）</div>
+    <div class="k-val down">承压</div>
+    <div class="k-note">油价逼近 $100 之际 SPX 表现挣扎[19]</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">日元（USD/JPY 方向）</div>
+    <div class="k-val down">日元走弱</div>
+    <div class="k-note">日本央行加息后日元兑美元仍回落[22]</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">日本央行政策</div>
+    <div class="k-val up">加息</div>
+    <div class="k-note">日本央行实施加息，但日元未获支撑[22]（单源，待确认）</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">美联储利率路径预期</div>
+    <div class="k-val up">由降息转加息</div>
+    <div class="k-note">年内利率变化预期由降息变加息[1]；小摩称不加息概率极低[3]</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">红海航运流量</div>
+    <div class="k-val up">反弹</div>
+    <div class="k-note">尽管胡塞推进，红海航运流量出现反弹[30]（单源，待确认）</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">IEA 需求预测</div>
+    <div class="k-val down">下调</div>
+    <div class="k-note">IEA 下调需求预测，油价小幅走低[37]（单源，待确认）</div>
+  </div>
+
+  <div class="kpi">
+    <div class="k-name">英伟达芯片销量指引</div>
+    <div class="k-val up">明年翻倍</div>
+    <div class="k-note">黄仁勋称明年公司芯片销量将翻倍[17]（单源，待确认）</div>
+  </div>
+
+</div>
+
+<!-- ============ A. 全球宏观 ============ -->
+<h2 class="sec">A. 全球宏观（央行 / 利率 / 汇市 / 数据）</h2>
+
+<div class="card lv5">
+  <h3><span class="stars s5">★★★★★</span>美联储按兵不动但释放鹰派信号，年内预期由降息变加息</h3>
+  <p>美联储本次会议维持利率不变，但释放鹰派信号，市场对年内利率变化的预期由「降息」转为「加息」。摩根大通（小摩）就本次决议给出五类情境剖析，并明确表示「不加息概率极低」。市场关注点转向全球央行接连登场的政策路径。</p>
+  <div class="src">来源：财联社[1]、财联社（小摩）[3]、Sohu[4]（3 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>日本央行加息，日元兑美元仍回落，全球股市分化</h3>
+  <p>日本央行实施加息，但在央行收紧通胀主导的一周里，日元兑美元反而回落，全球股市表现分化。该信息来自 Yahoo Finance 转载报道，属单一来源，需后续确认。</p>
+  <div class="src">来源：Yahoo Finance[22]（<span class="single">单源，待确认</span>）</div>
+</div>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>黄金与美联储关系再受关注：XAU/USD 决议后承压</h3>
+  <p>forex.com 分析指出，美联储利率决议后 XAU/USD 仍处于压力之下。同时市场就「黄金降息一定涨、加息一定跌」的传统认知展开讨论，提示需结合实际利率与避险需求综合判断。</p>
+  <div class="src">来源：forex.com[18]、mp.cnfol.com[2]（2 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>能源价格与收益率上行威胁风险资产，DAX 与原油成焦点</h3>
+  <p>forex.com 指出，能源价格与债券收益率上行对风险资产构成威胁，DAX 与原油走势成为关注焦点。标普 500 在油价逼近 100 美元之际表现挣扎。</p>
+  <div class="src">来源：forex.com[21]、stonex.com[19]（2 源交叉）</div>
+</div>
+
+<div class="card lv3">
+  <h3><span class="stars s3">★★★</span>TMGM 每日市场早餐（9 月 19 日）</h3>
+  <p>TMGM 发布 9 月 19 日每日市场早餐，汇总隔夜市场动态。该条为机构日常市场综述，未提供独立新增数据点。</p>
+  <div class="src">来源：tmgm.com[20]（<span class="single">单源，待确认</span>）</div>
+</div>
+
+<!-- ============ B. 地缘政治 ============ -->
+<h2 class="sec">B. 地缘政治（美伊 / 俄乌 / 中东 / 欧美）</h2>
+
+<div class="card lv5">
+  <h3><span class="stars s5">★★★★★</span>胡塞武装称以弹道导弹袭击利雅得，沙特发布空中威胁警报</h3>
+  <p>胡塞武装宣称以弹道导弹瞄准沙特首都。利雅得居民收到沙特官方的紧急空中威胁警报，随后收到解除警报信息。美国驻以色列使馆就胡塞—沙特冲突发布安全警报，中东其他美国使团也发布类似提示，警告美国公民因胡塞威胁上升而保持警惕，并提及该组织过去对民用机场的袭击。</p>
+  <div class="src">来源：BBC[23]、EA WorldView[24]、MSN[29]、MSN[27]（4 源交叉）</div>
+</div>
+
+<div class="card lv5">
+  <h3><span class="stars s5">★★★★★</span>美伊战争进入第 205 天，胡塞开辟新战线</h3>
+  <p>EA WorldView 更新显示，美国对伊朗战争进入第 205 天，沙特与也门胡塞武装的冲突升级。《纽约客》分析胡塞如何在这场伊朗战争中开辟了一个动荡的新战线。DW 则聚焦「伊朗的新真主党」——胡塞武装当前的实力评估。特朗普再次声称伊朗希望与美国达成协议。</p>
+  <div class="src">来源：EA WorldView[24]、The New Yorker[25]、DW.com[26]、Times of India[30]（4 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>特朗普将在联合国发表讲话，面对对伊战争持怀疑态度的各国领导人</h3>
+  <p>特朗普将于周二在联合国发表讲话，面对一个因美伊战争持续六个月而日益不安、持深度怀疑态度的听众。G7 就伊朗战争召开会议，卢比奥试图向持怀疑态度的盟友推销策略。</p>
+  <div class="src">来源：HuffPost[28]、thewellnews.com[34]（2 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>沙特向以色列求援，中东战略航道紧张升级</h3>
+  <p>多家中文媒体报道「罕见！沙特向以色列求援」。同时有报道指出战略航道沿线紧张局势正在升级。另有评论关注美国腾出位置后中国与沙特的互动。</p>
+  <div class="src">来源：新浪财经[5]、上观新闻[6]、Vietnam.vn[7]、k.sina.com.cn[8]（4 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>特朗普签署最严厉对俄制裁法案，普京指责乌克兰破坏和谈</h3>
+  <p>特朗普签署被描述为「最严厉」的对俄制裁法案。普京指责乌克兰破坏和平谈判。有报道提及「年底前拿下顿巴斯」及特朗普女婿当面质疑普京等内容。</p>
+  <div class="src">来源：Sohu[10]、Kyiv Post[31]（2 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>俄乌美拟 10 月三方会谈讨论有限停火；美批准 26 亿美元对乌防空军售</h3>
+  <p>报道称乌克兰、美国、俄罗斯将在 10 月三方会谈中讨论有限停火。美方特使 Steve Witkoff 与 Jared Kushner 于 9 月 5 日前往莫斯科，试图重启停滞的谈判进程。美国国务院批准向乌克兰出售潜在价值 26 亿美元的防空军事装备。</p>
+  <div class="src">来源：MSN[35]、The Hill[33]（2 源交叉）</div>
+</div>
+
+<div class="card lv3">
+  <h3><span class="stars s3">★★★</span>港媒：美国拟推迟对台军售至 APEC 与 G20 峰会后</h3>
+  <p>联合早报援引港媒报道，美国拟将对台军售推迟至 APEC 与 G20 峰会之后。该条为单一来源，需后续确认。</p>
+  <div class="src">来源：联合早报[11]（<span class="single">单源，待确认</span>）</div>
+</div>
+
+<div class="card lv3">
+  <h3><span class="stars s3">★★★</span>分析：习特华盛顿峰会前中国手握更强筹码</h3>
+  <p>南华早报分析指出，在习特华盛顿峰会前，分析人士认为中国处于更有利的位置。该条为评论性分析，非事件性新闻。</p>
+  <div class="src">来源：South China Morning Post[32]（<span class="single">单源，待确认</span>）</div>
+</div>
+
+<!-- ============ C. 能源传导链 ============ -->
+<h2 class="sec">C. 能源传导链（原油 / 天然气 / 煤炭 / 航运）</h2>
+
+<div class="card lv5">
+  <h3><span class="stars s5">★★★★★</span>霍尔木兹关闭 + 胡塞升级：从地缘事件到成品油价格的传导</h3>
+  <p>当前能源链条的核心变量是霍尔木兹海峡的关闭状态与红海—曼德海峡方向的胡塞冲突升级。以下为基于素材的传导链条：</p>
+  <div class="chain">
+    <b>事件</b>：霍尔木兹海峡仍处关闭状态，对伊朗打击加剧[39]；胡塞武装称以弹道导弹袭击利雅得，沙特发布空中威胁警报[23][29]；美伊战争进入第 205 天[24]。<br>
+    → <b>运输</b>：霍尔木兹关闭直接冲击全球原油海运通道；红海航运流量在胡塞推进背景下出现反弹[30]（单源，待确认），显示航线调整与风险定价并存。<br>
+    → <b>库存</b>：美国原油库存降至 2004 年以来最低[12]（单源，待确认），低库存放大供给端扰动的价格弹性。<br>
+    → <b>炼厂</b>：亚洲炼厂需求与投机资金推动 8 月油价上行，Brent 触及 $88.08[40]；IEA 下调需求预测[37]（单源，待确认），炼厂端需求预期存在分歧。<br>
+    → <b>成品油</b>：原油成本上行向成品油传导，但传导幅度取决于炼厂开工与需求端。<br>
+    → <b>价格</b>：EnergyNow 报道油价因霍尔木兹关闭与打击加剧而上行[39]，并预计风险加剧下油价维持高位[38]；但另有报道称美伊谈判预期令原油期货单日暴跌超 7%[13]（单源，待确认），方向相反。
+  </div>
+  <div class="src">来源：EnergyNow[39]、EnergyNow[38]、EnergyNow[36]、EnergyNow[37]、财联社[12]、BBC[23]、MSN[29]、EA WorldView[24]、Times of India[30]、汽车之家[13]、pravda.ru[40]（多源交叉，方向存在分歧）</div>
+</div>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>油价触及战前水平 vs 油价上行：中东供应与地缘风险的两股力量</h3>
+  <p>EnergyNow 报道「油价因中东供应上升触及战前水平」，同时另一篇报道称「霍尔木兹关闭、打击加剧推动油价上行」。两股力量方向相反，反映市场在供给增量与地缘风险溢价之间的拉锯。</p>
+  <div class="src">来源：EnergyNow[36]、EnergyNow[39]（2 源交叉，方向存在分歧）</div>
+</div>
+
+<div class="card lv3">
+  <h3><span class="stars s3">★★★</span>8 月油价回顾：亚洲需求与投机资金推动 Brent 至 $88.08</h3>
+  <p>pravda.ru 报道，2026 年 8 月全球油价攀升，Brent 达到 $88.08，亚洲炼厂需求与金融投机抵消了非 OPEC 供应上升与 OECD 库存偏薄的影响。</p>
+  <div class="src">来源：pravda.ru[40]（<span class="single">单源，待确认</span>）</div>
+</div>
+
+<!-- ============ D. AI·科技 ============ -->
+<h2 class="sec">D. AI · 科技</h2>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>OpenAI 据悉洽谈租赁俄亥俄州 10 吉瓦数据中心</h3>
+  <p>财联社报道，OpenAI 欲扩张 AI 算力版图，据悉正洽谈租赁俄亥俄州 10 吉瓦数据中心。该条为单一来源，规模数据需后续确认。</p>
+  <div class="src">来源：财联社[14]（<span class="single">单源，待确认</span>）</div>
+</div>
+
+<div class="card lv4">
+  <h3><span class="stars s4">★★★★</span>黄仁勋：明年公司芯片销量将翻倍</h3>
+  <p>英伟达 CEO 黄仁勋表示，明年公司芯片销量将翻倍。该条为单一来源，具体口径与基数需后续确认。</p>
+  <div class="src">来源：财联社[17]（<span class="single">单源，待确认</span>）</div>
+</div>
+
+<div class="card lv3">
+  <h3><span class="stars s3">★★★</span>AMD 发布 EPYC Venice「Agentic AI」基准，对标英伟达 Vera</h3>
+  <p>Wccftech 报道，AMD 在最新 EPYC Venice「Agentic AI」基准测试中对标英伟达 Vera，Zen 6 单核性能领先 20%，平台级性能提升超过 2 倍。该条为单一来源，基准测试结果需独立验证。</p>
+  <div class="src">来源：Wccftech[41]（<span class="single">单源，待确认</span>）</div>
+</div>
+
+<div class="card lv3">
+  <h3><span class="stars s3">★★★</span>华为 Ascend AI 芯片在集群层面挑战英伟达</h3>
+  <p>NeoTeo 报道，华为 AI 芯片 Ascend 在集群层面与英伟达展开竞争。该条为单一来源，性能对比需独立验证。</p>
+  <div class="src">来源：NeoTeo[42]（<span class="single">单源，待确认</span>）</div>
+</div>
+
+<div class="card lv3">
+  <h3><span class="stars s3">★★★</span>AI 智能体的两极：机遇与风险并存；美国科技巨头「爆雷」</h3>
+  <p>至顶网讨论 AI 智能体的机遇与风险。新浪财经报道「美国科技巨头，爆雷！」。Benzinga 汇总 9 月 14—18 日消费科技新闻，提及 DOE 支持具自纠错能力的量子计算机、OpenAI 面临相关事项。</p>
+  <div class="src">来源：至顶网[15]、新浪财经[16]、Benzinga[43]（3 源交叉，具体事件细节不足）</div>
+</div>
+
+<!-- ============ E. 全球市场速览 ============ -->
+<h2 class="sec">E. 全球市场速览</h2>
+<table>
+  <thead>
+    <tr><th>市场 / 资产</th><th>状态 / 收盘</th><th>变动</th><th>备注</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>国际原油期货</td>
+      <td>—</td>
+      <td class="down">单日暴跌超 7%</td>
+      <td>美伊谈判预期冲击[13]（单源，待确认）</td>
+    </tr>
+    <tr>
+      <td>Brent（8 月参考）</td>
+      <td>$88.08</td>
+      <td class="up">8 月攀升</td>
+      <td>亚洲炼厂需求与投机推动[40]（单源，待确认）</td>
+    </tr>
+    <tr>
+      <td>黄金 XAU/USD</td>
+      <td>—</td>
+      <td class="down">承压</td>
+      <td>美联储决议后维持压力[18]</td>
+    </tr>
+    <tr>
+      <td>标普 500（SPX）</td>
+      <td>—</td>
+      <td class="down">挣扎</td>
+      <td>油价逼近 $100[19]</td>
+    </tr>
+    <tr>
+      <td>DAX</td>
+      <td>—</td>
+      <td class="down">受威胁</td>
+      <td>能源价格与收益率上行[21]</td>
+    </tr>
+    <tr>
+      <td>USD/JPY</td>
+      <td>—</td>
+      <td class="down">日元走弱</td>
+      <td>日本央行加息后日元仍回落[22]（单源，待确认）</td>
+    </tr>
+    <tr>
+      <td>全球股市</td>
+      <td>—</td>
+      <td class="flat">分化</td>
+      <td>央行收紧通胀主导的一周[22]</td>
+    </tr>
+    <tr>
+      <td>红海航运流量</td>
+      <td>—</td>
+      <td class="up">反弹</td>
+      <td>尽管胡塞推进[30]（单源，待确认）</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============ 日历 ============ -->
+<h2 class="sec">未来数日重点日历</h2>
+<table>
+  <thead>
+    <tr><th>时间</th><th>事件</th><th>市场预期 / 关注点</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>周二（2026-09-22）</td>
+      <td>特朗普在联合国发表讲话</td>
+      <td>面对对伊战争持怀疑态度的各国领导人[28]</td>
+    </tr>
+    <tr>
+      <td>10 月（具体日期未定）</td>
+      <td>乌克兰、美国、俄罗斯三方会谈</td>
+      <td>讨论有限停火[35]</td>
+    </tr>
+    <tr>
+      <td>APEC 与 G20 峰会后</td>
+      <td>美国对台军售（拟推迟）</td>
+      <td>港媒报道的推迟安排[11]（单源，待确认）</td>
+    </tr>
+    <tr>
+      <td>待定</td>
+      <td>特朗普对伊朗设定的期限</td>
+      <td>霍尔木兹关闭与打击加剧的背景[39]</td>
+    </tr>
+    <tr>
+      <td>待定</td>
+      <td>习特华盛顿峰会</td>
+      <td>分析称中国手握更强筹码[32]（单源，待确认）</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============ 数据分歧提示 ============ -->
+<h2 class="sec">数据分歧提示</h2>
+
+<div class="note-box">
+  <strong>分歧 1：原油价格方向相反</strong>
+  <ul class="plain">
+    <li>「美伊谈判预期冲击油价！国际原油期货价格单日暴跌超 7%」——汽车之家[13]（单源，待确认）</li>
+    <li>「Oil Prices Rise as Hormuz Stays Shut Ahead of Trump Deadline, Strikes on Iran Intensify」——EnergyNow[39]</li>
+    <li>「Oil Seen Elevated as Hormuz Risks Intensify Amid Iran Conflict」——EnergyNow[38]</li>
+    <li>「Oil Touches Pre-War Levels on Rising Middle East Supply」——EnergyNow[36]</li>
+  </ul>
+  <p style="margin-top:8px;">可能原因：不同报道对应不同时间点与不同合约/基准；谈判预期与地缘升级两股力量方向相反，市场在不同时点对二者的定价权重不同。本报告不做调和。</p>
+</div>
+
+<div class="note-box">
+  <strong>分歧 2：油价目标价与供需判断不一致</strong>
+  <ul class="plain">
+    <li>「美国原油库存降至 2004 年以来最低 专家警告今夏油价或至 200 美元/桶」——财联社[12]（单源，待确认）</li>
+    <li>「Oil Prices Edge Lower as IEA Reduces Demand Forecast」——EnergyNow[37]（单源，待确认）</li>
+    <li>「Oil Touches Pre-War Levels on Rising Middle East Supply」——EnergyNow[36]</li>
+  </ul>
+  <p style="margin-top:8px;">可能原因：库存低位与需求预测下调指向不同方向；「200 美元/桶」为专家警告性判断，非市场实际成交价。本报告不做调和。</p>
+</div>
+
+<div class="note-box">
+  <strong>分歧 3：红海航运与地缘风险的表述张力</strong>
+  <ul class="plain">
+    <li>「Red Sea shipping traffic rebounds despite Houthi advance」——Times of India[30]（单源，待确认）</li>
+    <li>「战略航道沿线的紧张局势正在升级」——Vietnam.vn[7]</li>
+    <li>「US embassy in Israel issues security alert over Houthi-Saudi Arabia fighting」——MSN[27]</li>
+  </ul>
+  <p style="margin-top:8px;">可能原因：航运流量反弹可能反映航线调整与绕行后的统计口径变化，与安全风险上升并不必然矛盾。本报告不做调和。</p>
+</div>
+
+<!-- ============ 来源清单 ============ -->
+<h2 class="sec">来源清单与可验证性说明</h2>
+<div class="card">
+  <ul class="src-list">
+    <li>[1] 财联社 — 美联储按兵不动但释放鹰派信号（2026-09-19 11:07 GMT）</li>
+    <li>[2] mp.cnfol.com — 黄金和美联储关系解析（2026-09-19 07:53 GMT）</li>
+    <li>[3] 财联社 — 小摩：美联储决议五类情境剖析（2026-09-19 17:35 GMT）</li>
+    <li>[4] Sohu — 美联储加息「靴子」落地（2026-09-19 16:53 GMT）</li>
+    <li>[5] 新浪财经 — 罕见！沙特向以色列求援（2026-09-19 20:35 GMT）</li>
+    <li>[6] 上观新闻 — 罕见！沙特向以色列求援（2026-09-19 04:40 GMT）</li>
+    <li>[7] Vietnam.vn — 战略航道紧张局势升级（2026-09-19 02:10 GMT）</li>
+    <li>[8] k.sina.com.cn — 美国腾出的位置与中国、沙特（2026-09-19 16:39 GMT）</li>
+    <li>[9] Sohu — 俄罗斯导弹与泽连斯基纽约行（2026-09-20 01:25 GMT）</li>
+    <li>[10] Sohu — 特朗普签署最严厉对俄制裁法案（2026-09-19 08:41 GMT）</li>
+    <li>[11] 联合早报 — 美国拟推迟对台军售（2026-09-19 03:29 GMT）</li>
+    <li>[12] 财联社 — 美国原油库存降至 2004 年以来最低（2026-09-19 21:15 GMT）</li>
+    <li>[13] 汽车之家 — 美伊谈判预期冲击油价（2026-09-19 12:18 GMT）</li>
+    <li>[14] 财联社 — OpenAI 洽谈租赁俄亥俄州 10 吉瓦数据中心（2026-09-19 23:45 GMT）</li>
+    <li>[15] 至顶网 — AI 智能体的两极（2026-09-19 23:53 GMT）</li>
+    <li>[16] 新浪财经 — 美国科技巨头，爆雷！（2026-09-19 14:35 GMT）</li>
+    <li>[17] 财联社 — 黄仁勋：明年芯片销量将翻倍（2026-09-19 18:04 GMT）</li>
+    <li>[18] forex.com — Gold Analysis: XAU/USD Remains Under Pressure（2026-09-19 18:55 GMT）</li>
+    <li>[19] stonex.com — S&P 500 Forecast: SPX struggles as oil closes in on $100（2026-09-19 08:43 GMT）</li>
+    <li>[20] tmgm.com — TMGM Daily Market Breakfast（2026-09-19 13:16 GMT）</li>
+    <li>[21] forex.com — DAX, Crude oil forecast（2026-09-19 22:49 GMT）</li>
+    <li>[22] Yahoo Finance — Global stocks mixed as yen falls despite BOJ rate hike（2026-09-18 13:32 GMT）</li>
+    <li>[23] BBC — Houthis say they targeted Saudi capital with ballistic missiles（2026-09-19 23:49 GMT）</li>
+    <li>[24] EA WorldView — US War on Iran, Day 205（2026-09-19 13:50 GMT）</li>
+    <li>[25] The New Yorker — How the Houthis Opened a Volatile New Front（2026-09-19 10:00 GMT）</li>
+    <li>[26] DW.com — Iran's 'new Hezbollah'（2026-09-19 10:14 GMT）</li>
+    <li>[27] MSN — US embassy in Israel issues security alert（2026-09-19 17:09 GMT）</li>
+    <li>[28] HuffPost — Trump To Face Skeptical World Leaders At UN（2026-09-18 05:17 GMT）</li>
+    <li>[29] MSN — Saudi Arabia issues Riyadh air threat alert（2026-09-19 10:08 GMT）</li>
+    <li>[30] Times of India — Red Sea shipping traffic rebounds（2026-09-18 09:38 GMT）</li>
+    <li>[31] Kyiv Post — Putin Accuses Ukraine of Sabotaging Peace Negotiations（2026-09-19 06:01 GMT）</li>
+    <li>[32] South China Morning Post — Analysts tip a stronger hand for China（2026-09-19 22:00 GMT）</li>
+    <li>[33] The Hill — $2.6 billion military air defense equipment sale to Ukraine（2026-09-19 14:21 GMT）</li>
+    <li>[34] thewellnews.com — G7 Meets on Iran War（2026-09-19 12:16 GMT）</li>
+    <li>[35] MSN — Ukraine, US, Russia to discuss limited ceasefire（2026-09-18 02:00 GMT）</li>
+    <li>[36] EnergyNow — Oil Touches Pre-War Levels（2026-09-19 12:03 GMT）</li>
+    <li>[37] EnergyNow — Oil Prices Edge Lower as IEA Reduces Demand Forecast（2026-09-19 08:32 GMT）</li>
+    <li>[38] EnergyNow — Oil Seen Elevated as Hormuz Risks Intensify（2026-09-19 07:05 GMT）</li>
+    <li>[39] EnergyNow — Oil Prices Rise as Hormuz Stays Shut（2026-09-19 08:33 GMT）</li>
+    <li>[40] pravda.ru — Oil Prices Surge in August（2026-09-19 15:44 GMT）</li>
+    <li>[41] Wccftech — AMD Targets NVIDIA Vera（2026-09-19 09:40 GMT）</li>
+    <li>[42] NeoTeo — Huawei AI chips: Ascend takes on Nvidia（2026-09-19 10:02 GMT）</li>
+    <li>[43] Benzinga — Consumer Tech News (Sep 14-Sep 18)（2026-09-19 13:11 GMT）</li>
+    <li>[44] TradingKey — NVIDIA Corp (NVDA) Stock Analysis & Forecast（2026-09-19 04:36 GMT）</li>
+  </ul>
+  <p style="margin-top:10px;font-size:12.5px;color:var(--muted);">
+    可验证性说明：本报告所有数字、人名、机构、时间均来自上述素材条目，未做估算或补充。标注「单源，待确认」的条目仅有一个独立来源，建议后续交叉验证。标注「n 源交叉」的条目有 ≥2 个独立来源支持。数据分歧章节并列呈现冲突数字，未做调和。
+  </p>
+</div>
+
+<footer>
+  本报告仅供研究参考，不构成投资建议。<br>
+  报告生成时间：2026-09-20 10:27 JST ｜ 监测窗口：2026-09-19 10:27 → 2026-09-20 10:27 JST<br>
+  配色遵循中国市场惯例：涨 = 红 #c0392b，跌 = 绿 #27ae60。
+</footer>
+
+</div>
+</body>
+</html>
