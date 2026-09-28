@@ -1,0 +1,176 @@
+name: 华尔街见闻 24h 要闻简报
+
+# ============================================================================
+# 目标：在用户**电脑关机**时也能每天按时投递。
+# 因此这条通道完全跑在 GitHub 云端，不依赖 WorkBuddy / MCP / 本机进程。
+#
+# 数据源：华尔街见闻**公开**内容接口（无需任何 API Key）
+#   - 资讯流 https://api-one.wallstcn.com/apiv1/content/information-flow?channel=global-channel
+#   - 正文   https://api-one.wallstcn.com/apiv1/content/articles/{id}
+#
+# ⚠️ GitHub Actions 的 schedule 是「尽力而为」，不是定时保证：
+#    高负载时会延迟数小时，甚至整轮被直接丢弃。实测 2026-09-11：探针（*/5 * * * *）
+#    在本仓库 45 分钟内 9 个边界全部零触发（0 条 event=schedule）；官方口径是
+#    「drop（丢弃）」而非 delay。新建或改动 workflow 后还需 15–60 分钟才会「注册」。
+#
+#    对策 = 多点补跑 + 双闸门 + 终检告警 + 外部触发器（推荐，见文末说明）：
+#    - 闸门 ①（本文件）：当日 archive/YYYY-MM-DD.html 已存在 → 跳过；
+#    - 闸门 ②（wscn_digest.py，IMAP）：自己收件箱里已有当日简报 → 跳过。
+#      ⚠️ 闸门 ② 是**跨通道**的：本机 WorkBuddy 投递过、或某个计划任务延迟到
+#      下午才执行，都能被识别，不会重复发信。这也是能放心加「午后兜底」的原因。
+#    - 全部落空时，由最后一班的「当日终检」告警（见文件末尾）。
+#    - 分钟取 :13/:33/:53，避开整点前后的调度波峰，被服务到的概率更高。
+#
+# ★ 根治手段：用外部调度器（cron-job.org / Cloudflare Workers Cron 等）
+#   调 workflow_dispatch API。dispatch 走实时事件通道，秒级启动，
+#   不受 schedule 队列丢弃影响。本文件已开好 workflow_dispatch 入口，直接接线即可。
+# ============================================================================
+
+on:
+  schedule:
+    # 目标：JST 01:00（= 前一日 UTC 16:00）。
+    # 主跑 + 4 个补跑点，全部落在凌晨 1 点前后，分钟避峰。
+    - cron: '33 15 * * *'   # 00:33 JST  主跑（提前 27 分钟，防漂移）
+    - cron: '53 15 * * *'   # 00:53 JST  补跑 1
+    - cron: '13 16 * * *'   # 01:13 JST  补跑 2（目标点）
+    - cron: '33 16 * * *'   # 01:33 JST  补跑 3
+    - cron: '53 16 * * *'   # 01:53 JST  补跑 4
+    - cron: '33 17 * * *'   # 02:33 JST  延迟兜底
+    - cron: '33 1 * * *'    # 10:33 JST  上午兜底（凌晨全部落空时补上；闸门 ② 保证不重复）
+    - cron: '33 11 * * *'   # 20:33 JST  终检班次（仍无投递则告警）
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: '试跑：完整走一遍流程，但不发信、不归档（排障用）'
+        type: boolean
+        default: false
+      force:
+        description: '强制重跑：忽略归档闸门与邮箱查重（⚠️ 会真的再发一封邮件）'
+        type: boolean
+        default: false
+
+# 同一时刻只允许一个实例，避免手工触发与定时撞车
+concurrency:
+  group: wscn-digest
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # 归档报告回仓库
+  issues: write     # 失败时自动开 Issue
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      # 幂等闸门 ①：当日 archive 已存在 = 今天已成功投递，后续步骤全部跳过
+      # （闸门 ② 在 wscn_digest.py 内部：IMAP 查收件箱，覆盖「本机已投递」等本闸门看不到的情况）
+      - name: 幂等检查（今日已归档则跳过）
+        id: gate
+        env:
+          FORCE: ${{ github.event.inputs.force }}
+          DRY:   ${{ github.event.inputs.dry_run }}
+        run: |
+          DAY=$(date -u -d '+8 hours' +%Y-%m-%d)   # 北京时间，与华尔街见闻口径一致
+          echo "day=$DAY" >> "$GITHUB_OUTPUT"
+          if [ "$FORCE" = "true" ] || [ "$DRY" = "true" ]; then
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "▶ 手动强制 / 试跑，忽略归档闸门。"
+          elif [ -f "archive/${DAY}.html" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "⏭ ${DAY} 已归档，跳过本轮，避免重复投递。"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "▶ ${DAY} 未归档，开始生成。"
+          fi
+
+      - name: 配置 Python
+        if: steps.gate.outputs.skip == 'false'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: 安装依赖
+        if: steps.gate.outputs.skip == 'false'
+        run: pip install -r requirements.txt
+
+      # continue-on-error：即使邮件投递失败，也要保证流程走到告警步骤
+      - name: 抓取华尔街见闻并投递
+        id: run_digest
+        if: steps.gate.outputs.skip == 'false'
+        continue-on-error: true
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          QQ_SMTP_USER:     ${{ secrets.QQ_SMTP_USER }}
+          QQ_SMTP_CODE:     ${{ secrets.QQ_SMTP_CODE }}
+          MAIL_TO:          ${{ secrets.MAIL_TO }}
+          SKIP_DEDUPE:      ${{ github.event.inputs.force }}
+          DRY_RUN:          ${{ github.event.inputs.dry_run }}
+        run: python wscn_digest.py
+
+      # 仅在完全成功时归档。若失败也归档，会被幂等闸门误判为「已投递」而放弃重试；
+      # 不归档则可让下一个补跑点接手。试跑（dry_run）不归档。
+      - name: 归档当日报告
+        if: |
+          steps.gate.outputs.skip == 'false'
+          && steps.run_digest.outcome == 'success'
+          && github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add archive/ || true
+          if git diff --cached --quiet; then
+            echo "无新增归档，跳过提交。"
+          else
+            git commit -m "chore: archive $(date -u -d '+8 hours' +%Y-%m-%d) wscn digest"
+            # 推送失败必须重试：否则下一班补跑看不到归档，会重复发一封邮件
+            for i in 1 2 3; do
+              if git push; then
+                echo "✅ 归档已推送（第 ${i} 次尝试）。"
+                break
+              fi
+              echo "⚠️ 第 ${i} 次推送失败，rebase 后重试 …"
+              git pull --rebase origin "${GITHUB_REF_NAME}" || true
+              sleep 5
+            done
+          fi
+
+      # 失败告警：静默失败比失败本身更糟，这一步保证你一定会知道。
+      # 注意 run_digest 带 continue-on-error，它的失败不会让 failure() 变真，
+      # 所以必须同时判 outcome —— 否则最需要告警的场景反而不会告警。
+      - name: 失败告警（邮件 + Issue）
+        if: failure() || steps.run_digest.outcome == 'failure'
+        env:
+          QQ_SMTP_USER: ${{ secrets.QQ_SMTP_USER }}
+          QQ_SMTP_CODE: ${{ secrets.QQ_SMTP_CODE }}
+          MAIL_TO:      ${{ secrets.MAIL_TO }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python notify_failure.py
+
+      # 当日终检：最后一班（20:33 JST）跑完，邮箱账本里仍然没有今天的简报
+      # = 当天所有通道全线失手。主动告警，不让它静默漏跑。
+      # 判据用 wscn_digest.py --check（查收件箱）而不是 archive 文件：
+      # 本机 WorkBuddy 投递成功时仓库里不会有归档，用文件判会误报。
+      - name: 当日终检告警（最后一班仍无投递）
+        if: |
+          always()
+          && github.event.schedule == '33 11 * * *'
+          && steps.run_digest.outcome != 'failure'
+        env:
+          QQ_SMTP_USER: ${{ secrets.QQ_SMTP_USER }}
+          QQ_SMTP_CODE: ${{ secrets.QQ_SMTP_CODE }}
+          MAIL_TO:      ${{ secrets.MAIL_TO }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FAIL_REASON:  "今天所有定时班次都已过，但邮箱账本里仍没有当日简报 —— 定时通道可能被 GitHub 调度器整轮丢弃了。建议启用外部调度器（cron-job.org）调 dispatch API。"
+        run: |
+          if python wscn_digest.py --check; then
+            echo "✅ 当日终检：邮箱账本确认今日已投递。"
+          else
+            echo "⚠️ 当日终检：邮箱账本里没有今天的简报，发送告警。"
+            python notify_failure.py || true
+          fi
