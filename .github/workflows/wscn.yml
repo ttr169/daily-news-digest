@@ -14,7 +14,9 @@ name: 华尔街见闻 24h 要闻简报
 #    「drop（丢弃）」而非 delay。新建或改动 workflow 后还需 15–60 分钟才会「注册」。
 #
 #    对策 = 多点补跑 + 双闸门 + 终检告警 + 外部触发器（推荐，见文末说明）：
-#    - 闸门 ①（本文件）：当日 archive/YYYY-MM-DD.html 已存在 → 跳过；
+#    - 闸门 ①（本文件）：当日 archive/wscn/YYYY-MM-DD.html 已存在 → 跳过；
+#      ⚠️ 本通道归档在 archive/wscn/，与旧通道 daily.yml 的 archive/ 隔离——
+#      两条简报的幂等闸门若共用路径会互相顶掉（任一投递后另一条永久跳过）。
 #    - 闸门 ②（wscn_digest.py，IMAP）：自己收件箱里已有当日简报 → 跳过。
 #      ⚠️ 闸门 ② 是**跨通道**的：本机 WorkBuddy 投递过、或某个计划任务延迟到
 #      下午才执行，都能被识别，不会重复发信。这也是能放心加「午后兜底」的原因。
@@ -67,8 +69,12 @@ jobs:
       - name: 检出仓库
         uses: actions/checkout@v4
 
-      # 幂等闸门 ①：当日 archive 已存在 = 今天已成功投递，后续步骤全部跳过
+      # 幂等闸门 ①：当日 archive/wscn/ 已存在 = 今天已成功投递，后续步骤全部跳过
       # （闸门 ② 在 wscn_digest.py 内部：IMAP 查收件箱，覆盖「本机已投递」等本闸门看不到的情况）
+      #
+      # ⚠️ 归档路径必须与旧通道 daily.yml 隔离：旧通道写 archive/YYYY-MM-DD.html，
+      #    本通道写 archive/wscn/YYYY-MM-DD.html。若共用同一路径，任一通道投递后
+      #    另一通道都会被本闸门误判为「已投递」而永久跳过（两条简报会被互相顶掉）。
       - name: 幂等检查（今日已归档则跳过）
         id: gate
         env:
@@ -80,7 +86,7 @@ jobs:
           if [ "$FORCE" = "true" ] || [ "$DRY" = "true" ]; then
             echo "skip=false" >> "$GITHUB_OUTPUT"
             echo "▶ 手动强制 / 试跑，忽略归档闸门。"
-          elif [ -f "archive/${DAY}.html" ]; then
+          elif [ -f "archive/wscn/${DAY}.html" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
             echo "⏭ ${DAY} 已归档，跳过本轮，避免重复投递。"
           else
@@ -123,11 +129,12 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add archive/ || true
+          mkdir -p archive/wscn
+          git add archive/wscn/ || true
           if git diff --cached --quiet; then
             echo "无新增归档，跳过提交。"
           else
-            git commit -m "chore: archive $(date -u -d '+8 hours' +%Y-%m-%d) wscn digest"
+            git commit -m "chore: archive wscn $(date -u -d '+8 hours' +%Y-%m-%d) digest"
             # 推送失败必须重试：否则下一班补跑看不到归档，会重复发一封邮件
             for i in 1 2 3; do
               if git push; then
