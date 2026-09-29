@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华尔街见闻 · 24小时要闻简报 | 2026-09-29</title>
+<style>
+:root{
+  --red:#c0392b; --gold:#b8860b; --blue:#1f5f9f;
+  --red-bg:#fdf2f0; --gold-bg:#fff8e6; --blue-bg:#eef4fb;
+  --ink:#1c2321; --ink-2:#4a5652; --ink-3:#8b9793;
+  --line:#e3e8e5; --bg:#f4f6f5; --card:#ffffff; --accent:#0f3d26;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;padding:16px 12px 40px;}
+.wrap{max-width:760px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#0f3d26 0%,#1f6f43 100%);color:#fff;
+  border-radius:14px;padding:26px 24px 22px;box-shadow:0 4px 18px rgba(15,61,38,.18);}
+.header h1{font-size:21px;font-weight:700;letter-spacing:.3px;line-height:1.4;}
+.header .sub{font-size:12.5px;opacity:.82;margin-top:8px;}
+.header .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.header .meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:4px 11px;font-size:11.5px;}
+.legend{background:var(--card);border-radius:12px;padding:14px 16px;margin-top:14px;
+  display:flex;flex-wrap:wrap;gap:10px 20px;border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);}
+.legend b{color:var(--ink);}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle;}
+.dot.r{background:var(--red);} .dot.y{background:var(--gold);} .dot.b{background:var(--blue);}
+.sec{margin-top:14px;}
+.sec-title{font-size:15px;font-weight:700;color:var(--accent);padding-bottom:8px;margin-bottom:10px;
+  border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:8px;}
+.sec-title .cnt{font-size:11px;font-weight:500;color:var(--ink-3);background:var(--bg);border-radius:10px;padding:1px 8px;}
+.card{background:var(--card);border-radius:11px;padding:14px 16px;margin-bottom:10px;
+  border:1px solid var(--line);border-left:5px solid var(--ink-3);box-shadow:0 1px 3px rgba(0,0,0,.03);}
+.card.lv1{border-left-color:var(--red);background:linear-gradient(180deg,var(--red-bg) 0%,#fff 42%);}
+.card.lv2{border-left-color:var(--gold);background:linear-gradient(180deg,var(--gold-bg) 0%,#fff 42%);}
+.card.lv3{border-left-color:var(--blue);background:linear-gradient(180deg,var(--blue-bg) 0%,#fff 42%);}
+.card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:7px;display:flex;gap:8px;align-items:flex-start;}
+.badge{flex:0 0 auto;font-size:10px;font-weight:700;color:#fff;border-radius:4px;padding:2px 6px;margin-top:3px;letter-spacing:.5px;}
+.badge.r{background:var(--red);} .badge.y{background:var(--gold);} .badge.b{background:var(--blue);}
+.card p{font-size:13.5px;color:var(--ink-2);line-height:1.75;}
+.card .src{font-size:11.5px;color:var(--ink-3);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);}
+.tag-inline{display:inline-block;font-size:10.5px;color:var(--accent);background:#eaf3ee;border-radius:4px;padding:1px 6px;margin-right:5px;}
+.top{background:var(--card);border-radius:12px;padding:6px 4px;border:1px solid var(--line);}
+.top ol{list-style:none;}
+.top li{position:relative;padding:11px 16px 11px 48px;font-size:13.5px;line-height:1.6;
+  border-bottom:1px solid var(--line);color:var(--ink-2);counter-increment:t;}
+.top{counter-reset:t;}
+.top li:last-child{border-bottom:none;}
+.top li::before{content:counter(t);position:absolute;left:15px;top:11px;width:20px;height:20px;
+  border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:8px;}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px 11px;}
+.kpi .k{font-size:11px;color:var(--ink-3);margin-bottom:3px;}
+.kpi .v{font-size:14.5px;font-weight:700;color:var(--ink);}
+.up{color:var(--red);} .down{color:#27ae60;}
+.foot{margin-top:20px;padding:14px 16px;background:var(--card);border-radius:11px;
+  border:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.8;}
+.foot b{color:var(--ink-2);}
+@media (max-width:640px){
+  body{font-size:14px;padding:12px 9px 32px;}
+  .header{padding:20px 17px 18px;border-radius:12px;}
+  .header h1{font-size:18px;}
+  .card{padding:12px 13px;}
+  .kpi{grid-template-columns:repeat(2,1fr);}
+}
+@media print{
+  body{background:#fff;padding:0;}
+  .card,.header,.legend,.top,.foot{box-shadow:none;break-inside:avoid;}
+  .header{background:#0f3d26 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>华尔街见闻 · 过去 24 小时要闻简报</h1>
+    <div class="sub">覆盖窗口：2026-09-28 09:00 — 2026-09-29 09:00（北京时间） · 一级信源：华尔街见闻（公开接口）</div>
+    <div class="meta">
+      <span>生成时间 2026-09-29 09:26 JST</span>
+      <span>收录 28 条要闻</span>
+      <span>🔴 关键 7 · 🟡 重要 14 · 🔵 关注 7</span>
+      <span>云端投递 · 关机可收</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot r"></i><b>红色 = 最重要</b> 影响全局资产定价，须立即知晓</span>
+    <span><i class="dot y"></i><b>黄色 = 重要</b> 影响单一市场或板块</span>
+    <span><i class="dot b"></i><b>蓝色 = 关注</b> 趋势性/背景性信息</span>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">一页速览 <span class="cnt">Top 5</span></div>
+    <div class="top"><ol><li>美伊谈判僵局叠加制裁传闻反复，油价盘中冲高逾4%后闪跌，黄金重挫近4%</li><li>10年期美债收益率升至5.23%创2007年来新高，实际利率逼近雷曼危机水平</li><li>英伟达追加1500亿美元回购创美企纪录，供应承诺额环比暴增135%</li><li>中国1-8月工业企业利润同比增长15.7%，电子行业利润增1.1倍贡献逾六成增量</li><li>中美第八轮经贸磋商：同意对约300亿美元产品对等降税，超90%免除加征关税</li></ol></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">关键指标看板</div>
+    <div class="kpi"><div><div class="k">标普500</div><div class="v down">7683.69 <span style="font-size:11px">-0.77%</span></div></div><div><div class="k">纳斯达克综指</div><div class="v down">26820.38 <span style="font-size:11px">-0.92%</span></div></div><div><div class="k">道琼斯</div><div class="v down">51481.51 <span style="font-size:11px">-0.67%</span></div></div><div><div class="k">上证指数</div><div class="v down">3823.62 <span style="font-size:11px">-1.67%</span></div></div><div><div class="k">创业板指</div><div class="v down">3139.82 <span style="font-size:11px">-4.53%</span></div></div><div><div class="k">10年期美债收益率</div><div class="v up">5.23% <span style="font-size:11px">+8bp</span></div></div><div><div class="k">WTI原油</div><div class="v up">92.60美元/桶 <span style="font-size:11px">+0.21%</span></div></div><div><div class="k">布伦特原油</div><div class="v up">105.28美元/桶 <span style="font-size:11px">+0.92%</span></div></div><div><div class="k">COMEX黄金</div><div class="v down">4135.4美元/盎司 <span style="font-size:11px">-3.52%</span></div></div><div><div class="k">COMEX白银</div><div class="v down">61.22美元/盎司 <span style="font-size:11px">-4.71%</span></div></div></div>
+  </div>
+
+  <div class="sec"><div class="sec-title">A. 地缘政治<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>美伊谈判僵局持续，卡塔尔斡旋方推动“7日计划”修订版重回谈判桌</h3><p>卡塔尔斡旋方预计于9月28日或29日在纽约分别与伊朗外长阿拉格齐及美方代表会谈，聚焦伊朗上周提出的“7日计划”修订版。伊朗方面表示无意在纽约与美方直接会谈，伊朗官员私下对11月美国中期选举前达成协议持悲观态度，认为中选后冲突升级可能性较高。伊朗最高领袖穆杰塔巴·哈梅内伊称西方干涉时代已终结。</p><div class="src"><span class="tag-inline">美伊</span>来源：华尔街见闻转引新华社、央视、路透社</div></div><div class="card lv1"><h3><span class="badge r">关键</span>特朗普否认放松对伊制裁，伊朗被曝同意暂停铀浓缩，油价盘中“闪跌”</h3><p>美媒称特朗普愿减免伊朗制裁并解冻资金以换取核问题“具体进展”，沙特媒体哈达斯报道称伊朗已同意暂停铀浓缩以换取美国放松制裁。消息传出后WTI原油一度跌至<strong>91.25美元/桶</strong>，布伦特一度跌至<strong>103.76美元/桶</strong>。特朗普随后在社交媒体否认，称“没有向他们提出任何让步”。上述消息均缺乏美伊官方确认。</p><div class="src"><span class="tag-inline">美伊</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>沙特东西输油管道修复恢复出口，当前流量约每日350万桶</h3><p>两周前因无人机袭击停运的沙特东西输油管道已完成修复，沙特阿美已于周日开始通过该管道向红海延布港装载原油，当前输送量约为每日<strong>350万桶</strong>，仅为产能一半。该管道全长750英里，最大输送能力为每日<strong>700万桶</strong>，是沙特绕开霍尔木兹海峡的关键出口通道。停运期间拉斯坦努拉港装载量已从9月初的每日150万桶骤升至约650万桶。</p><div class="src"><span class="tag-inline">能源供应</span>来源：华尔街见闻转引华尔街日报</div></div><div class="card lv3"><h3><span class="badge b">关注</span>美军人员所乘船只在霍尔木兹海峡遭伊朗导弹攻击，8名海军陆战队人员受伤</h3><p>据美国媒体报道，一艘美军人员所乘船只本月14日在霍尔木兹海峡遭伊朗巡航导弹攻击，<strong>8名</strong>海军陆战队人员因吸入烟雾受伤，包括7名士兵和一名军官，出现头痛等关联脑震荡症状。伊朗方面同时就美国航班限制措施向国际民航组织提出正式申诉。</p><div class="src"><span class="tag-inline">美伊军事</span>来源：华尔街见闻转引新华社</div></div></div><div class="sec"><div class="sec-title">B. 全球宏观与利率<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>10年期美债收益率升至5.23%创2007年来新高，实际利率逼近雷曼危机水平</h3><p>美债抛售进一步深化，收益率曲线全线上移<strong>7至8个基点</strong>。10年期美债收益率升至<strong>5.23%</strong>，英国10年期国债收益率升至<strong>5.42%</strong>，德国同期限上行4个基点至<strong>3.64%</strong>。剔除通胀后的10年期实际利率达到2008年金融危机以来最高水平。利率互换市场已充分定价未来12个月内至少三次25基点加息，并存在第四次加息可能性。</p><div class="src"><span class="tag-inline">美债</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>美联储理事库克：AI提升生产力或不足以抵消近期通胀</h3><p>库克认为大规模数据中心投资已推高电力和水成本约<strong>5%</strong>；企业承诺的<strong>2万亿美元</strong>AI资本支出目前仅花费一小部分，后续资金落地将加剧价格压力。AI驱动的股市财富效应也在刺激消费，进一步抵消生产率提升带来的温和去通胀。</p><div class="src"><span class="tag-inline">美联储</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>拉加德打压欧央行加息预期：长债收益率上行将抑制经济增长与通胀</h3><p>拉加德表示，受能源危机影响欧元区通胀预计将进一步上升，但尚无迹象表明能源成本上涨已传导至更广泛的经济价格压力。长期债券收益率自欧央行上次会议以来已显著上升，将放缓经济增长并限制能源成本向通胀传导。</p><div class="src"><span class="tag-inline">欧央行</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>全球债券2007年来首度逼近4%，美债整体利率水平触及二十年来最高点</h3><p>全球债券收益率整体水平自2007年以来首次逼近<strong>4%</strong>，美债整体利率水平已触及二十年来最高点。25年来罕见，10年期美债收益率反超标普500盈利收益率。</p><div class="src"><span class="tag-inline">全球债市</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">C. 中国宏观与政策<span class="cnt">5 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>中国1-8月工业企业利润同比增长15.7%，电子行业利润增1.1倍</h3><p>中国工业企业利润1至8月同比增长<strong>15.7%</strong>，电子行业利润同比增长<strong>1.1倍</strong>，贡献逾六成增量。在算力基础设施加速建设带动下，光纤制造、光缆制造行业利润分别增长<strong>5.3倍</strong>和<strong>1.0倍</strong>；计算机整机制造、计算机外围设备制造、工业控制计算机及系统制造、通信系统设备制造行业利润分别增长<strong>3.9倍、2.6倍、1.3倍、48.7%</strong>。</p><div class="src"><span class="tag-inline">工业利润</span>来源：华尔街见闻</div></div><div class="card lv1"><h3><span class="badge r">关键</span>中美第八轮经贸磋商：同意对约300亿美元产品对等降税，超90%免除加征关税</h3><p>中美双方同意以对等方式降低自对方进口的规模约<strong>300亿美元</strong>产品的关税，其中超过<strong>90%</strong>的产品将免除相互加征的全部关税，享受最惠国关税待遇。双方同意建立人工智能对话机制，何立峰副总理与贝森特财长作为各自牵头人进行了首次对话，并约定在今年11月底前举行下一次对话。</p><div class="src"><span class="tag-inline">中美经贸</span>来源：华尔街见闻转引商务部</div></div><div class="card lv2"><h3><span class="badge y">重要</span>国常会：研究出台稳定房地产市场、促进就业增收等政策措施</h3><p>国常会指出，推出一批务实管用的增量政策，优化财政支出安排，用好地方政府债务结存限额，综合运用并适时调整货币政策工具，增加科技创新和技术改造、支农支小等再贷款额度，研究出台稳定房地产市场、促进就业增收等政策措施。</p><div class="src"><span class="tag-inline">国常会</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>央行等八部门推出19项金融举措支持服务业扩能提质，支持“人工智能+软件”发展</h3><p>中国央行等八部门印发《关于金融支持服务业扩能提质的指导意见》，从加强金融支持服务业能力建设、加大对生产性和生活性服务业金融支持、做强做优金融服务业等方面提出<strong>19项</strong>举措。提出引导金融机构综合运用信贷、债券、股权等多样化工具，支持“人工智能+软件”发展，发展智能体即服务、模型即服务等新业态。</p><div class="src"><span class="tag-inline">金融政策</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>上海出台楼市新政：全面加强商品住房预售管理，有序实施现房销售</h3><p>上海市四部门联合印发实施意见，从全面加强商品住房预售管理、有序实施商品住房现房销售、推行主办银行制度、加大融资支持、优化土地供应、强化质量监管和市场秩序规范六方面推出举措。上证报称9月上海二手房成交韧性十足、价格出现回升信号，唐镇板块二手房实际成交价格较去年年底普遍上浮<strong>3%—5%</strong>。</p><div class="src"><span class="tag-inline">房地产</span>来源：华尔街见闻转引上证报</div></div></div><div class="sec"><div class="sec-title">D. 市场与资金<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>美伊会谈僵局打压美股，标普抹去本月全部涨幅，科技股与AI概念领跌</h3><p>标普500收跌<strong>0.77%</strong>报<strong>7683.69点</strong>，抹去本月全部涨幅；纳指收跌<strong>0.92%</strong>报<strong>26820.38点</strong>；道指收跌<strong>0.67%</strong>报<strong>51481.51点</strong>。Meta跌<strong>4.79%</strong>，特斯拉跌<strong>3.94%</strong>，波音跌<strong>5.02%</strong>。恐慌指数VIX涨<strong>8.07%</strong>至<strong>16.07</strong>。A股上证指数收跌<strong>1.67%</strong>报3823.62点，创业板指收跌<strong>4.53%</strong>。</p><div class="src"><span class="tag-inline">美股</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>黄金重挫近4%创近八周新低，白银跌近5%</h3><p>COMEX 9月黄金期货收跌<strong>3.52%</strong>报<strong>4135.4美元/盎司</strong>，COMEX 9月白银期货收跌<strong>4.71%</strong>报<strong>61.22美元/盎司</strong>。盛宝银行指出金价疲软反映了债券收益率飙升、美元走强和技术性抛售的共同作用，并可能因中国投资者在黄金周假期前的获利了结而进一步放大。</p><div class="src"><span class="tag-inline">贵金属</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>高盛警告：美股广度创2000年互联网泡沫来最差，债波动率罕见背离</h3><p>高盛合伙人Flood认为AI龙头撑起指数门面，中位数股票已较高点跌<strong>16%</strong>。高盛衍生品交易主管Garrett警告债券波动率MOVE指数处于百分位极端高位，VIX却仍低迷。BTIG策略师Krinsky指出对冲基金总杠杆升、净杠杆降，警告“某些东西必须让步”。</p><div class="src"><span class="tag-inline">机构观点</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>韩国KOSPI跌破7000，散户、外资单月净卖超33万亿韩元</h3><p>韩国KOSPI跌破<strong>7000</strong>，换手率创年内新低，散户、外资单月净卖超<strong>33万亿韩元</strong>。美债收益率飙升冲击新兴市场，债券ETF创六个月最大单周失血。</p><div class="src"><span class="tag-inline">新兴市场</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">E. AI·科技<span class="cnt">6 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>英伟达追加1500亿美元回购创美企历史纪录，供应承诺额环比暴增135%</h3><p>英伟达宣布追加<strong>1500亿美元</strong>股票回购计划，超越苹果此前1100亿美元的回购纪录。黄仁勋称此举彰显对AI长期机遇的信心。英伟达最新披露显示AI需求持续扩张：Anthropic已签约<strong>2.6吉瓦</strong>算力，合同总值超<strong>1800亿美元</strong>；英伟达供应承诺额从上季度的1190亿美元升至<strong>2790亿美元</strong>，环比暴增<strong>135%</strong>，主要由内存采购驱动。</p><div class="src"><span class="tag-inline">英伟达</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>AMD宣布82亿美元收购AI初创World Labs，李飞飞将任首席科学家</h3><p>AMD宣布以<strong>82亿美元</strong>收购AI初创World Labs，后者专注空间智能与三维环境模拟。交易完成后，创始人李飞飞将出任AMD执行副总裁兼首席科学家。此举意味着AMD意在将模型研究能力内化为芯片设计驱动力，并在机器人、仿真等物理AI领域与英伟达展开正面竞争。</p><div class="src"><span class="tag-inline">AMD</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>Anthropic再推Claude 5.5：Sonnet 5.5速度提升超三成，单任务成本最高降三成</h3><p>Claude Sonnet 5.5是迄今速度最快的Sonnet模型，速度提升超<strong>三成</strong>，单任务成本最高降<strong>三成</strong>，性能逼近Opus。在低或中等努力水平下，以约Sonnet 5十分之一的成本就超过Sonnet 5的最佳得分。据独立平台Artificial Analysis测试，Sonnet 5.5能力逼近Opus 5.5。</p><div class="src"><span class="tag-inline">Anthropic</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>OpenAI因安全顾虑取消10月发布GPT-6.1 Astra模型计划</h3><p>OpenAI负责安全系统的高管表示，GPT-6.1 Astra在两个领域出现倒退，尚不具备发布条件，因此取消原定10月发布计划。</p><div class="src"><span class="tag-inline">OpenAI</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>SpaceX星舰首次成功入轨，部署26颗V3星链卫星但任务提前结束</h3><p>SpaceX旗舰火箭星舰首次成功进入地球轨道，完成历经近十年研发、投入逾<strong>150亿美元</strong>后的关键里程碑。尽管一台发动机提前关机，工程师重新评估后仍成功完成轨道点火。在轨期间首次部署V3版星链卫星、首批<strong>26颗</strong>，但飞行任务提前结束。</p><div class="src"><span class="tag-inline">SpaceX</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>Manus独立后首次大更新发布2.0版本，推出Personal Agent应用Cue</h3><p>Manus面向海外用户发布2.0版本，底层换上新一代自研Agent框架Cascade，Token消耗减少<strong>23.2%</strong>，任务完成时间缩短<strong>28.2%</strong>，运行成本降低<strong>32%</strong>。同时推出面向个人生活场景的智能助理Cue，每个Agent拥有独立邮箱、电话、钱包和电脑。</p><div class="src"><span class="tag-inline">AI应用</span>来源：华尔街见闻转引Founder Park</div></div></div><div class="sec"><div class="sec-title">F. 机构观点精选<span class="cnt">3 条</span></div><div class="card lv2"><h3><span class="badge y">重要</span>德银：铜市进入“历史性金属争夺战”，2027年Q2铜价有望触及22050美元</h3><p>德意志银行分析师Daniel Ghali预计铜价将在2027年第二季度升至每吨<strong>22050美元</strong>，较周一LME<strong>14458.50美元</strong>的价格高出逾<strong>50%</strong>。该行估算若当前趋势延续，到今年年底美国与亚洲主要消费市场合计持有的铜库存可能占全球供应总量的<strong>71%</strong>。预计铜价2027年均价达每吨<strong>20900美元</strong>，2028年均价回落至<strong>18500美元</strong>。</p><div class="src"><span class="tag-inline">铜</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>摩根大通：美股科技七巨头“杀估值”已近尾声，建议超配半导体低配软件</h3><p>Mag7等大型科技股估值已跌至10年最低，超大规模云厂商相对标普500的市盈率溢价压缩至逾一个标准差的低位。AI资本开支周期仍将延续，盈利增长支撑科技股表现，但行情将进一步向半导体等产业链扩散。该行建议超配半导体、低配软件，认为油价和利率波动缓和后美股有望重拾升势。</p><div class="src"><span class="tag-inline">机构观点</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>私募四季度展望：科技仍是核心主线，但“便宜的不景气、景气的不便宜”</h3><p>重阳投资寇志伟直言当前A股“便宜的不景气、景气的不便宜”，选股难度持续加大，建议轻指数、重个股。四位私募人士普遍认为四季度市场进一步转暖概率较大，科技仍是核心主轴，但将从全面走强转向内部分化。医药拐点确定性高于地产和消费。</p><div class="src"><span class="tag-inline">A股策略</span>来源：华尔街见闻</div></div></div>
+
+  <div class="sec">
+    <div class="sec-title">今日关注</div>
+    <div class="card lv3" style="border-left-color:var(--accent);background:#fff;"><p>• 国新办就“十五五”时期加快农业农村现代化等举行发布会</p><p>• 澳大利亚政策利率决议</p><p>• G20贸易部长级会议，美国贸易代表参会</p><p>• 特朗普与科技公司CEO、众议院议长举行人工智能会议</p><p>• 本周美光公布财报，周五美国非农就业报告预计显示9月新增就业约9万人、失业率4.1%</p></div>
+  </div>
+
+  <div class="foot">
+    <b>数据来源与可验证性说明</b><br>
+    主信源：华尔街见闻（wallstreetcn.com）公开内容接口，覆盖窗口内全球资讯流与正文。<br>
+    主信源为华尔街见闻，部分条目转引新华社、央视、路透社、华尔街日报、上证报、Founder Park等。美伊谈判相关消息（特朗普愿放松制裁、伊朗同意暂停铀浓缩）为单一来源且缺乏美伊官方确认，特朗普本人已否认制裁豁免报道，不宜视为已达成协议。沙特管道恢复出口数据来自华尔街日报援引知情人士，沙特阿美未置评。<br><br>
+    <b>重要性分级标准</b><br>
+    <span style="color:var(--red)">■ 红（关键）</span>：影响全局资产定价或地缘格局 ·
+    <span style="color:var(--gold)">■ 黄（重要）</span>：影响单一市场、板块或主要资产 ·
+    <span style="color:var(--blue)">■ 蓝（关注）</span>：趋势性、背景性信息<br><br>
+    <b>免责声明</b>：本简报仅供研究参考，不构成任何投资建议。数字以华尔街见闻披露口径为准，请以原始报道为最终依据。<br>
+    <span style="color:#b0b8b4">本报告由 GitHub Actions 云端生成（电脑关机时亦可投递）。</span>
+  </div>
+</div>
+</body>
+</html>
