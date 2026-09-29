@@ -44,10 +44,14 @@ import requests
 JST = dt.timezone(dt.timedelta(hours=9))
 CST = dt.timezone(dt.timedelta(hours=8))            # 北京时间（华尔街见闻口径）
 ROOT = Path(__file__).resolve().parent
-ARCHIVE = ROOT / "archive"
+# 归档目录必须与旧通道（daily.yml → archive/）隔离，否则两条简报的幂等闸门互相顶掉
+ARCHIVE = ROOT / "archive" / "wscn"
 
 WSCN_API = "https://api-one.wallstcn.com/apiv1/content/information-flow"
 WSCN_ARTICLE = "https://api-one.wallstcn.com/apiv1/content/articles/{id}?extract=0"
+
+# 简报标识：出现在邮件主题里，同时用于 IMAP 查重（区分同收件箱里的其他简报）
+MAIL_TAG = "【华尔街见闻·24h要闻简报】"
 
 SMTP_HOST = "smtp.qq.com"
 SMTP_PORT = 465
@@ -282,10 +286,15 @@ def llm_call(messages: list[dict], api_key: str, max_tokens: int = 8192) -> str:
 # ------------------------------------------------------------------ 跨通道查重
 
 def already_delivered(day: str, smtp_user: str, smtp_code: str) -> bool:
-    """IMAP 查收件箱：当日是否已投递。
+    """IMAP 查收件箱：当日是否已投递过**本简报**。
 
     这是**跨通道**账本：本机 WorkBuddy 投递的、GitHub 投递的、外部调度器投递的
     都会落在同一个收件箱里，因此对三者一视同仁。
+
+    ⚠️ 必须**同时**匹配「简报标识 + 日期」，不能只搜日期：
+    同一收件箱里还有旧通道「全球宏观+地缘 24h 简报」，其主题同样含当天日期
+    （形如【全球宏观+地缘 24h 简报】2026-09-29）。若只搜日期，旧通道先投递
+    就会让本通道永久查重命中、永远不再发信。
 
     失败一律返回 False（fail-open）—— 漏发是主要矛盾，偶发重复是次要矛盾。
     """
@@ -294,10 +303,9 @@ def already_delivered(day: str, smtp_user: str, smtp_code: str) -> bool:
         try:
             M.login(smtp_user, smtp_code)
             M.select("INBOX", readonly=True)
-            _t, data = M.search(None, "SUBJECT", f'"{day}"')
-            ids = (data[0] or b"").split()
+            ids = _search_subject(M, f'"{MAIL_TAG}"', f'"{day}"')
             if ids:
-                print(f"[SKIP] 收件箱已存在 {len(ids)} 封主题含「{day}」的邮件 —— 今日已投递过。")
+                print(f"[SKIP] 收件箱已存在 {len(ids)} 封「{MAIL_TAG} + {day}」邮件 —— 今日已投递过。")
             return bool(ids)
         finally:
             try:
@@ -307,6 +315,23 @@ def already_delivered(day: str, smtp_user: str, smtp_code: str) -> bool:
     except Exception as e:  # noqa: BLE001
         print(f"[WARN] 邮箱查重不可用（{type(e).__name__}: {e}），按「未投递」继续。")
         return False
+
+
+def _search_subject(M: "imaplib.IMAP4_SSL", *terms: str) -> list[bytes]:
+    """SUBJECT 多条件 AND 检索，兼容非 ASCII（中文）查询词。
+
+    MAIL_TAG 含中文与「·」，部分服务器在隐式 charset 下会拒绝或静默搜不到，
+    因此显式声明 CHARSET UTF-8；若服务器不支持（NO/BAD），退回 ASCII 日期单条件。
+    """
+    try:
+        _t, data = M.search("UTF-8", *[a for t in terms for a in ("SUBJECT", t)])
+        return (data[0] or b"").split()
+    except Exception as e:  # noqa: BLE001
+        # 降级：只用最后一个条件（纯 ASCII 日期）搜，宁可多算也别彻底查不到
+        print(f"[WARN] UTF-8 检索失败（{type(e).__name__}），降级为仅按日期检索。")
+        last = terms[-1] if terms else '""'
+        _t, data = M.search(None, "SUBJECT", last)
+        return (data[0] or b"").split()
 
 
 # ------------------------------------------------------------------ HTML 渲染
@@ -573,7 +598,10 @@ def main() -> None:
         if not u or not c:
             print("[WARN] 缺少邮箱凭据，终检跳过（按未投递）。")
             sys.exit(1)
-        day = dt.datetime.now(JST).strftime("%Y-%m-%d")
+        # ⚠️ 日期基准必须与主流程一致（北京时间 CST），否则 JST 与北京差 1 小时，
+        #    凌晨投递的邮件会被终检按「第二天」去查而查不到，导致每天误报未投递。
+        day = dt.datetime.now(CST).strftime("%Y-%m-%d")
+        print(f"[INFO] 终检查询日期（北京时间）：{day}")
         sys.exit(0 if already_delivered(day, u, c) else 1)
 
     deepseek_key = require("DEEPSEEK_API_KEY")
@@ -641,7 +669,7 @@ def main() -> None:
     lv1, lv2, lv3 = st.get("lv1") or 0, st.get("lv2") or 0, st.get("lv3") or 0
     top5 = data.get("top5") or []
     head = " / ".join(str(x)[:18] for x in top5[:3]) or "要闻简报"
-    subject = f"【华尔街见闻·24h要闻简报】{news_day} · 🔴{head}"
+    subject = f"{MAIL_TAG}{news_day} · 🔴{head}"
 
     send_email(subject, render_mail_body(data, now), out,
                smtp_user, smtp_code, mail_to)
