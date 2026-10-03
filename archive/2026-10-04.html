@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球宏观 + 地缘政治 24 小时简报 | 2026-10-04</title>
+<style>
+  :root{
+    --green:#1f6f43;
+    --red:#c0392b;
+    --gold:#d4a017;
+    --blue:#3d8ec9;
+    --up:#c0392b;
+    --down:#27ae60;
+    --bg:#f4f6f4;
+    --card:#ffffff;
+    --line:#e0e6e1;
+    --txt:#1c2b22;
+    --muted:#6b7a70;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:0;
+    background:var(--bg);
+    color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:15px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:16px;}
+  header.top{
+    background:linear-gradient(135deg,#1f6f43 0%,#155233 100%);
+    color:#fff;
+    border-radius:12px;
+    padding:22px 20px;
+    margin-bottom:18px;
+  }
+  header.top h1{
+    margin:0 0 10px 0;
+    font-size:22px;
+    line-height:1.35;
+    letter-spacing:.3px;
+  }
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:8px 16px;
+    font-size:13px;
+    opacity:.95;
+    margin-top:12px;
+  }
+  .meta-grid span b{font-weight:600;}
+  .tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:7px;}
+  .tag{
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:20px;
+    padding:3px 11px;
+    font-size:12px;
+    white-space:nowrap;
+  }
+  h2.sec{
+    font-size:17px;
+    color:var(--green);
+    margin:26px 0 12px 0;
+    padding-left:11px;
+    border-left:5px solid var(--green);
+    line-height:1.3;
+  }
+  .card{
+    background:var(--card);
+    border-radius:10px;
+    padding:14px 16px;
+    margin-bottom:12px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+    border-left:5px solid var(--blue);
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+  .card.lv5{border-left-color:var(--red);}
+  .card.lv4{border-left-color:var(--gold);}
+  .card.lv3{border-left-color:var(--blue);}
+  .card h3{
+    margin:0 0 8px 0;
+    font-size:15.5px;
+    line-height:1.45;
+    font-weight:700;
+  }
+  .stars{font-size:12px;letter-spacing:1px;margin-left:6px;white-space:nowrap;}
+  .stars.s5{color:var(--red);}
+  .stars.s4{color:var(--gold);}
+  .stars.s3{color:var(--blue);}
+  .card p{margin:0 0 8px 0;font-size:14px;color:#2c3a31;}
+  .src{
+    font-size:11.5px;
+    color:var(--muted);
+    border-top:1px dashed var(--line);
+    padding-top:6px;
+    margin-top:8px;
+  }
+  .single{
+    display:inline-block;
+    background:#fdf3e3;
+    color:#a06a00;
+    border:1px solid #f0d9a8;
+    border-radius:4px;
+    padding:0 5px;
+    font-size:11px;
+    margin-left:4px;
+  }
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:10px;
+  }
+  .kpi{
+    background:var(--card);
+    border-radius:9px;
+    padding:11px 13px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+    border-top:3px solid var(--green);
+  }
+  .kpi .name{font-size:12px;color:var(--muted);margin-bottom:4px;}
+  .kpi .val{font-size:19px;font-weight:700;line-height:1.2;}
+  .kpi .chg{font-size:12px;margin-top:3px;}
+  .up{color:var(--up);font-weight:600;}
+  .down{color:var(--down);font-weight:600;}
+  .flat{color:var(--muted);}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--card);
+    border-radius:9px;
+    overflow:hidden;
+    font-size:13.5px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+    margin-bottom:12px;
+  }
+  th{
+    background:#eaf1ec;
+    color:#1c3a28;
+    text-align:left;
+    padding:9px 10px;
+    font-weight:600;
+    font-size:13px;
+    border-bottom:1px solid var(--line);
+  }
+  td{
+    padding:9px 10px;
+    border-bottom:1px solid #f0f3f0;
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+  .chain{
+    background:#f0f7f2;
+    border:1px dashed #b9d6c4;
+    border-radius:8px;
+    padding:11px 13px;
+    font-size:13.5px;
+    line-height:1.9;
+    margin:10px 0;
+    color:#1c3a28;
+  }
+  .chain b{color:var(--green);}
+  .arrow{color:var(--green);font-weight:700;padding:0 3px;}
+  .divergence{
+    background:#fff8f6;
+    border:1px solid #f0cfc8;
+    border-radius:9px;
+    padding:12px 15px;
+    margin-bottom:12px;
+  }
+  .divergence h4{margin:0 0 7px 0;font-size:14px;color:var(--red);}
+  .divergence ul{margin:0;padding-left:18px;font-size:13.5px;}
+  .divergence li{margin-bottom:6px;}
+  .note{
+    background:#eef4ef;
+    border-radius:9px;
+    padding:12px 15px;
+    font-size:13px;
+    color:#3a4a40;
+    margin-bottom:12px;
+  }
+  .note b{color:var(--green);}
+  footer{
+    margin-top:26px;
+    padding:16px;
+    text-align:center;
+    font-size:12px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+  }
+  .src-list{font-size:12.5px;line-height:1.9;color:#3a4a40;}
+  .src-list li{margin-bottom:3px;}
+  @media (max-width:640px){
+    .wrap{padding:10px;}
+    header.top{padding:16px 14px;border-radius:10px;}
+    header.top h1{font-size:18px;}
+    .meta-grid{grid-template-columns:1fr 1fr;font-size:12px;gap:6px 10px;}
+    .kpi-grid{grid-template-columns:1fr 1fr;gap:8px;}
+    .kpi .val{font-size:16px;}
+    .card{padding:12px 13px;}
+    .card h3{font-size:14.5px;}
+    table{font-size:12.5px;}
+    th,td{padding:7px 8px;}
+    h2.sec{font-size:15.5px;}
+  }
+  @media print{
+    body{background:#fff;font-size:12px;}
+    .wrap{max-width:100%;padding:0;}
+    header.top{background:#1f6f43 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .card,.kpi,table,.divergence,.note{
+      box-shadow:none;
+      border:1px solid #ddd;
+      page-break-inside:avoid;
+      break-inside:avoid;
+    }
+    .card{border-left-width:5px;}
+    h2.sec{page-break-after:avoid;}
+    table{page-break-inside:auto;}
+    tr{page-break-inside:avoid;}
+    .up,.down,.stars{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>全球宏观 + 地缘政治 24 小时简报</h1>
+  <div class="meta-grid">
+    <span><b>报告日期：</b>2026-10-04</span>
+    <span><b>生成时间：</b>2026-10-04 00:11 JST</span>
+    <span><b>监测窗口：</b>2026-10-03 00:11 → 2026-10-04 00:11 JST</span>
+    <span><b>检索路数：</b>11 路</span>
+    <span><b>素材条数：</b>43 条</span>
+    <span><b>事件条目：</b>22 条</span>
+  </div>
+  <div class="tags">
+    <span class="tag">美联储鹰派转向</span>
+    <span class="tag">霍尔木兹海峡</span>
+    <span class="tag">红海 / 曼德海峡</span>
+    <span class="tag">布伦特 102.70</span>
+    <span class="tag">G7 释放柴油储备</span>
+    <span class="tag">俄乌能源停火</span>
+    <span class="tag">美日军演与那国岛</span>
+    <span class="tag">AI 算力扩张</span>
+    <span class="tag">英伟达市值 5.7 万亿</span>
+  </div>
+</header>
+
+<h2 class="sec">一页速览 · Top 5 关键事件</h2>
+
+<div class="card lv5">
+  <h3>1. 美联储按兵不动但释放鹰派信号，年内利率变化预期由降息转为加息<span class="stars s5">★★★★★</span></h3>
+  <p>美联储本次会议维持利率不变，但政策信号明显偏鹰，市场对年内利率路径的预期由「降息」转向「加息」。这是本轮窗口内对全球大类资产定价影响最直接的事件，与「美就业降温、全球利率不下来」的债市担忧形成呼应。</p>
+  <div class="src">来源：cls.cn（[1]）、大纪元（[3]）（2 源交叉）</div>
+</div>
+
+<div class="card lv5">
+  <h3>2. 沙特筹备对胡塞武装大规模攻势，目标夺回曼德海峡、打破红海封锁<span class="stars s5">★★★★★</span></h3>
+  <p>沙特正权衡对也门发动沿海突击或更大规模军事行动，行动预计在未来数周内展开，由沙特监督、沙特空袭支援的也门地面部队主导。胡塞武装对红海关键通道的控制，正威胁霍尔木兹海峡之外的重要替代航线。此举直接关系全球能源运输与航运保险成本。</p>
+  <div class="src">来源：Reuters（[26]）、Outlook India（[29]）、MSN（[30]）、搜狐网（[7]）（4 源交叉）</div>
+</div>
+
+<div class="card lv5">
+  <h3>3. 伊朗最高领袖顾问警告美以：战事可能扩大至印度洋<span class="stars s5">★★★★★</span></h3>
+  <p>伊朗最高领袖顾问公开警告美国与以色列，冲突存在向印度洋方向扩大的风险。同期有报道称 77 国抵制以色列、内塔尼亚胡秘访阿联酋，伊朗火速警告「后果严重」。地缘风险溢价与霍尔木兹海峡扰动担忧同步升温。</p>
+  <div class="src">来源：jin10 市场参考（[4]）、手机新浪网（[5]）（2 源交叉）</div>
+</div>
+
+<div class="card lv5">
+  <h3>4. G7 同意释放 1 亿桶柴油/原油储备，OPEC+ 产能评估推迟至 11 月<span class="stars s5">★★★★★</span></h3>
+  <p>欧洲领导人同意美国总统特朗普提出的要求，释放柴油储备以压低油价并减少从美国进口燃料。OPEC+ 产能评估推迟至 11 月。同期布伦特与美原油走势分化，显示供给端政策与地缘扰动正在激烈博弈。</p>
+  <div class="src">来源：汇通网 Fx678（[15]、[18]）（2 源交叉，同一媒体多路检索）</div>
+</div>
+
+<div class="card lv4">
+  <h3>5. 英伟达股价盘中创新高，市值突破 5.7 万亿美元<span class="stars s4">★★★★</span></h3>
+  <p>英伟达盘中创出新高，市值突破 5.7 万亿美元。与此同时，亚马逊计划向投资者出售价值 80 亿美元的英伟达芯片，OpenAI 据悉正洽谈租赁俄亥俄州 10 吉瓦数据中心，AI 算力资本开支链条持续扩张。</p>
+  <div class="src">来源：搜狐网（[22]）、新浪财经（[20]）、cls.cn（[19]）（3 源交叉，市值口径见分歧提示）</div>
+</div>
+
+<h2 class="sec">关键指标看板</h2>
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="name">布伦特原油（收盘）</div>
+    <div class="val">102.70 <span style="font-size:12px;color:var(--muted);">美元/桶</span></div>
+    <div class="chg up">▲ +0.45%（周线 +5.44%）</div>
+  </div>
+  <div class="kpi">
+    <div class="name">WTI 美原油（收盘）</div>
+    <div class="val">91.26 <span style="font-size:12px;color:var(--muted);">美元/桶</span></div>
+    <div class="chg down">▼ −1.78%（周线 −1.28%）</div>
+  </div>
+  <div class="kpi">
+    <div class="name">黄金 / 白银</div>
+    <div class="val">巨震大跌</div>
+    <div class="chg down">▼ 具体点位素材未给出</div>
+  </div>
+  <div class="kpi">
+    <div class="name">美联储政策利率</div>
+    <div class="val">按兵不动</div>
+    <div class="chg up">▲ 信号偏鹰，预期转向加息</div>
+  </div>
+  <div class="kpi">
+    <div class="name">年内利率路径预期</div>
+    <div class="val">由降息 → 加息</div>
+    <div class="chg up">▲ 预期上修</div>
+  </div>
+  <div class="kpi">
+    <div class="name">美债 / 全球利率</div>
+    <div class="val">「不下来」</div>
+    <div class="chg up">▲ 债市担忧升温</div>
+  </div>
+  <div class="kpi">
+    <div class="name">英伟达市值</div>
+    <div class="val">5.7 万亿美元</div>
+    <div class="chg up">▲ 盘中创新高</div>
+  </div>
+  <div class="kpi">
+    <div class="name">G7 释放储备</div>
+    <div class="val">1 亿桶</div>
+    <div class="chg flat">柴油/原油（口径见分歧提示）</div>
+  </div>
+  <div class="kpi">
+    <div class="name">OPEC+ 产能评估</div>
+    <div class="val">推迟至 11 月</div>
+    <div class="chg flat">— 时间表后移</div>
+  </div>
+  <div class="kpi">
+    <div class="name">OpenAI 数据中心（洽谈）</div>
+    <div class="val">10 吉瓦</div>
+    <div class="chg flat">俄亥俄州，租赁洽谈中</div>
+  </div>
+</div>
+<div class="note">
+  <b>看板说明：</b>本看板仅呈现素材中明确出现的数值。美元指数、USD/JPY、美债收益率具体点位、加息概率百分比等指标在本次 43 条素材中<b>未出现可验证数值</b>，按「数字宁缺勿错」原则不予填充，避免使用估算值。
+</div>
+
+<h2 class="sec">A. 全球宏观（央行 / 利率 / 汇市 / 数据）</h2>
+
+<div class="card lv5">
+  <h3>美联储按兵不动但释放鹰派信号，年内预期由降息变加息<span class="stars s5">★★★★★</span></h3>
+  <p>美联储本次会议维持利率不变，但释放鹰派信号，市场对年内利率变化的预期由「降息」转为「加息」。这一转向是本窗口内最核心的宏观变量，直接牵动美元、黄金、美债与全球风险资产定价。</p>
+  <div class="src">来源：cls.cn（[1]）、大纪元（[3]）（2 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3>美就业降温，但全球利率「不下来」，债市担忧升温<span class="stars s4">★★★★</span></h3>
+  <p>报道指出美国就业数据出现降温，但全球利率并未随之回落，债市对「就业弱—利率不降」的组合表达担忧。该逻辑与美联储鹰派信号相互印证，构成当前利率市场的核心矛盾。</p>
+  <div class="src">来源：大纪元（[3]）（单源，待确认）</div>
+</div>
+
+<div class="card lv4">
+  <h3>黄金：收益率上行「太热」，但前景远非看空<span class="stars s4">★★★★</span></h3>
+  <p>分析指出，上行的债券收益率对黄金构成压力，但黄金前景「远非看空」。同期新浪财经报道国际油价、金价、银价出现巨震大跌，另有报道称抄底黄金 ETF 的投资者遭遇浮亏，显示贵金属短线波动剧烈。</p>
+  <div class="src">来源：FOREX.com（[24]）、新浪财经（[16]）、金融界（[2]）（3 源交叉）</div>
+</div>
+
+<div class="card lv3">
+  <h3>下周全球市场五大主题前瞻<span class="stars s3">★★★</span></h3>
+  <p>外媒梳理未来一周全球市场五大主题，涵盖央行政策、地缘风险与资产配置方向。具体主题条目素材未展开，仅作跟踪提示。</p>
+  <div class="src">来源：The Economic Times（[23]）（单源，待确认）</div>
+</div>
+
+<h2 class="sec">B. 地缘政治（美伊 / 俄乌 / 中东 / 欧美）</h2>
+
+<div class="card lv5">
+  <h3>伊朗最高领袖顾问警告美以：战事可能扩大至印度洋<span class="stars s5">★★★★★</span></h3>
+  <p>伊朗最高领袖顾问公开警告美国与以色列，冲突存在向印度洋方向扩大的可能性。该表态出现在中东多点冲突交织的背景下，市场关注其对霍尔木兹海峡与印度洋航线的潜在外溢影响。</p>
+  <div class="src">来源：jin10 市场参考（[4]）、手机新浪网（[5]）（2 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3>77 国抵制以色列，内塔尼亚胡秘访阿联酋，伊朗警告「后果严重」<span class="stars s4">★★★★</span></h3>
+  <p>报道称 77 国对以色列采取抵制立场，以色列总理内塔尼亚胡秘密访问阿联酋，伊朗方面火速警告此举「后果严重」。该事件反映以色列与海湾国家关系与伊朗阵营对抗同步升温。</p>
+  <div class="src">来源：手机新浪网（[5]）（单源，待确认）</div>
+</div>
+
+<div class="card lv4">
+  <h3>美军撤离伊拉克与波斯湾，中东「后美国时代」安全格局加速重构<span class="stars s4">★★★★</span></h3>
+  <p>报道指出美军从伊拉克与波斯湾撤离，中东安全格局进入「后美国时代」并加速重构。这一结构性变化与沙特筹备对胡塞攻势、伊朗警告扩大战事形成同一叙事链条。</p>
+  <div class="src">来源：虎嗅网（[6]）（单源，待确认）</div>
+</div>
+
+<div class="card lv4">
+  <h3>红海安全：从也门到埃及，相互关联的冲突重塑地区安全<span class="stars s4">★★★★</span></h3>
+  <p>分析指出，从也门到埃及的多点冲突相互关联，正在重塑红海地区安全格局。胡塞武装对红海的封锁被指强化了伊朗对全球能源供应的掌控力。</p>
+  <div class="src">来源：The Jerusalem Post（[25]）、EnergyNow.com（[27]）（2 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3>特朗普对胡塞武装的打击，被视为伊朗战争困境的前兆<span class="stars s4">★★★★</span></h3>
+  <p>NBC News 分析认为，特朗普此前对胡塞武装的打击行动，预示了在伊朗方向可能面临的作战困境。该报道为理解当前美伊博弈提供了历史参照。</p>
+  <div class="src">来源：NBC News（[28]）（单源，待确认）</div>
+</div>
+
+<div class="card lv4">
+  <h3>俄乌：乌方突袭莫斯科后求休战，俄方连夜大规模报复<span class="stars s4">★★★★</span></h3>
+  <p>报道称乌方突袭莫斯科刚过三天即寻求休战，俄方连夜发动大规模报复行动。同期泽连斯基呼吁联合国对俄施压，并打出「领土不退、能源停火」的双线牌。</p>
+  <div class="src">来源：搜狐网（[10]）、Forbes（[34]）、凤凰网（[8]）（3 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3>乌克兰意外反攻，挫败普京的顿巴斯目标<span class="stars s4">★★★★</span></h3>
+  <p>Bloomberg 报道称乌克兰发动意外反攻，使俄罗斯在顿巴斯方向的目标受挫。该战场进展与「谈判若无对俄压力则只是幻象」的评论形成对照。</p>
+  <div class="src">来源：Bloomberg（[32]）、Kyiv Post（[31]）（2 源交叉）</div>
+</div>
+
+<div class="card lv3">
+  <h3>台海：美日军演，反舰导弹首登与那国岛，距台仅 110 公里<span class="stars s3">★★★</span></h3>
+  <p>报道称美日联合军演中，美方反舰导弹首次登上与那国岛，该岛距台湾仅 110 公里，被指可能激怒北京。另有报道称美军拟在台海部署导弹。相关消息源以境外媒体与自媒体为主，需谨慎对待。</p>
+  <div class="src">来源：dushi.singtao.ca（[13]）、aboluowang.com（[14]）、风闻（[11]）、中国评论（[12]）（多源，但权威性参差）</div>
+</div>
+
+<h2 class="sec">C. 能源传导链（原油 / 天然气 / 煤炭 / 航运）</h2>
+
+<div class="card lv5">
+  <h3>红海封锁 → 曼德海峡 → 霍尔木兹替代航线 → 全球能源运输成本<span class="stars s5">★★★★★</span></h3>
+  <p>胡塞武装对红海关键通道的控制，威胁着霍尔木兹海峡之外的重要替代航线。沙特筹备攻势的核心目标即为夺回曼德海峡、打破红海封锁。若冲突升级，能源运输的绕行成本与保险溢价将同步抬升。</p>
+  <div class="chain">
+    <b>传导链条：</b>胡塞控制曼德海峡 <span class="arrow">→</span> 红海航运受阻、替代航线受限 <span class="arrow">→</span> 沙特筹备地面攻势（也门部队主导 + 沙特空袭支援） <span class="arrow">→</span> 航运保险与绕行成本上升 <span class="arrow">→</span> 原油/成品油到岸成本抬升 <span class="arrow">→</span> 布伦特与柴油裂解价差承压
+  </div>
+  <div class="src">来源：Reuters（[26]）、Outlook India（[29]）、EnergyNow.com（[27]）、The Jerusalem Post（[25]）（4 源交叉）</div>
+</div>
+
+<div class="card lv5">
+  <h3>G7 释放 1 亿桶柴油/原油储备，OPEC+ 产能评估推迟至 11 月<span class="stars s5">★★★★★</span></h3>
+  <p>欧洲领导人同意特朗普提出的要求，释放柴油储备以压低油价并减少从美国进口燃料。OPEC+ 产能评估推迟至 11 月。供给端政策干预与地缘扰动形成对冲，油价呈现多空并存格局。</p>
+  <div class="chain">
+    <b>传导链条：</b>G7 释放 1 亿桶储备 <span class="arrow">→</span> 柴油/原油即期供给增加 <span class="arrow">→</span> 炼厂原料与成品油库存回补 <span class="arrow">→</span> 柴油裂解价差收窄 <span class="arrow">→</span> 欧洲减少自美进口燃料 <span class="arrow">→</span> 跨大西洋成品油贸易流重构 <span class="arrow">→</span> 油价短期承压，但被霍尔木兹扰动对冲
+  </div>
+  <div class="src">来源：汇通网 Fx678（[15]、[18]）（2 源交叉，同一媒体多路检索）</div>
+</div>
+
+<div class="card lv4">
+  <h3>油价多空并存：布伦特收涨、WTI 收跌，周线方向相反<span class="stars s4">★★★★</span></h3>
+  <p>国际油价两大指标周五涨跌不一：布伦特原油收涨 0.45% 至每桶 102.70 美元，周线上涨 5.44%；美原油收跌 1.78% 至每桶 91.26 美元，周线下跌 1.28%。两油价差走阔，反映区域供需与运输风险定价分化。</p>
+  <div class="src">来源：汇通网 Fx678（[18]）、新浪财经（[16]）（2 源交叉）</div>
+</div>
+
+<div class="card lv4">
+  <h3>霍尔木兹扰动担忧推动油价单日涨超 3%<span class="stars s4">★★★★</span></h3>
+  <p>EnergyNow 报道称，市场对霍尔木兹海峡扰动可能长期化的担忧，推动油价单日上涨超过 3%。该报道与「油价触及战前水平」的供给增加叙事形成方向性对冲。</p>
+  <div class="src">来源：EnergyNow.com（[37]）、EnergyNow.com（[35]）（2 源交叉，同一媒体多路检索）</div>
+</div>
+
+<div class="card lv3">
+  <h3>IEA 下调需求预测，油价小幅走低<span class="stars s3">★★★</span></h3>
+  <p>EnergyNow 报道称，国际能源署（IEA）下调需求预测，油价随之小幅走低。需求侧下修与供给侧地缘扰动构成当前油市的双向力量。</p>
+  <div class="src">来源：EnergyNow.com（[38]）（单源，待确认）</div>
+</div>
+
+<div class="card lv3">
+  <h3>世界石油价格突破 100 美元后逆转，OPEC+ 面临新挑战<span class="stars s3">★★★</span></h3>
+  <p>报道称世界石油价格在突破 100 美元后出现逆转，OPEC+ 面临新的挑战。该叙事与布伦特收于 102.70 美元、WTI 收于 91.26 美元的分化格局一致。</p>
+  <div class="src">来源：vietnam.vn（[17]）（单源，待确认）</div>
+</div>
+
+<h2 class="sec">D. AI · 科技</h2>
+
+<div class="card lv4">
+  <h3>OpenAI 据悉洽谈租赁俄亥俄州 10 吉瓦数据中心<span class="stars s4">★★★★</span></h3>
+  <p>据报道，OpenAI 正洽谈租赁位于俄亥俄州的 10 吉瓦数据中心，以扩张其 AI 算力版图。该规模若落地，将成为 AI 基础设施资本开支的重要增量。</p>
+  <div class="src">来源：cls.cn（[19]）（单源，待确认）</div>
+</div>
+
+<div class="card lv4">
+  <h3>亚马逊计划向投资者出售价值 80 亿美元的英伟达芯片<span class="stars s4">★★★★</span></h3>
+  <p>知情人士称，亚马逊计划向投资者出售价值 80 亿美元的英伟达芯片，涉及资产负债表、数据中心、人工智能与融资交易结构。该安排反映 AI 算力资产正在被金融化。</p>
+  <div class="src">来源：新浪财经（[20]）（单源，待确认）</div>
+</div>
+
+<div class="card lv4">
+  <h3>英伟达盘中创新高，市值突破 5.7 万亿美元<span class="stars s4">★★★★</span></h3>
+  <p>英伟达股价盘中创出新高，市值突破 5.7 万亿美元。与此同时，有分析指出竞争因素可能限制其上行空间，竞争对手的定制 AI 芯片或压缩利润率并放缓增长。</p>
+  <div class="src">来源：搜狐网（[22]）、Seeking Alpha（[43]）（2 源交叉，市值口径见分歧提示）</div>
+</div>
+
+<div class="card lv3">
+  <h3>昇腾中国份额超英伟达；东芝大扩产机械硬盘；野村看好阿里 AI 云<span class="stars s3">★★★</span></h3>
+  <p>硬科技早报汇总：昇腾在中国市场份额超过英伟达；东芝大幅扩产机械硬盘；野村看好阿里 AI 云业务。三条信息均指向 AI 硬件与云算力的区域化竞争加剧。</p>
+  <div class="src">来源：观察者网（[21]）（单源，待确认）</div>
+</div>
+
+<div class="card lv3">
+  <h3>OpenAI、软银投入 600 万美元支持本地托育；特朗普在 AI 峰会上推介数据中心<span class="stars s3">★★★</span></h3>
+  <p>报道称 OpenAI 与软银共同投入 600 万美元用于本地托育；特朗普在 AI 峰会上推介数据中心。该信息反映 AI 产业与政策、社区议题的交织。</p>
+  <div class="src">来源：The Athens Messenger（[42]）（单源，待确认）</div>
+</div>
+
+<h2 class="sec">E. 全球市场速览</h2>
+<table>
+  <thead>
+    <tr><th>市场 / 品种</th><th>收盘 / 状态</th><th>变动</th><th>备注</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>布伦特原油</td>
+      <td>102.70 美元/桶</td>
+      <td class="up">▲ +0.45%</td>
+      <td>周线 +5.44%</td>
+    </tr>
+    <tr>
+      <td>WTI 美原油</td>
+      <td>91.26 美元/桶</td>
+      <td class="down">▼ −1.78%</td>
+      <td>周线 −1.28%，与布伦特分化</td>
+    </tr>
+    <tr>
+      <td>黄金</td>
+      <td>巨震大跌</td>
+      <td class="down">▼</td>
+      <td>收益率上行构成压力，具体点位素材未给出</td>
+    </tr>
+    <tr>
+      <td>白银</td>
+      <td>巨震大跌</td>
+      <td class="down">▼</td>
+      <td>与黄金同步，具体点位素材未给出</td>
+    </tr>
+    <tr>
+      <td>英伟达（NVDA）</td>
+      <td>盘中创新高</td>
+      <td class="up">▲</td>
+      <td>市值突破 5.7 万亿美元（另有 5.5 万亿口径，见分歧提示）</td>
+    </tr>
+    <tr>
+      <td>美联储政策利率</td>
+      <td>按兵不动</td>
+      <td class="flat">—</td>
+      <td>信号偏鹰，年内预期由降息转加息</td>
+    </tr>
+    <tr>
+      <td>美债 / 全球利率</td>
+      <td>「不下来」</td>
+      <td class="up">▲</td>
+      <td>就业降温但利率未落，债市担忧升温</td>
+    </tr>
+  </tbody>
+</table>
+<div class="note">
+  <b>说明：</b>本次素材中<b>未出现</b>美元指数、USD/JPY、美债收益率具体点位、加息概率百分比、A 股/港股/日经收盘等可验证数值，故不列入表格。所有涨跌颜色遵循中国市场惯例：<span class="up">涨 = 红</span>，<span class="down">跌 = 绿</span>。
+</div>
+
+<h2 class="sec">未来数日重点日历</h2>
+<table>
+  <thead>
+    <tr><th>时间</th><th>事件</th><th>市场预期 / 关注点</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>未来数周</td>
+      <td>沙特对胡塞武装攻势（预计展开）</td>
+      <td>由也门地面部队主导、沙特空袭支援；关注曼德海峡通行与红海航运保险</td>
+    </tr>
+    <tr>
+      <td>11 月</td>
+      <td>OPEC+ 产能评估</td>
+      <td>评估推迟至 11 月，供给路径不确定性延长</td>
+    </tr>
+    <tr>
+      <td>下周</td>
+      <td>全球市场五大主题</td>
+      <td>外媒前瞻，涵盖央行政策与地缘风险（具体条目素材未展开）</td>
+    </tr>
+    <tr>
+      <td>持续</td>
+      <td>美联储政策路径重定价</td>
+      <td>年内预期由降息转向加息，关注后续数据验证</td>
+    </tr>
+    <tr>
+      <td>持续</td>
+      <td>G7 释放 1 亿桶柴油/原油储备执行</td>
+      <td>关注实际释放节奏与欧洲自美燃料进口变化</td>
+    </tr>
+    <tr>
+      <td>持续</td>
+      <td>俄乌能源停火与战场态势</td>
+      <td>乌方双线出牌，俄方报复行动，谈判前景不明</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="sec">数据分歧提示</h2>
+
+<div class="divergence">
+  <h4>分歧 1：英伟达市值口径不一致</h4>
+  <ul>
+    <li><b>5.7 万亿美元</b> —— 搜狐网（[22]）：「英伟达股价盘中创新高，市值突破 5.7 万亿美元」。</li>
+    <li><b>5.5 万亿美元</b> —— Seeking Alpha（[43]）：「Nvidia Corporation valuation hits $5.5T」。</li>
+    <li><b>可能原因：</b>两者统计时点不同（盘中创新高时点 vs 分析文章撰写时点），或一方采用盘中最高市值、另一方采用前一日收盘市值。本报告不做调和，两个数字并列呈现。</li>
+  </ul>
+</div>
+
+<div class="divergence">
+  <h4>分歧 2：G7 释放储备的品种口径不一致</h4>
+  <ul>
+    <li><b>「1 亿桶柴油原油」</b> —— 汇通网 Fx678（[15]）标题表述为「G7 同意释放 1 亿桶柴油原油」。</li>
+    <li><b>「释放柴油储备」</b> —— 汇通网 Fx678（[18]）正文表述为「欧洲领导人同意美国总统特朗普提出的要求，释放柴油储备，以压低油价并减少从美国进口燃料」。</li>
+    <li><b>可能原因：</b>标题将「柴油」与「原油」并列，正文仅提「柴油储备」，两者可能指同一批储备的不同表述，也可能标题存在概括性合并。本报告不做调和，原文并列呈现。</li>
+  </ul>
+</div>
+
+<div class="divergence">
+  <h4>分歧 3：油价方向叙事相互冲突</h4>
+  <ul>
+    <li><b>上涨叙事：</b>EnergyNow（[37]）「Oil Prices Up Over 3% Over Concerns About Prolonged Hormuz Disruption」——霍尔木兹扰动担忧推动油价单日涨超 3%。</li>
+    <li><b>下跌叙事：</b>EnergyNow（[38]）「Oil Prices Edge Lower as IEA Reduces Demand Forecast」——IEA 下调需求预测，油价小幅走低。</li>
+    <li><b>触顶回落叙事：</b>vietnam.vn（[17]）「世界石油价格突破 100 美元后逆转」。</li>
+    <li><b>收盘分化：</b>汇通网 Fx678（[18]）布伦特收涨 0.45%、WTI 收跌 1.78%。</li>
+    <li><b>可能原因：</b>上述报道覆盖不同交易日与不同盘中时点，且布伦特与 WTI 受区域供需影响方向分化。本报告不做调和，各来源数字与方向并列呈现。</li>
+  </ul>
+</div>
+
+<div class="divergence">
+  <h4>分歧 4：油价「战前水平」与「突破 100 美元」的表述张力</h4>
+  <ul>
+    <li><b>「触及战前水平」</b> —— EnergyNow（[35]）「Oil Touches Pre-War Levels on Rising Middle East Supply」，指向中东供给增加压低油价。</li>
+    <li><b>「突破 100 美元后逆转」</b> —— vietnam.vn（[17]），指向价格先冲高后回落。</li>
+    <li><b>可能原因：</b>「战前水平」的具体价位素材未给出，无法与 100 美元关口直接比对。本报告不推测具体数值。</li>
+  </ul>
+</div>
+
+<h2 class="sec">来源清单与可验证性说明</h2>
+<div class="note">
+  <b>可验证性分级：</b>
+  <br>① <b>多源交叉（≥2 独立来源）</b>：美联储鹰派转向（[1][3]）、沙特筹备胡塞攻势（[26][29][30][7]）、伊朗警告战事扩大（[4][5]）、G7 释放储备（[15][18]）、英伟达市值创新高（[22][43]）、红海安全格局（[25][27]）、俄乌战场（[10][34][8]）、乌克兰反攻（[32][31]）、黄金前景（[24][16][2]）、油价收盘分化（[18][16]）、霍尔木兹扰动（[37][35]）。
+  <br>② <b>单源待确认</b>：美就业与债市担忧（[3]）、77 国抵制以色列（[5]）、美军撤离波斯湾（[6]）、特朗普打击胡塞的前兆分析（[28]）、IEA 下调需求（[38]）、油价突破 100 后逆转（[17]）、OpenAI 俄亥俄数据中心（[19]）、亚马逊出售英伟达芯片（[20]）、昇腾份额（[21]）、OpenAI 与软银托育投入（[42]）、下周市场五大主题（[23]）。
+  <br>③ <b>权威性提示</b>：台海相关条目（[11][12][13][14]）来源以境外媒体与自媒体为主，权威性参差，本报告仅作低级别跟踪提示，不作为定价依据。
+</div>
+
+<div class="src-list">
+  <b>素材编号与来源对照：</b>
+  <ul>
+    <li>[1] cls.cn — 美联储按兵不动但释放鹰派信号</li>
+    <li>[2] 金融界 — 抄底黄金 ETF 的人，被坑了？</li>
+    <li>[3] 大纪元 — 美就业降温 全球利率不下来 债市在担心什么？</li>
+    <li>[4] xnews.jin10.com — 伊朗最高领袖顾问警告美以</li>
+    <li>[5] 手机新浪网 — 77 国抵制以色列，内塔尼亚胡秘访阿联酋</li>
+    <li>[6] 虎嗅网 — 美军撤离伊拉克与波斯湾</li>
+    <li>[7] 搜狐网 — 沙特筹备对胡塞武装大规模攻势</li>
+    <li>[8] 凤凰网 — 领土不退，能源停火，泽连斯基双线出牌</li>
+    <li>[9] 搜狐网 — 为什么说，美以打伊朗，实际上是救了俄罗斯</li>
+    <li>[10] 搜狐网 — 突袭莫斯科刚过三天！乌方火速低头求休战</li>
+    <li>[11] 风闻 — 美日来者不善，中国挑战来了！</li>
+    <li>[12] 中国评论 — 赵建民：中美战略稳定的可能涉台内情</li>
+    <li>[13] dushi.singtao.ca — 美日军演，距台仅 110 公里</li>
+    <li>[14] aboluowang.com — 爆美军要在台海部署导弹</li>
+    <li>[15] 汇通网 Fx678 — 油价多空因素并存，G7 同意释放 1 亿桶柴油原油</li>
+    <li>[16] 新浪财经 — 国际油价、金价、银价巨震大跌</li>
+    <li>[17] vietnam.vn — 世界石油价格突破 100 美元后逆转</li>
+    <li>[18] 汇通网 Fx678 — 布伦特收涨 0.45%，美原油收跌 1.78%</li>
+    <li>[19] cls.cn — OpenAI 洽谈租赁俄亥俄州 10 吉瓦数据中心</li>
+    <li>[20] 新浪财经 — 亚马逊计划出售价值 80 亿美元英伟达芯片</li>
+    <li>[21] 观察者网 — 硬科技早报：昇腾中国份额超英伟达</li>
+    <li>[22] 搜狐网 — 英伟达股价盘中创新高，市值突破 5.7 万亿美元</li>
+    <li>[23] The Economic Times — 5 world market themes for the week ahead</li>
+    <li>[24] FOREX.com — Gold forecast: Rising yields become too hot for gold</li>
+    <li>[25] The Jerusalem Post — From Yemen to Egypt, interconnected conflicts reshape security in Red Sea</li>
+    <li>[26] Reuters — Saudis plan assault on Houthis to break Red Sea chokehold</li>
+    <li>[27] EnergyNow.com — How a Houthi Blockade in the Red Sea Tightens Iran's Grip</li>
+    <li>[28] NBC News — How Trump's strikes against Houthis foreshadowed struggles in Iran war</li>
+    <li>[29] Outlook India — Saudi Arabia Plans Houthi Offensive To Retake Bab el-Mandeb</li>
+    <li>[30] MSN — Saudis plan assault on Houthis to break Red Sea chokehold</li>
+    <li>[31] Kyiv Post — Without Pressure on Russia, Talks Will Remain an Illusion</li>
+    <li>[32] Bloomberg.com — Ukraine's Surprise Counterattack Sets Back Putin's Donbas Goals</li>
+    <li>[33] EA WorldView — EA-Ukraine VideoCast</li>
+    <li>[34] Forbes — Zelenskyy Urges The United Nations To Pressure Russia</li>
+    <li>[35] EnergyNow.com — Oil Touches Pre-War Levels on Rising Middle East Supply</li>
+    <li>[36] EnergyNow.com — Core Differences Between WTI and Brent</li>
+    <li>[37] EnergyNow — Oil Prices Up Over 3% Over Concerns About Prolonged Hormuz Disruption</li>
+    <li>[38] EnergyNow.com — Oil Prices Edge Lower as IEA Reduces Demand Forecast</li>
+    <li>[39] Fast Company — You can put a data center at your house</li>
+    <li>[40] The Motley Fool — Prediction: This AI Chip Stock Will Be the Biggest Winner of 2027</li>
+    <li>[41] The Globe and Mail — Should You Forget Palantir and Buy These 2 AI Stocks Instead?</li>
+    <li>[42] The Athens Messenger — OpenAI, SoftBank putting $6M toward local childcare</li>
+    <li>[43] Seeking Alpha — Nvidia: Competition Caps The Upside Case</li>
+  </ul>
+</div>
+
+<footer>
+  本简报基于 2026-10-03 00:11 → 2026-10-04 00:11 JST 监测窗口内 11 路检索、43 条素材编制。<br>
+  所有数字、人名、机构、时间均来自上述素材，未做估算填充；单源信息已显式标注「（单源，待确认）」；来源冲突数字已在「数据分歧提示」章节并列呈现，未做调和。<br>
+  <b>仅供研究参考，不构成投资建议。</b>
+</footer>
+
+</div>
+</body>
+</html>
