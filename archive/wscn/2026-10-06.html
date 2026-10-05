@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华尔街见闻 · 24小时要闻简报 | 2026-10-06</title>
+<style>
+:root{
+  --red:#c0392b; --gold:#b8860b; --blue:#1f5f9f;
+  --red-bg:#fdf2f0; --gold-bg:#fff8e6; --blue-bg:#eef4fb;
+  --ink:#1c2321; --ink-2:#4a5652; --ink-3:#8b9793;
+  --line:#e3e8e5; --bg:#f4f6f5; --card:#ffffff; --accent:#0f3d26;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;padding:16px 12px 40px;}
+.wrap{max-width:760px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#0f3d26 0%,#1f6f43 100%);color:#fff;
+  border-radius:14px;padding:26px 24px 22px;box-shadow:0 4px 18px rgba(15,61,38,.18);}
+.header h1{font-size:21px;font-weight:700;letter-spacing:.3px;line-height:1.4;}
+.header .sub{font-size:12.5px;opacity:.82;margin-top:8px;}
+.header .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.header .meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:4px 11px;font-size:11.5px;}
+.legend{background:var(--card);border-radius:12px;padding:14px 16px;margin-top:14px;
+  display:flex;flex-wrap:wrap;gap:10px 20px;border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);}
+.legend b{color:var(--ink);}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle;}
+.dot.r{background:var(--red);} .dot.y{background:var(--gold);} .dot.b{background:var(--blue);}
+.sec{margin-top:14px;}
+.sec-title{font-size:15px;font-weight:700;color:var(--accent);padding-bottom:8px;margin-bottom:10px;
+  border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:8px;}
+.sec-title .cnt{font-size:11px;font-weight:500;color:var(--ink-3);background:var(--bg);border-radius:10px;padding:1px 8px;}
+.card{background:var(--card);border-radius:11px;padding:14px 16px;margin-bottom:10px;
+  border:1px solid var(--line);border-left:5px solid var(--ink-3);box-shadow:0 1px 3px rgba(0,0,0,.03);}
+.card.lv1{border-left-color:var(--red);background:linear-gradient(180deg,var(--red-bg) 0%,#fff 42%);}
+.card.lv2{border-left-color:var(--gold);background:linear-gradient(180deg,var(--gold-bg) 0%,#fff 42%);}
+.card.lv3{border-left-color:var(--blue);background:linear-gradient(180deg,var(--blue-bg) 0%,#fff 42%);}
+.card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:7px;display:flex;gap:8px;align-items:flex-start;}
+.badge{flex:0 0 auto;font-size:10px;font-weight:700;color:#fff;border-radius:4px;padding:2px 6px;margin-top:3px;letter-spacing:.5px;}
+.badge.r{background:var(--red);} .badge.y{background:var(--gold);} .badge.b{background:var(--blue);}
+.card p{font-size:13.5px;color:var(--ink-2);line-height:1.75;}
+.card .src{font-size:11.5px;color:var(--ink-3);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);}
+.tag-inline{display:inline-block;font-size:10.5px;color:var(--accent);background:#eaf3ee;border-radius:4px;padding:1px 6px;margin-right:5px;}
+.top{background:var(--card);border-radius:12px;padding:6px 4px;border:1px solid var(--line);}
+.top ol{list-style:none;}
+.top li{position:relative;padding:11px 16px 11px 48px;font-size:13.5px;line-height:1.6;
+  border-bottom:1px solid var(--line);color:var(--ink-2);counter-increment:t;}
+.top{counter-reset:t;}
+.top li:last-child{border-bottom:none;}
+.top li::before{content:counter(t);position:absolute;left:15px;top:11px;width:20px;height:20px;
+  border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:8px;}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px 11px;}
+.kpi .k{font-size:11px;color:var(--ink-3);margin-bottom:3px;}
+.kpi .v{font-size:14.5px;font-weight:700;color:var(--ink);}
+.up{color:var(--red);} .down{color:#27ae60;}
+.foot{margin-top:20px;padding:14px 16px;background:var(--card);border-radius:11px;
+  border:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.8;}
+.foot b{color:var(--ink-2);}
+@media (max-width:640px){
+  body{font-size:14px;padding:12px 9px 32px;}
+  .header{padding:20px 17px 18px;border-radius:12px;}
+  .header h1{font-size:18px;}
+  .card{padding:12px 13px;}
+  .kpi{grid-template-columns:repeat(2,1fr);}
+}
+@media print{
+  body{background:#fff;padding:0;}
+  .card,.header,.legend,.top,.foot{box-shadow:none;break-inside:avoid;}
+  .header{background:#0f3d26 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>华尔街见闻 · 过去 24 小时要闻简报</h1>
+    <div class="sub">覆盖窗口：2026-10-05 07:00 — 2026-10-06 07:00（北京时间） · 一级信源：华尔街见闻（公开接口）</div>
+    <div class="meta">
+      <span>生成时间 2026-10-06 07:08 JST</span>
+      <span>收录 22 条要闻</span>
+      <span>🔴 关键 6 · 🟡 重要 8 · 🔵 关注 8</span>
+      <span>云端投递 · 关机可收</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot r"></i><b>红色 = 最重要</b> 影响全局资产定价，须立即知晓</span>
+    <span><i class="dot y"></i><b>黄色 = 重要</b> 影响单一市场或板块</span>
+    <span><i class="dot b"></i><b>蓝色 = 关注</b> 趋势性/背景性信息</span>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">一页速览 <span class="cnt">Top 5</span></div>
+    <div class="top"><ol><li>沙特阿美CEO警告全球商业石油库存不足60亿桶，补库需两年</li><li>美国9月ISM服务业价格指数升至74.0，创2022年7月以来新高</li><li>沙特、土耳其、巴基斯坦启动麦加防务联盟集体防御，向沙特部署军力</li><li>OpenAI洽谈至少300亿美元融资，估值约1.4万亿美元</li><li>SpaceX收涨7.6%创6月以来新高，马斯克净资产重回1.03万亿美元</li></ol></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">关键指标看板</div>
+    <div class="kpi"><div><div class="k">布伦特原油现货结算价（9/29）</div><div class="v up">113.96美元/桶 <span style="font-size:11px">+75%（年内）</span></div></div><div><div class="k">WTI原油结算价（9/29）</div><div class="v up">96.16美元/桶</div></div><div><div class="k">美国柴油平均零售价</div><div class="v up">6.32美元/加仑 <span style="font-size:11px">+68%（较2月28日3.76美元）</span></div></div><div><div class="k">美国9月ISM服务业PMI</div><div class="v down">54.9 <span style="font-size:11px">-0.5（较8月55.4）</span></div></div><div><div class="k">美国9月ISM服务业价格指数</div><div class="v up">74.0 <span style="font-size:11px">+1.4（较72.6）</span></div></div><div><div class="k">SpaceX股价</div><div class="v up">171.09美元 <span style="font-size:11px">+7.6%</span></div></div><div><div class="k">PTC美股</div><div class="v up"> <span style="font-size:11px">+33.5%</span></div></div><div><div class="k">施耐德电气（巴黎）</div><div class="v down"> <span style="font-size:11px">-10%</span></div></div><div><div class="k">欧元/美元</div><div class="v down"> <span style="font-size:11px">创17个月新低</span></div></div><div><div class="k">海湾国家石油出口量（上月）</div><div class="v up">1550万桶/日 <span style="font-size:11px">恢复至冲突前逾80%</span></div></div></div>
+  </div>
+
+  <div class="sec"><div class="sec-title">A. 地缘政治<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>麦加防务联盟启动集体防御，土巴将向沙特部署军力</h3><p>沙特、土耳其和巴基斯坦10月5日在利雅得召开紧急会议，宣布立即落实集体防御承诺，推动已商定的军事力量快速部署至沙特，并任命巴基斯坦退役中将努曼·马哈茂德为联盟首任秘书长，任期三年。三国8月7日签署的协议规定，对任一成员的武装攻击视为对所有成员的攻击。同日，沙特支持的也门政府军在沙特空袭支援下重新控制曼德海峡附近部分区域，包括杜巴布机场，胡塞武装向内陆山区撤退。</p><div class="src"><span class="tag-inline">中东</span>来源：华尔街见闻转引央视新闻、路透社</div></div><div class="card lv1"><h3><span class="badge r">关键</span>特朗普称美轰炸机因具体威胁撤离英基地，同时称愿与伊朗直接对话</h3><p>特朗普10月5日表示，美军从英国皇家空军费尔福德基地撤走轰炸机是因为基地面临具体威胁，美方知道是谁发出了威胁。他同时警告，若伊朗在英国部署作战无人机将付出惨重代价，并称迪拜航空飞机事故应由伊朗负责。在被问及是否对与伊朗直接对话持开放态度时，特朗普回答是。美国此前已将B-1、B-2和B-52等轰炸机部署至该基地。</p><div class="src"><span class="tag-inline">美伊</span>来源：华尔街见闻转引央视新闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>胡塞武装称对沙特实施三轮打击</h3><p>胡塞武装宣称对沙特实施三轮打击。联合国方面对也门局势近期急剧升级表达担忧，并谴责胡塞武装持续对沙特发动跨境袭击。媒体指出，胡塞武装仍可能利用内陆据点发动无人机袭击，对红海航运的威胁并未消失。</p><div class="src"><span class="tag-inline">也门</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>主张魁北克独立的魁北克人党胜选在望</h3><p>加拿大魁北克省10月5日举行省议会选举，多家民调显示主张魁北克独立的魁北克人党将击败执政八年的魁北克未来联盟党，时隔12年重新上台。该党党魁承诺在首个任期内举行独立公投，但划出底线：特朗普在任期间不搞。</p><div class="src"><span class="tag-inline">加拿大</span>来源：华尔街见闻会员早报</div></div></div><div class="sec"><div class="sec-title">B. 全球宏观与利率<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>美国9月ISM服务业价格指数升至74.0，创四年多新高</h3><p>美国供应管理协会10月5日数据显示，9月ISM服务业PMI录得<strong>54.9</strong>，低于8月的<strong>55.4</strong>和市场预期的<strong>55.2</strong>，连续两个月上升后回落。但衡量企业投入成本的价格指数从<strong>72.6</strong>升至<strong>74.0</strong>，高于预期的<strong>73</strong>，创2022年7月以来最高，与制造业通胀压力齐升。</p><div class="src"><span class="tag-inline">美国经济</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>欧元跌至17个月低位，法国和西班牙政治风险搅动市场</h3><p>欧元跌至17个月低位，法国和西班牙政治风险搅动市场。法国10年期国债收益率已接近<strong>5%</strong>，远高于六个月前逾<strong>3.5%</strong>的水平，欧元兑美元汇率亦有所走弱。美债抛售持续，科技股力挺纳指又创盘中新高。</p><div class="src"><span class="tag-inline">欧洲</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>印美贸易谈判陷入僵局，印财长称已到平台期</h3><p>印度财政部长10月5日在新德里表示，印美贸易谈判已走到平台期，继续给予或索取对双方都会非常困难。美方希望撬开印度农业和乳业市场，而印度希望纺织、服装、鞋类出口部门获得降税，钢铝关税回撤，仿制药更顺利进入美国市场。</p><div class="src"><span class="tag-inline">印美贸易</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>美国CCC级利差升破1000bp，信贷警报引发关注</h3><p>美国CCC级信用利差升破<strong>1000bp</strong>，市场关注信贷警报向股市传导的风险。同时，银行撤退、债券折价，AI建设潮的融资环境趋紧。</p><div class="src"><span class="tag-inline">信用市场</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">C. 能源与大商品<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>沙特阿美CEO警告全球石油库存薄得可怕，补库需两年</h3><p>沙特阿美CEO Amin Nasser 10月5日在伦敦能源情报论坛警告，全球商业石油库存已降至令人恐惧的薄弱水平，即便冲突结束，补充库存至正常水平也需长达两年。美伊战争已导致该地区石油供应减少近<strong>30亿桶</strong>，超过<strong>10亿桶</strong>储备被动用，其中政府战略储备释放逾<strong>3亿桶</strong>。他估计全球商业库存不足<strong>60亿桶</strong>，且绝大多数无法实际动用。布伦特原油9月底升至每桶逾<strong>113美元</strong>，较2026年初累计涨幅达<strong>75%</strong>。</p><div class="src"><span class="tag-inline">原油</span>来源：华尔街见闻转引英国《金融时报》</div></div><div class="card lv2"><h3><span class="badge y">重要</span>欧佩克+维持11月产量目标不变</h3><p>欧佩克+七个核心成员国决定11月继续沿用9月的产量目标，七国合计约<strong>3101万桶/日</strong>，为连续第二个月按兵不动。下一次会议定在11月1日。</p><div class="src"><span class="tag-inline">OPEC+</span>来源：华尔街见闻会员早报</div></div><div class="card lv2"><h3><span class="badge y">重要</span>特朗普拟放宽免税红色柴油使用限制，中期选举前再压油价</h3><p>特朗普政府计划放宽对红色柴油的使用限制，预计最快10月5日公布方案，可能允许免税红色柴油扩大至公路车辆。美国汽车协会数据显示，截至上周日美国柴油平均零售价为每加仑<strong>6.32美元</strong>，低于上月历史高点<strong>6.53美元</strong>，但仍较2月28日的<strong>3.76美元</strong>高出六成以上。分析人士警告，该措施主要减轻税负，不直接增加柴油供应。此前G7及合作伙伴通过IEA协调释放最多<strong>1亿桶</strong>紧急石油和柴油储备，未来4个月实施。</p><div class="src"><span class="tag-inline">柴油</span>来源：华尔街见闻转引彭博社</div></div><div class="card lv3"><h3><span class="badge b">关注</span>海湾国家出口回升至1550万桶/日，沙特石油收入净增600亿美元</h3><p>Kpler统计显示，海湾国家上月出口量升至每日<strong>1550万桶</strong>，为战争爆发以来最高，恢复至冲突前逾<strong>80%</strong>。布鲁金斯学会经济学家Robin Brooks指出，沙特石油收入已从战前每年<strong>1500亿美元</strong>飙升至<strong>2100亿美元</strong>，净增<strong>600亿美元</strong>，相当于沙特GDP约<strong>6%</strong>。</p><div class="src"><span class="tag-inline">原油</span>来源：华尔街见闻转引英国《金融时报》</div></div></div><div class="sec"><div class="sec-title">D. 市场与资金<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>SpaceX收涨7.6%创6月以来新高，马斯克净资产重回1.03万亿美元</h3><p>SpaceX周一收涨近<strong>8%</strong>，报<strong>171.09美元</strong>，创6月中旬以来新高。摩根士丹利前一日发布看多报告，设定<strong>300美元</strong>目标价，较收盘价有约<strong>75%</strong>上行空间。据福布斯实时富豪榜，马斯克当日净资产增加约<strong>306亿美元</strong>，总财富升至约<strong>1.03万亿美元</strong>，领先贝索斯逾<strong>6280亿美元</strong>。SpaceX自8月初触底以来累计反弹约<strong>58%</strong>，较IPO发行价135美元累计上涨约<strong>27%</strong>。</p><div class="src"><span class="tag-inline">科技股</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>施耐德电气230亿美元收购PTC，股价重挫近10%</h3><p>施耐德电气宣布以约<strong>226亿美元</strong>全现金收购PTC，创公司史上最大并购纪录，收购价较PTC最近收盘价溢价逾<strong>40%</strong>。消息公布后施耐德电气巴黎股价收跌近<strong>10%</strong>，创2025年1月以来最大日跌幅；PTC美股收涨约<strong>33.5%</strong>。交易计划2027年第三季度前完成，资金来源包括最高<strong>60亿欧元</strong>股权发行及最高<strong>170亿欧元</strong>新增债务。施耐德预计需五年才能实现与资本成本相当的回报。</p><div class="src"><span class="tag-inline">并购</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>科技股力挺纳指又创盘中新高，美债抛售持续</h3><p>科技股力挺纳指又创盘中新高，美债抛售持续，欧元创17个月新低，布油过山车。AI热潮推动科技富豪身家暴增<strong>8450亿美元</strong>，马斯克独占近四成。</p><div class="src"><span class="tag-inline">美股</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>Cerebras涨超10%，Altman称其为OpenAI密切合作伙伴</h3><p>Cerebras股价涨超<strong>10%</strong>，OpenAI CEO Altman称其是OpenAI的密切合作伙伴。</p><div class="src"><span class="tag-inline">AI芯片</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">E. AI·科技<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>OpenAI洽谈至少300亿美元融资，估值约1.4万亿美元</h3><p>OpenAI正寻求以约<strong>1.4万亿美元</strong>估值完成一轮至少<strong>300亿美元</strong>融资，阿联酋多家主权基金与贝莱德在谈判之列。阿联酋基金已讨论合计投入高达<strong>100亿美元</strong>，MGX参与其中。此轮若完成，将是继今年3月以<strong>852亿美元</strong>估值完成<strong>122亿美元</strong>融资后的又一里程碑，新估值较上轮高出逾<strong>60%</strong>。OpenAI已将IPO计划推迟至明年以后。</p><div class="src"><span class="tag-inline">OpenAI</span>来源：华尔街见闻转引彭博</div></div><div class="card lv2"><h3><span class="badge y">重要</span>Meta、微软减少员工对Claude依赖，Anthropic营收承压</h3><p>Meta和微软正大幅压缩对Anthropic旗下Claude AI的内部使用。微软此前预计在Claude上的内部年支出至少达<strong>10亿美元</strong>，预算已被削减逾三分之一。Meta内部使用Claude Code的员工人数从约<strong>6万人</strong>骤降至约<strong>3万人</strong>，降幅接近<strong>50%</strong>。Anthropic在IPO招股书中披露，两大客户合计贡献约<strong>25%</strong>的收入。Meta在最近28天内在Claude Code上的支出仍超过<strong>1.05亿美元</strong>。</p><div class="src"><span class="tag-inline">AI大模型</span>来源：华尔街见闻转引The Information</div></div><div class="card lv3"><h3><span class="badge b">关注</span>AI教父Hinton首篇RSI论文：今天一年的AI进步未来可能只需5周</h3><p>AI教父Hinton发表首篇RSI论文，提出今天一年的AI进步未来可能只需<strong>5周</strong>，人类窗口期或已不多。同时，华尔街AI招聘从造模型转向部署落地，新型工程师成最抢手人才。</p><div class="src"><span class="tag-inline">AI研究</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>OpenAI遭商标侵权诉讼，Astra名称引发法律纠纷</h3><p>OpenAI遭遇商标侵权诉讼，Astra名称引发法律纠纷。</p><div class="src"><span class="tag-inline">OpenAI</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">F. 机构观点精选<span class="cnt">2 条</span></div><div class="card lv2"><h3><span class="badge y">重要</span>摩根士丹利：SpaceX价值被明显低估，目标价300美元</h3><p>摩根士丹利分析师周日发布研报指出，以目前股价来看SpaceX价值被明显低估，维持买入评级，设定<strong>300美元</strong>目标价。报告强调未来人工智能产品发布、星舰研发进展以及新增云服务合同等潜在催化剂，并建议投资者在公司下一次星舰试飞及第三季度财报发布前布局。</p><div class="src"><span class="tag-inline">机构观点</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>RBC：PTC是高质量资产，但施耐德杠杆积累引担忧</h3><p>RBC分析师Mark Fielding领衔的团队认为，PTC是一项高质量、高利润率资产，但同时警告整合挑战不容忽视，并指出显著的杠杆积累可能重燃市场对施耐德长期资本配置的担忧。Jefferies分析师Lucas Ferhani指出，此次交易从战略角度填补了施耐德软件组合中最后剩余的缺口之一。</p><div class="src"><span class="tag-inline">机构观点</span>来源：华尔街见闻</div></div></div>
+
+  <div class="sec">
+    <div class="sec-title">今日关注</div>
+    <div class="card lv3" style="border-left-color:var(--accent);background:#fff;"><p>• 美国9月ISM服务业价格指数创四年多新高，关注通胀压力向核心PCE传导及美联储政策路径</p><p>• 麦加防务联盟军事部署进展与也门曼德海峡局势，关注红海航运及能源运输风险</p><p>• OpenAI 300亿美元融资谈判进展及阿联酋基金、贝莱德参与情况</p><p>• 特朗普政府红色柴油政策细节及G7释储对柴油价格的实质影响</p><p>• 施耐德电气收购PTC后续整合及欧洲工业AI并购竞赛</p></div>
+  </div>
+
+  <div class="foot">
+    <b>数据来源与可验证性说明</b><br>
+    主信源：华尔街见闻（wallstreetcn.com）公开内容接口，覆盖窗口内全球资讯流与正文。<br>
+    主信源为华尔街见闻，部分条目转引央视新闻、路透社、彭博社、英国《金融时报》、The Information等。SpaceX股价、马斯克净资产、施耐德收购PTC、OpenAI融资、ISM数据等核心事实均来自素材明确数字。胡塞武装打击沙特、OpenAI商标诉讼等条目为单一来源或标题级信息，细节有限。KPI中PTC、施耐德电气、欧元/美元未提供具体点位，仅列涨跌幅或方向。<br><br>
+    <b>重要性分级标准</b><br>
+    <span style="color:var(--red)">■ 红（关键）</span>：影响全局资产定价或地缘格局 ·
+    <span style="color:var(--gold)">■ 黄（重要）</span>：影响单一市场、板块或主要资产 ·
+    <span style="color:var(--blue)">■ 蓝（关注）</span>：趋势性、背景性信息<br><br>
+    <b>免责声明</b>：本简报仅供研究参考，不构成任何投资建议。数字以华尔街见闻披露口径为准，请以原始报道为最终依据。<br>
+    <span style="color:#b0b8b4">本报告由 GitHub Actions 云端生成（电脑关机时亦可投递）。</span>
+  </div>
+</div>
+</body>
+</html>
