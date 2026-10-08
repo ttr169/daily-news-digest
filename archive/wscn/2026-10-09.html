@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华尔街见闻 · 24小时要闻简报 | 2026-10-09</title>
+<style>
+:root{
+  --red:#c0392b; --gold:#b8860b; --blue:#1f5f9f;
+  --red-bg:#fdf2f0; --gold-bg:#fff8e6; --blue-bg:#eef4fb;
+  --ink:#1c2321; --ink-2:#4a5652; --ink-3:#8b9793;
+  --line:#e3e8e5; --bg:#f4f6f5; --card:#ffffff; --accent:#0f3d26;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;padding:16px 12px 40px;}
+.wrap{max-width:760px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#0f3d26 0%,#1f6f43 100%);color:#fff;
+  border-radius:14px;padding:26px 24px 22px;box-shadow:0 4px 18px rgba(15,61,38,.18);}
+.header h1{font-size:21px;font-weight:700;letter-spacing:.3px;line-height:1.4;}
+.header .sub{font-size:12.5px;opacity:.82;margin-top:8px;}
+.header .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.header .meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:4px 11px;font-size:11.5px;}
+.legend{background:var(--card);border-radius:12px;padding:14px 16px;margin-top:14px;
+  display:flex;flex-wrap:wrap;gap:10px 20px;border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);}
+.legend b{color:var(--ink);}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle;}
+.dot.r{background:var(--red);} .dot.y{background:var(--gold);} .dot.b{background:var(--blue);}
+.sec{margin-top:14px;}
+.sec-title{font-size:15px;font-weight:700;color:var(--accent);padding-bottom:8px;margin-bottom:10px;
+  border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:8px;}
+.sec-title .cnt{font-size:11px;font-weight:500;color:var(--ink-3);background:var(--bg);border-radius:10px;padding:1px 8px;}
+.card{background:var(--card);border-radius:11px;padding:14px 16px;margin-bottom:10px;
+  border:1px solid var(--line);border-left:5px solid var(--ink-3);box-shadow:0 1px 3px rgba(0,0,0,.03);}
+.card.lv1{border-left-color:var(--red);background:linear-gradient(180deg,var(--red-bg) 0%,#fff 42%);}
+.card.lv2{border-left-color:var(--gold);background:linear-gradient(180deg,var(--gold-bg) 0%,#fff 42%);}
+.card.lv3{border-left-color:var(--blue);background:linear-gradient(180deg,var(--blue-bg) 0%,#fff 42%);}
+.card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:7px;display:flex;gap:8px;align-items:flex-start;}
+.badge{flex:0 0 auto;font-size:10px;font-weight:700;color:#fff;border-radius:4px;padding:2px 6px;margin-top:3px;letter-spacing:.5px;}
+.badge.r{background:var(--red);} .badge.y{background:var(--gold);} .badge.b{background:var(--blue);}
+.card p{font-size:13.5px;color:var(--ink-2);line-height:1.75;}
+.card .src{font-size:11.5px;color:var(--ink-3);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);}
+.tag-inline{display:inline-block;font-size:10.5px;color:var(--accent);background:#eaf3ee;border-radius:4px;padding:1px 6px;margin-right:5px;}
+.top{background:var(--card);border-radius:12px;padding:6px 4px;border:1px solid var(--line);}
+.top ol{list-style:none;}
+.top li{position:relative;padding:11px 16px 11px 48px;font-size:13.5px;line-height:1.6;
+  border-bottom:1px solid var(--line);color:var(--ink-2);counter-increment:t;}
+.top{counter-reset:t;}
+.top li:last-child{border-bottom:none;}
+.top li::before{content:counter(t);position:absolute;left:15px;top:11px;width:20px;height:20px;
+  border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:8px;}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px 11px;}
+.kpi .k{font-size:11px;color:var(--ink-3);margin-bottom:3px;}
+.kpi .v{font-size:14.5px;font-weight:700;color:var(--ink);}
+.up{color:var(--red);} .down{color:#27ae60;}
+.foot{margin-top:20px;padding:14px 16px;background:var(--card);border-radius:11px;
+  border:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.8;}
+.foot b{color:var(--ink-2);}
+@media (max-width:640px){
+  body{font-size:14px;padding:12px 9px 32px;}
+  .header{padding:20px 17px 18px;border-radius:12px;}
+  .header h1{font-size:18px;}
+  .card{padding:12px 13px;}
+  .kpi{grid-template-columns:repeat(2,1fr);}
+}
+@media print{
+  body{background:#fff;padding:0;}
+  .card,.header,.legend,.top,.foot{box-shadow:none;break-inside:avoid;}
+  .header{background:#0f3d26 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>华尔街见闻 · 过去 24 小时要闻简报</h1>
+    <div class="sub">覆盖窗口：2026-10-08 03:00 — 2026-10-09 03:00（北京时间） · 一级信源：华尔街见闻（公开接口）</div>
+    <div class="meta">
+      <span>生成时间 2026-10-09 02:58 JST</span>
+      <span>收录 22 条要闻</span>
+      <span>🔴 关键 5 · 🟡 重要 10 · 🔵 关注 7</span>
+      <span>云端投递 · 关机可收</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot r"></i><b>红色 = 最重要</b> 影响全局资产定价，须立即知晓</span>
+    <span><i class="dot y"></i><b>黄色 = 重要</b> 影响单一市场或板块</span>
+    <span><i class="dot b"></i><b>蓝色 = 关注</b> 趋势性/背景性信息</span>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">一页速览 <span class="cnt">Top 5</span></div>
+    <div class="top"><ol><li>中东局势升温，布伦特原油日内涨5%报105.33美元/桶，美股三大指数集体低开</li><li>美国10年期国债收益率升3个基点至5.31%，逼近2002年以来高点</li><li>特朗普称不会在中期选举前攻击伊朗，此前白宫被曝要求五角大楼拟定对伊打击方案</li><li>美国上周首申失业金人数降至19.7万人，连续四周接近57年低位</li><li>英伟达宣布未来五年投入10亿美元推动美国科学研究，布局量子计算、医疗与能源安全</li></ol></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">关键指标看板</div>
+    <div class="kpi"><div><div class="k">布伦特原油</div><div class="v up">105.33 美元/桶 <span style="font-size:11px">+5.0%</span></div></div><div><div class="k">WTI原油</div><div class="v up">92.72 美元/桶 <span style="font-size:11px">+5.0%</span></div></div><div><div class="k">美国10年期国债收益率</div><div class="v up">5.31% <span style="font-size:11px">+3bp</span></div></div><div><div class="k">现货黄金</div><div class="v up">4126.06 美元/盎司 <span style="font-size:11px">+0.4%</span></div></div><div><div class="k">现货白银</div><div class="v down">58.57 美元/盎司 <span style="font-size:11px">-2.0%</span></div></div><div><div class="k">日经225指数</div><div class="v down">69042.11 <span style="font-size:11px">-1.4%</span></div></div><div><div class="k">韩国首尔综指</div><div class="v down">6625.93 <span style="font-size:11px">-2.6%</span></div></div><div><div class="k">比特币</div><div class="v down">82848.73 美元 <span style="font-size:11px">-0.6%</span></div></div><div><div class="k">美元/日元</div><div class="v up">158.26 <span style="font-size:11px">+0.1%（日元跌）</span></div></div></div>
+  </div>
+
+  <div class="sec"><div class="sec-title">A. 地缘政治<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>中东局势骤然升温：白宫被曝要求五角大楼拟定对伊打击方案，胡塞武装袭击沙特两座机场</h3><p>据报道，白宫已要求五角大楼拟定针对伊朗的打击方案，且可能在中期选举前付诸实施。与此同时，胡塞武装袭击了沙特阿拉伯两座机场，造成<strong>3</strong>人死亡，该组织对沙特的攻击力度持续升级。此外，一场风暴导致美国国内部分原油产量中断。油价飙升同步带动航运成本上扬，超大型油轮租用费率升至新高。</p><div class="src"><span class="tag-inline">中东局势</span>来源：华尔街见闻</div></div><div class="card lv1"><h3><span class="badge r">关键</span>特朗普表态：不会在中期选举之前攻击伊朗</h3><p>特朗普明确表示不会在中期选举之前攻击伊朗，这一表态出现在白宫被曝要求五角大楼拟定对伊打击方案之后。与此同时，伊朗外长表示仍在通过调解方与美方进行间接谈判。</p><div class="src"><span class="tag-inline">美伊</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>美国暂停微软、Adobe等多家科技公司参与PERM劳工认证项目</h3><p>美国副总统万斯宣布，特朗普政府将无限期暂停微软等多家科技公司参与永久劳工认证项目（PERM）的资格，并指控这些企业在为外籍员工申请绿卡过程中存在系统性欺诈。美国劳工部长Keith Sonderling随后宣布，微软、Adobe以及Cognizant、Infosys、Tata、Wipro、HCL Technologies和Capgemini等企业均被暂停参与劳工认证项目，已受理的相关绿卡申请将停止处理。万斯点名微软称其是滥用制度的典型案例，指称微软每裁掉一名员工，就用<strong>1.5</strong>名外籍合同劳工来替代。</p><div class="src"><span class="tag-inline">美国移民政策</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>特朗普政府调查哈佛、耶鲁等9所高校J-1签证问题</h3><p>特朗普政府正调查哈佛大学、耶鲁大学、斯坦福大学、布朗大学、匹兹堡大学、加州大学戴维斯分校、加州理工学院、亚利桑那州立大学和麻省理工学院等<strong>9</strong>所高校，重点核查是否存在签证欺诈及滥用J-1签证项目。美国劳工部已成立签证欺诈专项调查组并向相关高校发出传票。劳工部监察机构官员Anthony D'Esposito表示，美国高校研究生中约<strong>61%</strong>来自海外。</p><div class="src"><span class="tag-inline">美国移民政策</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">B. 全球宏观与利率<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>油价飙涨引爆通胀忧虑，美债收益率逼近2002年以来高点</h3><p>国际油价因中东局势再度升温急涨逾<strong>5%</strong>，推动通胀预期升温，令投资者对全球股市接近历史高位的乐观情绪迅速降温。美国10年期国债收益率上扬<strong>3</strong>个基点至<strong>5.31%</strong>，逼近2002年以来的高点。MSCI全球指数下跌<strong>0.2%</strong>。美联储上月一致通过决议，将基准利率上调<strong>25</strong>个基点，为2023年7月以来的首次加息。TradeStation的David Russell认为，年内再度加息的概率颇高。</p><div class="src"><span class="tag-inline">美债/通胀</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>美国上周首申失业金人数降至19.7万人，连续四周接近57年低位</h3><p>截至10月3日当周，美国首次申请失业救济人数环比下降<strong>2000</strong>人，至季调后<strong>19.7</strong>万人，低于市场预期的<strong>20</strong>万人，连续四周维持在57年低点附近。四周移动均值降至<strong>19.8</strong>万人，为2022年10月初以来最低。但9月非农就业仅增加<strong>2.9</strong>万人，远低于市场预期。持续申领人数增加<strong>1.7</strong>万人至<strong>171.6</strong>万人。市场已明显降低对美联储10月再度加息的预期，经济学家普遍将下一次加息时点推迟至12月。</p><div class="src"><span class="tag-inline">美国就业</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>法国财政隐忧浮现，法德利差破150基点后200基点警报拉响</h3><p>法国财政状况持续承压，令欧元区面临自欧债危机以来最为棘手的主权债务市场压力。法国财政部表示不会调整现行债券发行策略，但这一表态未能平息市场疑虑。法德利差已突破<strong>150</strong>个基点，市场关注<strong>200</strong>个基点警报。JB Drax Honore亚太区首席策略师Sean Keane表示，在官方作出足以扭转局面的有力回应之前，市场将持续推高法国与德国国债的利差。</p><div class="src"><span class="tag-inline">法国/欧债</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>德国大幅上调2026年经济增长预期至1.3%</h3><p>德国大幅上调2026年经济增长预期至<strong>1.3%</strong>，制造业复苏成为关键支撑。与此同时，世贸组织上调2026年全球货物贸易增长预期。</p><div class="src"><span class="tag-inline">欧洲经济</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">C. 能源与大商品<span class="cnt">3 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>油价持续飙涨：布伦特突破105美元，WTI涨至92.72美元</h3><p>布伦特原油日内涨<strong>5%</strong>，报<strong>105.33</strong>美元/桶；WTI原油日内涨幅达<strong>5.0%</strong>，报<strong>92.72</strong>美元/桶。油价上涨的直接导火索来自多条地缘政治消息，包括白宫被曝要求五角大楼拟定针对伊朗的打击方案、胡塞武装袭击沙特两座机场造成<strong>3</strong>人死亡，以及一场风暴导致美国国内部分原油产量中断。彭博策略师Mark Cranfield表示，布伦特期货突破<strong>102</strong>美元正在恶化亚洲市场情绪，并向美债期货蔓延。</p><div class="src"><span class="tag-inline">原油</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>现货黄金涨至4126美元，白银日内跌2%</h3><p>现货黄金上涨<strong>0.4%</strong>，至每盎司<strong>4126.06</strong>美元。现货白银日内跌幅达<strong>2.0%</strong>，报<strong>58.57</strong>美元/盎司。</p><div class="src"><span class="tag-inline">贵金属</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>动力煤重回千元，火电盈利拐点讨论升温</h3><p>动力煤价格重回千元关口，市场关注最差的盈利环境是否可能对应火电最好的拐点。</p><div class="src"><span class="tag-inline">煤炭/电力</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">D. 市场与资金<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>油价冲击打断全球股市涨势，美股低开、欧股普跌</h3><p>美股三大股指集体低开，道指跌<strong>0.36%</strong>，标普500指数跌<strong>0.37%</strong>，纳指跌<strong>0.51%</strong>。光通信板块走低，Coherent跌超<strong>4%</strong>，康宁、Lumentum、迈威尔科技均跌超<strong>3%</strong>。欧洲斯托克50指数开盘跌<strong>1.11%</strong>，德国DAX指数跌<strong>0.85%</strong>，英国富时100指数跌<strong>0.82%</strong>，法国CAC40指数下跌<strong>1%</strong>，创下六个多月以来的新低，较8月份的历史高点已下跌超过<strong>12%</strong>。欧洲斯托克银行指数下跌<strong>2.1%</strong>。</p><div class="src"><span class="tag-inline">全球股市</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>亚太股市普跌：日经跌1.4%，韩国首尔综指跌2.6%</h3><p>日经225指数收盘下跌<strong>1.4%</strong>，报<strong>69042.11</strong>点。日本东证指数收跌<strong>1.5%</strong>，报<strong>4091.46</strong>点。韩国首尔综指收跌<strong>2.6%</strong>，报<strong>6625.93</strong>点。日元下跌<strong>0.1%</strong>，至<strong>158.26</strong>美元。日本10年期收益率下降<strong>2.5</strong>个基点，至<strong>3.080%</strong>。</p><div class="src"><span class="tag-inline">亚太市场</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>摩根大通60页深度报告力挺宁德时代：维持增持评级，A股目标价520元</h3><p>宁德时代A/H股9月单月下跌<strong>19%</strong>，同期二线供应商Sunwoda大涨<strong>28%</strong>、Gotion上涨<strong>11%</strong>、CALB上涨<strong>2%</strong>、EVE下跌<strong>5%</strong>。摩根大通维持对宁德时代A股和H股的增持评级，A股目标价为人民币<strong>520</strong>元，H股目标价为港币<strong>725</strong>元。报告指出，宁德时代在中国乘用车电动汽车电池市场的份额今年前8个月同比提升<strong>3</strong>个百分点至<strong>44%</strong>，剔除比亚迪后的份额更达<strong>56%</strong>。宁德时代A股目前以<strong>11.5</strong>倍2027年预期市盈率交易，已低于2024年1月短暂触及的历史估值低点。</p><div class="src"><span class="tag-inline">宁德时代</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>特朗普8月证券交易金额达数亿美元，签署太空政策前买入SpaceX票据</h3><p>据CNBC对特朗普8月财务披露文件的分析，他当月共进行<strong>517</strong>笔证券交易，涉及买卖金额合计约<strong>7430万</strong>至<strong>2.733亿</strong>美元。其中，8月21日买入<strong>500万</strong>至<strong>2500万</strong>美元的Meta股票，为当月最大单笔交易；8月18日买入<strong>100万</strong>至<strong>500万</strong>美元的SpaceX高级无担保票据，票面利率<strong>5.35%</strong>，到期日为2031年7月。SpaceX债券交易发生在特朗普签署重大太空政策前仅两天。</p><div class="src"><span class="tag-inline">特朗普交易</span>来源：华尔街见闻转引CNBC</div></div></div><div class="sec"><div class="sec-title">E. AI·科技<span class="cnt">4 条</span></div><div class="card lv2"><h3><span class="badge y">重要</span>英伟达拟5年投入10亿美元推动美国科学研究，布局量子计算、医疗和能源安全</h3><p>英伟达宣布在未来五年内向美国科学研究领域投入价值<strong>10亿</strong>美元的资源，重点布局量子计算、医疗健康与能源安全等领域。此次承诺在华盛顿举办的"科学：新黄金时代"活动上正式公布，美国科技政策办公室（OSTP）在会上宣布扩展"创世纪使命"（Genesis Mission），英伟达作为重要产业合作伙伴。黄仁勋表示，此次投资将把先进超级智能能力交到美国科学家手中。</p><div class="src"><span class="tag-inline">英伟达</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>Anthropic发布Claude Haiku 5.5：价格暴降90%，多项测试超GPT-6 Luna</h3><p>Anthropic正式发布Claude Haiku 5.5，号称迄今速度最快、能力最强、价格最低的小模型。每百万输入Token最低只要<strong>0.1</strong>美元，相比上代直接降价<strong>90%</strong>。在OSWorld 2.1离线任务子集上，Haiku 5.5取得<strong>72.4%</strong>的成功率，上一代Haiku 4.5只有<strong>15.7%</strong>，GPT-6 Luna则为<strong>48.9%</strong>。知识工作方面，Haiku 5.5在GDPval-AA v2.1中取得<strong>1620</strong>分，超过GPT-6 Luna的<strong>1437</strong>分。Agent编程测试Terminal-Bench 4.0中，两者成绩分别为<strong>39.2%</strong>和<strong>16.4%</strong>。</p><div class="src"><span class="tag-inline">AI模型</span>来源：华尔街见闻转引机器之心</div></div><div class="card lv3"><h3><span class="badge b">关注</span>谷歌云发布Gemini通用工作代理，面向企业处理问答、创作与编程</h3><p>谷歌云发布Gemini通用工作代理，面向企业用户，一个窗口即可处理问答、创作与编程任务。</p><div class="src"><span class="tag-inline">谷歌云</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>AI芯片越造越多，数据中心电力不足：半导体出货预期面临考验</h3><p>AI芯片越造越多，但数据中心电力却不够用，半导体出货预期面临考验。与此同时，Firmus IPO需求遇冷，AI数据中心IPO繁荣或已走到十字路口。</p><div class="src"><span class="tag-inline">AI基础设施</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">F. 机构观点精选<span class="cnt">2 条</span></div><div class="card lv2"><h3><span class="badge y">重要</span>摩根大通：宁德时代会计政策最保守，若采用同行标准净利润将提升约30%</h3><p>摩根大通财务分析揭示，宁德时代的会计政策在国内同行中最为保守，导致其报告利润系统性低估了真实盈利能力。宁德时代保修拨备超过收入的<strong>3%</strong>，远高于国内二线同行普遍不足<strong>2%</strong>的水平；固定资产折旧年限约为<strong>5</strong>年，而多数二线同行采用<strong>8</strong>至<strong>12</strong>年；研发支出<strong>100%</strong>费用化，而多数同行资本化比例达<strong>5%</strong>至<strong>20%</strong>。摩根大通估算，若宁德时代采用与二线同行相近的会计处理方式，其报告净利润将提升约<strong>30%</strong>。</p><div class="src"><span class="tag-inline">宁德时代</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>摩根大通：宁德时代2025年出货量超660GWh，规模差距30至100倍</h3><p>摩根大通指出，宁德时代2025年出货量超过<strong>660GWh</strong>，而主要二线供应商的出货量仅为<strong>40</strong>至<strong>120GWh</strong>，大多数整车厂自研电池项目的出货量则不足<strong>10GWh</strong>。这一规模差距在<strong>30</strong>倍至<strong>100</strong>倍之间，直接转化为原材料采购议价能力、产能利用率、单位折旧负担、制造良率以及研发效率的全面优势。</p><div class="src"><span class="tag-inline">宁德时代</span>来源：华尔街见闻</div></div></div>
+
+  <div class="sec">
+    <div class="sec-title">今日关注</div>
+    <div class="card lv3" style="border-left-color:var(--accent);background:#fff;"><p>• 特朗普称不会在中期选举前攻击伊朗，关注中东局势后续演变及油价走势</p><p>• 美国10年期国债收益率逼近2002年以来高点，关注美债市场波动</p><p>• 法国财政状况持续承压，关注法德利差是否突破200基点</p><p>• 下周正式开启的美股财报季，市场将检验AI基础设施投资能否转化为盈利回报</p><p>• 沃什将于下周五在IMF讲话</p></div>
+  </div>
+
+  <div class="foot">
+    <b>数据来源与可验证性说明</b><br>
+    主信源：华尔街见闻（wallstreetcn.com）公开内容接口，覆盖窗口内全球资讯流与正文。<br>
+    主信源为华尔街见闻，部分条目转引CNBC、机器之心、美联社等。特朗普8月证券交易数据来自CNBC对财务披露文件的分析，为单一来源。Anthropic Haiku 5.5性能数据来自Anthropic官方及第三方评测机构，部分数据存在评测设置差异。中东局势相关报道涉及多方消息，白宫要求五角大楼拟定对伊打击方案的消息尚待进一步验证。<br><br>
+    <b>重要性分级标准</b><br>
+    <span style="color:var(--red)">■ 红（关键）</span>：影响全局资产定价或地缘格局 ·
+    <span style="color:var(--gold)">■ 黄（重要）</span>：影响单一市场、板块或主要资产 ·
+    <span style="color:var(--blue)">■ 蓝（关注）</span>：趋势性、背景性信息<br><br>
+    <b>免责声明</b>：本简报仅供研究参考，不构成任何投资建议。数字以华尔街见闻披露口径为准，请以原始报道为最终依据。<br>
+    <span style="color:#b0b8b4">本报告由 GitHub Actions 云端生成（电脑关机时亦可投递）。</span>
+  </div>
+</div>
+</body>
+</html>
