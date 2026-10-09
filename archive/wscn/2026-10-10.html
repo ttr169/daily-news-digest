@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华尔街见闻 · 24小时要闻简报 | 2026-10-10</title>
+<style>
+:root{
+  --red:#c0392b; --gold:#b8860b; --blue:#1f5f9f;
+  --red-bg:#fdf2f0; --gold-bg:#fff8e6; --blue-bg:#eef4fb;
+  --ink:#1c2321; --ink-2:#4a5652; --ink-3:#8b9793;
+  --line:#e3e8e5; --bg:#f4f6f5; --card:#ffffff; --accent:#0f3d26;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;padding:16px 12px 40px;}
+.wrap{max-width:760px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#0f3d26 0%,#1f6f43 100%);color:#fff;
+  border-radius:14px;padding:26px 24px 22px;box-shadow:0 4px 18px rgba(15,61,38,.18);}
+.header h1{font-size:21px;font-weight:700;letter-spacing:.3px;line-height:1.4;}
+.header .sub{font-size:12.5px;opacity:.82;margin-top:8px;}
+.header .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.header .meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:4px 11px;font-size:11.5px;}
+.legend{background:var(--card);border-radius:12px;padding:14px 16px;margin-top:14px;
+  display:flex;flex-wrap:wrap;gap:10px 20px;border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);}
+.legend b{color:var(--ink);}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle;}
+.dot.r{background:var(--red);} .dot.y{background:var(--gold);} .dot.b{background:var(--blue);}
+.sec{margin-top:14px;}
+.sec-title{font-size:15px;font-weight:700;color:var(--accent);padding-bottom:8px;margin-bottom:10px;
+  border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:8px;}
+.sec-title .cnt{font-size:11px;font-weight:500;color:var(--ink-3);background:var(--bg);border-radius:10px;padding:1px 8px;}
+.card{background:var(--card);border-radius:11px;padding:14px 16px;margin-bottom:10px;
+  border:1px solid var(--line);border-left:5px solid var(--ink-3);box-shadow:0 1px 3px rgba(0,0,0,.03);}
+.card.lv1{border-left-color:var(--red);background:linear-gradient(180deg,var(--red-bg) 0%,#fff 42%);}
+.card.lv2{border-left-color:var(--gold);background:linear-gradient(180deg,var(--gold-bg) 0%,#fff 42%);}
+.card.lv3{border-left-color:var(--blue);background:linear-gradient(180deg,var(--blue-bg) 0%,#fff 42%);}
+.card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:7px;display:flex;gap:8px;align-items:flex-start;}
+.badge{flex:0 0 auto;font-size:10px;font-weight:700;color:#fff;border-radius:4px;padding:2px 6px;margin-top:3px;letter-spacing:.5px;}
+.badge.r{background:var(--red);} .badge.y{background:var(--gold);} .badge.b{background:var(--blue);}
+.card p{font-size:13.5px;color:var(--ink-2);line-height:1.75;}
+.card .src{font-size:11.5px;color:var(--ink-3);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);}
+.tag-inline{display:inline-block;font-size:10.5px;color:var(--accent);background:#eaf3ee;border-radius:4px;padding:1px 6px;margin-right:5px;}
+.top{background:var(--card);border-radius:12px;padding:6px 4px;border:1px solid var(--line);}
+.top ol{list-style:none;}
+.top li{position:relative;padding:11px 16px 11px 48px;font-size:13.5px;line-height:1.6;
+  border-bottom:1px solid var(--line);color:var(--ink-2);counter-increment:t;}
+.top{counter-reset:t;}
+.top li:last-child{border-bottom:none;}
+.top li::before{content:counter(t);position:absolute;left:15px;top:11px;width:20px;height:20px;
+  border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:8px;}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px 11px;}
+.kpi .k{font-size:11px;color:var(--ink-3);margin-bottom:3px;}
+.kpi .v{font-size:14.5px;font-weight:700;color:var(--ink);}
+.up{color:var(--red);} .down{color:#27ae60;}
+.foot{margin-top:20px;padding:14px 16px;background:var(--card);border-radius:11px;
+  border:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.8;}
+.foot b{color:var(--ink-2);}
+@media (max-width:640px){
+  body{font-size:14px;padding:12px 9px 32px;}
+  .header{padding:20px 17px 18px;border-radius:12px;}
+  .header h1{font-size:18px;}
+  .card{padding:12px 13px;}
+  .kpi{grid-template-columns:repeat(2,1fr);}
+}
+@media print{
+  body{background:#fff;padding:0;}
+  .card,.header,.legend,.top,.foot{box-shadow:none;break-inside:avoid;}
+  .header{background:#0f3d26 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>华尔街见闻 · 过去 24 小时要闻简报</h1>
+    <div class="sub">覆盖窗口：2026-10-09 02:31 — 2026-10-10 02:31（北京时间） · 一级信源：华尔街见闻（公开接口）</div>
+    <div class="meta">
+      <span>生成时间 2026-10-10 02:31 JST</span>
+      <span>收录 36 条要闻</span>
+      <span>🔴 关键 5 · 🟡 重要 12 · 🔵 关注 9</span>
+      <span>云端投递 · 关机可收</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot r"></i><b>红色 = 最重要</b> 影响全局资产定价，须立即知晓</span>
+    <span><i class="dot y"></i><b>黄色 = 重要</b> 影响单一市场或板块</span>
+    <span><i class="dot b"></i><b>蓝色 = 关注</b> 趋势性/背景性信息</span>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">一页速览 <span class="cnt">Top 5</span></div>
+    <div class="top"><ol><li>美银Hartnett：11月3日中期选举是年底前最大催化剂，民主党横扫概率64%，股市或跌超10%</li><li>智利Centinela铜矿史上首次罢工，700余名工人参与，伦铜约14475美元/吨逼近历史高位</li><li>高盛：全球可见石油库存降至2017年以来低位，9月布伦特风险溢价达22美元/桶</li><li>密歇根大学10月消费者信心初值46.3创五个月低点，现况指标44.7创历史新低</li><li>美股高开纳指涨0.54%，现货黄金一度突破4200美元，布伦特原油跌1.2%至102.95美元</li></ol></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">关键指标看板</div>
+    <div class="kpi"><div><div class="k">道指</div><div class="v up">高开 <span style="font-size:11px">+0.05%</span></div></div><div><div class="k">标普500</div><div class="v up">高开 <span style="font-size:11px">+0.27%</span></div></div><div><div class="k">纳指</div><div class="v up">高开 <span style="font-size:11px">+0.54%</span></div></div><div><div class="k">美国10年期国债收益率</div><div class="v up">5.22% <span style="font-size:11px">变化不大</span></div></div><div><div class="k">日本10年期国债收益率</div><div class="v down">3.025% <span style="font-size:11px">-5.5bp</span></div></div><div><div class="k">现货黄金</div><div class="v up">约4200美元/盎司 <span style="font-size:11px">+1.6%</span></div></div><div><div class="k">现货白银</div><div class="v up">60.36美元/盎司 <span style="font-size:11px">+2.0%</span></div></div><div><div class="k">布伦特原油</div><div class="v down">102.95美元/桶 <span style="font-size:11px">-1.2%</span></div></div><div><div class="k">WTI原油</div><div class="v down">90.27美元/桶 <span style="font-size:11px">-1.3%</span></div></div><div><div class="k">伦敦铜</div><div class="v up">约14475美元/吨 <span style="font-size:11px">略低于历史最高</span></div></div></div>
+  </div>
+
+  <div class="sec"><div class="sec-title">A. 地缘政治<span class="cnt">3 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>特朗普称美国不会在11月中期选举前对伊朗发动攻击，油价回落</h3><p>特朗普表示美国不会在11月中期选举前对伊朗发动攻击，中东紧张局势缓和预期提振亚洲货币整体走强。布伦特原油下跌<strong>1.2%</strong>至每桶<strong>102.95美元</strong>，西德克萨斯中质原油下跌<strong>1.3%</strong>至每桶<strong>90.27美元</strong>。彭博美元指数小幅走低。</p><div class="src"><span class="tag-inline">美伊</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>特朗普再度推进罢免美联储理事库克，白宫成立调查委员会11月5日听证</h3><p>特朗普任命委员会，调查美联储官员库克涉嫌发表虚假陈述的指控，白宫成立调查委员会，将于<strong>11月5日</strong>举行听证。此举再度推进对美联储理事库克的罢免程序。</p><div class="src"><span class="tag-inline">美联储</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>也门首都萨那再次遭空袭</h3><p>也门首都萨那再次遭到空袭，中东地区局势仍存不确定性。</p><div class="src"><span class="tag-inline">中东</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">B. 全球宏观与利率<span class="cnt">5 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>美银Hartnett：中期选举是年底最强催化剂，民主党横扫概率64%</h3><p>美银全球投资策略师Michael Hartnett指出，<strong>11月3日</strong>美国中期选举是年底前触发全球股市±10%波动的最大潜在催化剂。当前市场预测显示，民主党横扫两院的概率已升至<strong>64%</strong>，较9月的<strong>49%</strong>大幅跳升，若该情景成真，美股将面临超过<strong>10%</strong>的下行风险。美银牛熊指标从<strong>8.8</strong>降至<strong>8.1</strong>，继续维持“卖出”信号。</p><div class="src"><span class="tag-inline">美国中期选举</span>来源：华尔街见闻转引美银证券</div></div><div class="card lv2"><h3><span class="badge y">重要</span>密歇根大学10月消费者信心初值46.3创五个月低点，现况指标创历史新低</h3><p>密歇根大学10月消费者信心指数初值降至<strong>46.3</strong>，为5月以来最低，低于经济学家调查预期中值<strong>47.6</strong>。反映当前经济状况的分项指标从9月的<strong>50.9</strong>骤降至<strong>44.7</strong>，创有记录以来最低值。消费者对未来一年通胀预期从9月的<strong>4.6%</strong>小幅上升至<strong>4.7%</strong>，5至10年通胀预期从<strong>3.4%</strong>升至<strong>3.5%</strong>。</p><div class="src"><span class="tag-inline">美国消费者</span>来源：华尔街见闻转引密歇根大学</div></div><div class="card lv2"><h3><span class="badge y">重要</span>美银：投资者以疫情以来最快速度囤积现金，货币市场基金单周吸金1664亿美元</h3><p>美银引用EPFR数据显示，货币市场基金单周吸金<strong>1664亿美元</strong>，为2020年4月以来最大流入，全球货币市场基金资产管理规模已从2023年的<strong>5万亿美元</strong>攀升至<strong>8万亿美元</strong>。美国国债获<strong>166亿美元</strong>净流入，为2025年4月以来最大；金融股遭遇2026年3月以来最大单周净流出<strong>30亿美元</strong>。当前美联储10月加息概率为<strong>17%</strong>，12月加息概率高达<strong>81%</strong>。</p><div class="src"><span class="tag-inline">资金流向</span>来源：华尔街见闻转引美银证券</div></div><div class="card lv3"><h3><span class="badge b">关注</span>克鲁格曼警告法国或引发欧洲债务危机，称市场对其违约率估算“太低”</h3><p>克鲁格曼警告法国或引发欧洲债务危机，称市场对法国违约率的估算“太低”。法国债务问题被形容为“太重难扛、太大难救”。</p><div class="src"><span class="tag-inline">欧洲债务</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>达利欧：高息正在“挤出一切”，最终冲击股市重创经济</h3><p>达利欧表示，高息正在“挤出一切”，最终将冲击股市并重创经济。</p><div class="src"><span class="tag-inline">利率</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">C. 能源与大商品<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>高盛：全球可见石油库存降至2017年以来低位，9月布伦特风险溢价达22美元/桶</h3><p>高盛10月8日报告指出，波斯湾原油出口量已达到或超过2025年平均水平，但布伦特原油价格仍处于三位数。全球可见石油库存已降至<strong>2017年</strong>以来的近历史低位，9月布伦特原油期限价差中反映地缘政治等因素的平均风险溢价达到每桶<strong>22美元</strong>，为有记录以来第二高，仅次于2026年4月。高盛测算，OECD商业库存每减少<strong>1亿桶</strong>，布伦特公允价值将提高约<strong>8美元/桶</strong>。</p><div class="src"><span class="tag-inline">原油</span>来源：华尔街见闻转引高盛</div></div><div class="card lv1"><h3><span class="badge r">关键</span>智利Centinela铜矿史上首次罢工，伦铜约14475美元/吨逼近历史高位</h3><p>智利Centinela铜矿爆发历史上首次罢工，涉及Minera Esperanza和Distrito Centinela两个工会，合计代表<strong>700余名</strong>工人。摩根大通警告，若劳资僵局持续，产量和业绩可能受到“十分显著”的影响。Centinela是安托法加斯塔核心铜矿资产，2025年产铜<strong>24.04万吨</strong>，占公司总产量的<strong>35%以上</strong>。罢工发生之际，伦敦铜期货价格约为每吨<strong>14475美元</strong>，略低于历史最高水平。</p><div class="src"><span class="tag-inline">铜</span>来源：华尔街见闻转引摩根大通</div></div><div class="card lv2"><h3><span class="badge y">重要</span>铁矿石连跌三周，新加坡铁矿石期货触及2024年9月以来最低</h3><p>新加坡铁矿石期货周五盘中一度跌<strong>0.9%</strong>，触及2024年9月以来最低水平，报<strong>90.90美元/吨</strong>；大连铁矿石期货亦徘徊于两年低位附近。过去三周内，铁矿石价格仅有一个交易日收涨。Mysteel数据显示，日均生铁产量基本稳定在<strong>234万吨</strong>，但当前盈利钢厂比例不足<strong>7%</strong>。大连焦煤期货周五大涨<strong>4.2%</strong>，报<strong>1538.5元/吨</strong>。</p><div class="src"><span class="tag-inline">铁矿石</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>现货黄金一度突破4200美元，白银涨2%至60.36美元</h3><p>现货黄金日内一度涨逾<strong>1.6%</strong>，报约<strong>4200美元/盎司</strong>，现货白银涨幅达<strong>2.0%</strong>，报<strong>60.36美元/盎司</strong>。贵金属走强主要受长端美债收益率从逾二十年高位回落提振。</p><div class="src"><span class="tag-inline">贵金属</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">D. 市场与资金<span class="cnt">5 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>AI回报疑虑缓解，美股高开纳指涨0.54%，光通信股普涨</h3><p>周五有关OpenAI营收的最新数据为市场提供喘息空间，此前因AI支出回报存疑引发的抛售压力有所缓解。美股三大股指集体高开，道指涨<strong>0.05%</strong>，标普500指数涨<strong>0.27%</strong>，纳指涨<strong>0.54%</strong>。光通信股开盘普涨，Lumentum涨超<strong>6%</strong>，康宁涨近<strong>3%</strong>。存储板块走高，美光、闪迪、SK海力士均涨超<strong>1%</strong>。SpaceX上涨<strong>3.3%</strong>，苹果下跌<strong>2.7%</strong>。</p><div class="src"><span class="tag-inline">美股</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>华尔街大行财报下周揭晓：股票交易收入料逼近190亿美元</h3><p>据彭博汇编的分析师预期，五大美国银行三季度股票交易收入合计预计接近<strong>190亿美元</strong>。其中，高盛预计以<strong>51亿美元</strong>居首，摩根士丹利、摩根大通和美国银行分别预计录得<strong>49亿美元</strong>、<strong>45亿美元</strong>和<strong>26亿美元</strong>。高盛将于下周二率先公布财报。五大银行固定收益交易收入合计预计将超过<strong>190亿美元</strong>，低于二季度的逾<strong>210亿美元</strong>。</p><div class="src"><span class="tag-inline">银行财报</span>来源：华尔街见闻转引彭博</div></div><div class="card lv2"><h3><span class="badge y">重要</span>印度史上最大IPO要来了？Jio拟募资约3020亿卢比</h3><p>印度首富穆克什·安巴尼旗下Jio Platforms已初步确定每股<strong>1065至1119卢比</strong>的发行价区间，计划于<strong>10月21日</strong>启动公开认购。按发行价区间上限计算，Jio此次IPO募资额约为<strong>3020亿卢比</strong>（约合<strong>31亿美元</strong>），将超过现代汽车印度公司2024年10月创下的<strong>2780亿卢比</strong>纪录。公司目标估值最高可达<strong>10.3万亿卢比</strong>（约合<strong>1065亿美元</strong>）。</p><div class="src"><span class="tag-inline">印度IPO</span>来源：华尔街见闻转引彭博</div></div><div class="card lv3"><h3><span class="badge b">关注</span>9月A股新开户191.19万户</h3><p>9月A股新开户<strong>191.19万户</strong>。</p><div class="src"><span class="tag-inline">A股</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>证监会：权益类基金成立门槛拟降至5000万元</h3><p>证监会拟将权益类基金成立门槛降至<strong>5000万元</strong>，并建立迷你基金强制退出机制。</p><div class="src"><span class="tag-inline">基金</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">E. AI·科技<span class="cnt">4 条</span></div><div class="card lv2"><h3><span class="badge y">重要</span>大摩看多SpaceX：“Tera’Merica”潜力被低估，目标价300美元</h3><p>摩根士丹利维持SpaceX“增持”评级，目标价为<strong>300美元</strong>。报告将美国制造业重建概括为“Tera’Merica”，认为市场低估了SpaceX与美国制造业重建之间的联系。报告测算，若新增<strong>1吉瓦</strong>名义算力，按每瓦<strong>50美元</strong>的投入、<strong>70%</strong>的增量利润率和<strong>10倍</strong>EBITDA估值计算，可为每股价值增加约<strong>27美元</strong>。摩根士丹利预计，SpaceX截至2027财年末的AI算力规模约为<strong>4.9吉瓦</strong>，而公司目标接近<strong>10吉瓦</strong>。</p><div class="src"><span class="tag-inline">SpaceX</span>来源：华尔街见闻转引摩根士丹利</div></div><div class="card lv2"><h3><span class="badge y">重要</span>OpenAI年化收入低于预期约200亿美元，费城半导体指数单日跌3.4%</h3><p>英国《金融时报》报道称OpenAI年化收入低于此前预期水平约<strong>200亿美元</strong>，导致费城半导体指数单日下跌<strong>3.4%</strong>，科技板块领跌标普500。据彭博获悉，OpenAI向投资者披露了上述最新收入预测。Principal Asset Management首席全球策略师Seema Shah表示，AI相关“利空消息浪潮”正越来越密集，对投资者情绪的影响也在累积。</p><div class="src"><span class="tag-inline">AI</span>来源：华尔街见闻转引金融时报、彭博</div></div><div class="card lv3"><h3><span class="badge b">关注</span>SK海力士掌门：光州芯片厂越快开工越好，芯片需求大超预期</h3><p>SK海力士掌门表示，光州芯片厂越快开工越好，芯片需求大超预期。</p><div class="src"><span class="tag-inline">芯片</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>腾讯拟发行最高50亿美元离岸债券，中国科技巨头加速锁定AI算力</h3><p>报道称腾讯拟发行最高<strong>50亿美元</strong>离岸债券，中国科技巨头加速锁定AI算力。</p><div class="src"><span class="tag-inline">腾讯</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">F. 机构观点精选<span class="cnt">3 条</span></div><div class="card lv2"><h3><span class="badge y">重要</span>美银：债券终结泡沫，建议关注“收益率见顶”交易机会</h3><p>美银援引韩国市场作为“债券终结泡沫”的最新案例。过去18个月，韩国国债收益率累计上行<strong>200个基点</strong>，韩国最大零售券商Mirae Asset Securities股价自2026年5月高点已下跌<strong>65%</strong>。美银建议投资者关注“收益率见顶”交易机会，包括30年期美国国债、小盘股、REITs及香港地产，同时维持对黄金、大宗商品及新兴市场的长期多头配置。在科技板块，美银认为投资者已处于极度超配状态，建议不再加仓。</p><div class="src"><span class="tag-inline">美银</span>来源：华尔街见闻转引美银证券</div></div><div class="card lv2"><h3><span class="badge y">重要</span>摩根大通警告：Centinela罢工产量冲击可能“相当显著”</h3><p>摩根大通拉丁美洲企业信贷研究主管Natalia Corfield指出，若双方无法达成协议，产量和业绩可能受到“十分显著”的影响。若停工持续，该矿最快可能在约两周后开始减产。选矿厂扩建项目也可能因此延误。</p><div class="src"><span class="tag-inline">铜</span>来源：华尔街见闻转引摩根大通</div></div><div class="card lv3"><h3><span class="badge b">关注</span>德意志银行：全球铜库存已降至“史无前例的低位”</h3><p>德意志银行金属研究主管Daniel Ghali上月警告，全球铜库存已降至“史无前例的低位”，美国的囤货行为进一步挤压了其他地区的可用供应。他预计，伦敦铜价格到2027年第二季度可能再涨约<strong>50%</strong>，升至每吨<strong>22050美元</strong>。</p><div class="src"><span class="tag-inline">铜</span>来源：华尔街见闻转引德意志银行</div></div></div>
+
+  <div class="sec">
+    <div class="sec-title">今日关注</div>
+    <div class="card lv3" style="border-left-color:var(--accent);background:#fff;"><p>• 下周美国CPI数据，市场关注美联储10月是否加息</p><p>• 高盛等华尔街大行下周率先公布三季度财报</p><p>• 美国11月3日中期选举进展及民主党横扫概率变化</p><p>• 智利Centinela铜矿罢工劳资谈判进展</p><p>• Jio Platforms IPO认购情况（10月21日启动）</p></div>
+  </div>
+
+  <div class="foot">
+    <b>数据来源与可验证性说明</b><br>
+    主信源：华尔街见闻（wallstreetcn.com）公开内容接口，覆盖窗口内全球资讯流与正文。<br>
+    主信源为华尔街见闻，部分条目转引彭博、金融时报、美银证券、摩根大通、摩根士丹利、高盛、德意志银行、密歇根大学等。其中OpenAI年化收入数据源于英国《金融时报》报道，Jio IPO细节源于彭博援引知情人士，均为单一来源。所有数字均来自素材，未做任何增补。<br><br>
+    <b>重要性分级标准</b><br>
+    <span style="color:var(--red)">■ 红（关键）</span>：影响全局资产定价或地缘格局 ·
+    <span style="color:var(--gold)">■ 黄（重要）</span>：影响单一市场、板块或主要资产 ·
+    <span style="color:var(--blue)">■ 蓝（关注）</span>：趋势性、背景性信息<br><br>
+    <b>免责声明</b>：本简报仅供研究参考，不构成任何投资建议。数字以华尔街见闻披露口径为准，请以原始报道为最终依据。<br>
+    <span style="color:#b0b8b4">本报告由 GitHub Actions 云端生成（电脑关机时亦可投递）。</span>
+  </div>
+</div>
+</body>
+</html>
