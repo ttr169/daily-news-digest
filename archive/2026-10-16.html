@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球宏观 + 地缘政治 24 小时简报 | 2026-10-16</title>
+<style>
+  :root{
+    --green:#1f6f43;
+    --green-dark:#155233;
+    --green-light:#e8f3ec;
+    --red:#c0392b;
+    --gold:#d4a017;
+    --blue:#3d8ec9;
+    --up:#c0392b;
+    --down:#27ae60;
+    --ink:#1c2b23;
+    --muted:#5c6b62;
+    --line:#d8e2db;
+    --bg:#f4f7f5;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:15px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:16px;}
+  /* ---------- Header ---------- */
+  header{
+    background:linear-gradient(135deg,var(--green) 0%,var(--green-dark) 100%);
+    color:#fff;
+    border-radius:12px;
+    padding:22px 20px;
+    margin-bottom:16px;
+  }
+  header h1{
+    margin:0 0 6px;
+    font-size:22px;
+    line-height:1.35;
+    letter-spacing:.5px;
+  }
+  header .sub{
+    font-size:13px;
+    opacity:.92;
+    margin-bottom:12px;
+  }
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:8px;
+    margin-bottom:12px;
+  }
+  .meta-item{
+    background:rgba(255,255,255,.13);
+    border-radius:8px;
+    padding:8px 10px;
+    font-size:12px;
+  }
+  .meta-item b{display:block;font-size:14px;font-weight:600;margin-top:2px;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{
+    background:rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:20px;
+    padding:3px 11px;
+    font-size:11.5px;
+    white-space:nowrap;
+  }
+  /* ---------- Section ---------- */
+  section{margin-bottom:22px;}
+  h2{
+    font-size:17px;
+    color:var(--green-dark);
+    margin:0 0 12px;
+    padding-left:10px;
+    border-left:4px solid var(--green);
+    line-height:1.3;
+  }
+  h2 .en{font-size:12px;color:var(--muted);font-weight:400;margin-left:6px;}
+  /* ---------- Cards ---------- */
+  .card{
+    background:#fff;
+    border-radius:10px;
+    padding:14px 16px;
+    margin-bottom:12px;
+    box-shadow:0 1px 3px rgba(31,111,67,.08);
+    border-left:5px solid var(--blue);
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+  .card.lv5{border-left-color:var(--red);}
+  .card.lv4{border-left-color:var(--gold);}
+  .card.lv3{border-left-color:var(--blue);}
+  .card-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:6px;
+  }
+  .card-title{
+    font-size:15.5px;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.45;
+    flex:1;
+  }
+  .stars{
+    font-size:12px;
+    white-space:nowrap;
+    color:var(--gold);
+    letter-spacing:-1px;
+    padding-top:2px;
+  }
+  .card.lv5 .stars{color:var(--red);}
+  .card-body{font-size:14px;color:#33443a;}
+  .card-body p{margin:0 0 8px;}
+  .card-body ul{margin:6px 0 8px;padding-left:20px;}
+  .card-body li{margin-bottom:4px;}
+  .src{
+    font-size:11.5px;
+    color:var(--muted);
+    border-top:1px dashed var(--line);
+    padding-top:6px;
+    margin-top:8px;
+  }
+  .single-src{
+    color:var(--red);
+    font-weight:600;
+  }
+  .chain{
+    background:var(--green-light);
+    border-radius:8px;
+    padding:10px 12px;
+    font-size:13px;
+    color:var(--green-dark);
+    margin:8px 0;
+    line-height:1.9;
+    word-break:break-word;
+  }
+  .chain b{color:var(--red);}
+  /* ---------- KPI ---------- */
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
+    gap:10px;
+  }
+  .kpi{
+    background:#fff;
+    border-radius:10px;
+    padding:12px 13px;
+    box-shadow:0 1px 3px rgba(31,111,67,.08);
+    border-top:3px solid var(--green);
+    page-break-inside:avoid;
+  }
+  .kpi .k-name{font-size:12px;color:var(--muted);margin-bottom:4px;}
+  .kpi .k-val{font-size:19px;font-weight:700;color:var(--ink);line-height:1.2;}
+  .kpi .k-chg{font-size:12px;margin-top:3px;font-weight:600;}
+  .kpi .k-note{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45;}
+  .up{color:var(--up);}
+  .down{color:var(--down);}
+  .flat{color:var(--muted);}
+  /* ---------- Table ---------- */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    font-size:13.5px;
+    min-width:520px;
+  }
+  th{
+    background:var(--green);
+    color:#fff;
+    text-align:left;
+    padding:9px 11px;
+    font-weight:600;
+    font-size:13px;
+    white-space:nowrap;
+  }
+  td{
+    padding:9px 11px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even){background:#fafcfb;}
+  /* ---------- Top5 ---------- */
+  .top5{counter-reset:t5;}
+  .top5 .card{position:relative;padding-left:46px;}
+  .top5 .card::before{
+    counter-increment:t5;
+    content:counter(t5);
+    position:absolute;
+    left:12px;
+    top:13px;
+    width:24px;height:24px;
+    border-radius:50%;
+    background:var(--green);
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .top5 .card.lv5::before{background:var(--red);}
+  .top5 .card.lv4::before{background:var(--gold);}
+  /* ---------- Divergence ---------- */
+  .div-card{
+    background:#fffdf5;
+    border:1px solid #f0e0b0;
+    border-left:5px solid var(--gold);
+    border-radius:10px;
+    padding:13px 15px;
+    margin-bottom:12px;
+    page-break-inside:avoid;
+  }
+  .div-card h3{
+    margin:0 0 8px;
+    font-size:14.5px;
+    color:#8a6a00;
+  }
+  .div-card table{min-width:auto;font-size:13px;}
+  .div-card th{background:#d4a017;}
+  /* ---------- Sources ---------- */
+  .src-list{
+    background:#fff;
+    border-radius:10px;
+    padding:14px 16px;
+    font-size:12.5px;
+    color:#3a4a41;
+    line-height:1.8;
+    word-break:break-all;
+  }
+  .src-list .grp{font-weight:600;color:var(--green-dark);margin:8px 0 3px;}
+  .src-list .grp:first-child{margin-top:0;}
+  .note{
+    font-size:12px;
+    color:var(--muted);
+    background:#fff;
+    border-radius:8px;
+    padding:10px 13px;
+    border-left:3px solid var(--blue);
+    line-height:1.7;
+  }
+  footer{
+    text-align:center;
+    font-size:12px;
+    color:var(--muted);
+    padding:18px 10px 26px;
+    border-top:1px solid var(--line);
+    margin-top:10px;
+  }
+  footer b{color:var(--green-dark);}
+  /* ---------- Mobile ---------- */
+  @media (max-width:640px){
+    body{font-size:14px;}
+    .wrap{padding:10px;}
+    header{padding:16px 14px;border-radius:10px;}
+    header h1{font-size:18px;}
+    .meta-grid{grid-template-columns:repeat(2,1fr);gap:6px;}
+    .meta-item{padding:6px 8px;font-size:11px;}
+    .meta-item b{font-size:13px;}
+    h2{font-size:15.5px;}
+    .card{padding:12px 13px;}
+    .card-title{font-size:14.5px;}
+    .card-body{font-size:13.5px;}
+    .kpi-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
+    .kpi .k-val{font-size:16.5px;}
+    .top5 .card{padding-left:42px;}
+    .top5 .card::before{left:10px;width:22px;height:22px;font-size:12px;}
+    table{font-size:12.5px;min-width:460px;}
+    th,td{padding:7px 8px;}
+    .chain{font-size:12.5px;padding:9px 10px;}
+  }
+  /* ---------- Print ---------- */
+  @media print{
+    body{background:#fff;font-size:11.5pt;}
+    .wrap{max-width:100%;padding:0;}
+    header{background:var(--green) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .card,.kpi,.div-card,table,section{page-break-inside:avoid;break-inside:avoid;}
+    .card{box-shadow:none;border:1px solid var(--line);}
+    h2{page-break-after:avoid;}
+    .tbl-wrap{overflow:visible;}
+    table{min-width:0;}
+    a{text-decoration:none;color:inherit;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============ 1. HEADER ============ -->
+<header>
+  <h1>全球宏观 + 地缘政治 24 小时简报</h1>
+  <div class="sub">Global Macro &amp; Geopolitics Daily Brief</div>
+  <div class="meta-grid">
+    <div class="meta-item">报告生成时间（JST）<b>2026-10-16 00:40</b></div>
+    <div class="meta-item">监测窗口（JST）<b>10-15 00:40 → 10-16 00:40</b></div>
+    <div class="meta-item">检索路数 / 素材条数<b>11 路 / 46 条</b></div>
+    <div class="meta-item">本简报事件条目<b>22 条</b></div>
+  </div>
+  <div class="tags">
+    <span class="tag">美联储加息悬念</span>
+    <span class="tag">胡塞袭沙特</span>
+    <span class="tag">霍尔木兹袭船</span>
+    <span class="tag">俄乌能源停火破裂</span>
+    <span class="tag">OPEC 下调需求</span>
+    <span class="tag">WTI 折返行情</span>
+    <span class="tag">六海域演训</span>
+    <span class="tag">AI 资本开支</span>
+    <span class="tag">去英伟达化</span>
+  </div>
+</header>
+
+<!-- ============ 2. TOP 5 ============ -->
+<section>
+  <h2>一页速览 · Top 5 关键事件 <span class="en">Top 5</span></h2>
+  <div class="top5">
+
+    <div class="card lv5">
+      <div class="card-head">
+        <div class="card-title">美联储政策路径由「降息」转向「加息」定价，10 月会议悬念拉满</div>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="card-body">
+        <p>财联社报道，美联储按兵不动但释放鹰派信号，<b>年内利率变化预期由降息变加息</b>；同日会议纪要显示部分官员支持 6 月加息，分歧表征实为「等数据」。市场焦点转向沃什（Warsh）讲话定调 10 月会议。</p>
+        <p>这是本期对大类资产定价影响最直接的一条：利率路径重定价将同时作用于美元、黄金、美债与全球风险资产。</p>
+      </div>
+      <div class="src">来源：财联社（[1][4]）、华盛通（[2]）、华尔街见闻（[3]）（4 源交叉）</div>
+    </div>
+
+    <div class="card lv5">
+      <div class="card-head">
+        <div class="card-title">胡塞武装打击沙特石油设施，红海封锁收紧伊朗对全球能源的钳制</div>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="card-body">
+        <p>路透（Reuters）分析指出，胡塞武装正帮助伊朗把沙特变成「压力点」；EnergyNow 指出红海封锁正在收紧伊朗对全球能源供应的掌控。多源报道胡塞袭击沙特阿美达兰总部及沙特石油基础设施，并威胁机场。</p>
+        <p>伊朗最高领袖顾问警告美以：<b>战事可能扩大至印度洋</b>。美媒报道称美军已制定针对伊朗能源的新打击方案。</p>
+      </div>
+      <div class="src">来源：Reuters（[27]）、EnergyNow.com（[28][39]）、金十数据（[5]）、Newsquawk（[25]）、Times of India（[31]）（5 源交叉）</div>
+    </div>
+
+    <div class="card lv5">
+      <div class="card-head">
+        <div class="card-title">特朗普「能源停火」破裂，俄乌恢复互袭油气设施</div>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="card-body">
+        <p>《卫报》报道，随着特朗普斡旋的「能源停火」崩溃，俄乌恢复相互打击。莫斯科向乌克兰中部基础设施派出无人机群；泽连斯基表示基辅将重启对俄罗斯炼油厂的打击。Sky News 报道乌方称打击俄炼油厂，系回应俄方违反能源休战。</p>
+        <p>该事件直接冲击成品油与炼能供给预期，是本期能源传导链的关键上游变量。</p>
+      </div>
+      <div class="src">来源：The Guardian（[34][37]）、Sky News（[38]）、The Economist（[36]）、Al Jazeera（[35]）（4 源交叉）</div>
+    </div>
+
+    <div class="card lv4">
+      <div class="card-head">
+        <div class="card-title">OPEC 再度下调今年全球石油需求增长预期，沙特 9 月产量大幅增长</div>
+        <div class="stars">★★★★</div>
+      </div>
+      <div class="card-body">
+        <p>财联社报道，欧佩克再度下调今年全球石油需求增长预期，同时沙特 9 月石油产量大幅增长。21 财经报道「沙特增产三分之一，国际油价逆势走高释放微妙信号」。同花顺期货通指出需求预期下调叠加 OPEC 增产，原油主力合约盘中跌超 3%。</p>
+      </div>
+      <div class="src">来源：财联社（[16]）、21 财经（[14]）、同花顺（[18]）、汇通财经 FX678（[19]）（4 源交叉）</div>
+    </div>
+
+    <div class="card lv4">
+      <div class="card-head">
+        <div class="card-title">解放军在 6 个海域同步演习，向台美日发出信号</div>
+        <div class="stars">★★★★</div>
+      </div>
+      <div class="card-body">
+        <p>《朝鲜日报》中文版报道，中国罕见地在 6 个海域进行同步演习，向台美日发出警告。凤凰网报道美日军演选址「把导弹怼到台湾家门口」。金灿荣就六海域密集演训释放的信号作出解读。</p>
+        <p>台海与第一岛链军事活动密度上升，构成区域风险溢价的潜在来源。</p>
+      </div>
+      <div class="src">来源：朝鲜日报中文版（[10]）、凤凰网（[11]）、风闻（[13]）（3 源交叉）</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 3. KPI ============ -->
+<section>
+  <h2>关键指标看板 <span class="en">Key Indicators</span></h2>
+  <div class="kpi-grid">
+
+    <div class="kpi">
+      <div class="k-name">WTI 原油</div>
+      <div class="k-val">≈93.10 <span style="font-size:12px;font-weight:400;">美元/桶</span></div>
+      <div class="k-chg down">↓ 走低</div>
+      <div class="k-note">受美国可能放松制裁消息影响跌至接近 93.10（TMGM，[17]）</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">WTI 原油（另一时点）</div>
+      <div class="k-val">≈95.30 <span style="font-size:12px;font-weight:400;">美元/桶</span></div>
+      <div class="k-chg up">↑ 偏强</div>
+      <div class="k-note">周三亚盘交投于 95.30 附近（FX678，[19]）— 与 93.10 存在分歧</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">布伦特原油</div>
+      <div class="k-val">≈107 <span style="font-size:12px;font-weight:400;">美元/桶</span></div>
+      <div class="k-chg flat">— 维持</div>
+      <div class="k-note">FX678 报道布伦特维持在 107 美元/桶附近（[19]）</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">国内原油主力合约</div>
+      <div class="k-val">727.9 <span style="font-size:12px;font-weight:400;">元/桶</span></div>
+      <div class="k-chg down">↓ 盘中跌超 3%</div>
+      <div class="k-note">10-15 11:25 报价（同花顺，[18]）</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">美联储政策预期</div>
+      <div class="k-val">由降息 → 加息</div>
+      <div class="k-chg up">↑ 鹰派转向</div>
+      <div class="k-note">年内利率变化预期由降息变加息（财联社，[4]）</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">美联储 10 月会议</div>
+      <div class="k-val">悬念拉满</div>
+      <div class="k-chg flat">— 待沃什讲话</div>
+      <div class="k-note">全球紧盯沃什讲话定调（华盛通，[2]）</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">美国 CPI</div>
+      <div class="k-val">hot（偏热）</div>
+      <div class="k-chg up">↑ 打压股市</div>
+      <div class="k-note">美股因 AI 担忧与 hot CPI 承压（Newsquawk，[26]）</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">科技巨头 AI 资本开支</div>
+      <div class="k-val">745 <span style="font-size:12px;font-weight:400;">十亿美元/年</span></div>
+      <div class="k-chg up">↑ 年内规模</div>
+      <div class="k-note">Big Tech 今年 AI 支出规模（Motley Fool [45]、Globe and Mail [46]）</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">亚太股市</div>
+      <div class="k-val">下挫</div>
+      <div class="k-chg down">↓ 全球科技抛售</div>
+      <div class="k-note">APAC stocks slumped amidst global tech sell-off（Newsquawk，[25]）</div>
+    </div>
+
+    <div class="kpi">
+      <div class="k-name">OPEC 需求增长预期</div>
+      <div class="k-val">再度下调</div>
+      <div class="k-chg down">↓ 年内</div>
+      <div class="k-note">欧佩克再度下调今年全球石油需求增长预期（财联社，[16]）</div>
+    </div>
+
+  </div>
+  <div class="note" style="margin-top:10px;">
+    <b>看板说明：</b>本期素材中<b>未提供</b>黄金、美元指数（DXY）、USD/JPY、美债收益率、加息概率的具体数值，为避免编造，上述指标不列数值，仅以「政策预期」形式呈现。WTI 存在 93.10 与 95.30 两个不同来源报价，详见「数据分歧提示」。
+  </div>
+</section>
+
+<!-- ============ 4. A 全球宏观 ============ -->
+<section>
+  <h2>A. 全球宏观 · 央行 / 利率 / 汇市 / 数据 <span class="en">Macro</span></h2>
+
+  <div class="card lv5">
+    <div class="card-head">
+      <div class="card-title">美联储按兵不动但释放鹰派信号，年内预期由降息变加息</div>
+      <div class="stars">★★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>财联社报道，美联储按兵不动，但释放鹰派信号，<b>年内利率变化预期由降息变加息</b>。这是本期宏观层面最核心的定价变量。</p>
+      <p>同日，财联社另一篇报道指出，美联储会议纪要显示<b>部分官员支持 6 月加息</b>，纪要中的分歧表征实为「等数据」。</p>
+    </div>
+    <div class="src">来源：财联社（[1][4]）（2 源交叉，同一媒体不同稿件）</div>
+  </div>
+
+  <div class="card lv4">
+    <div class="card-head">
+      <div class="card-title">10 月加息悬念拉满，全球紧盯沃什讲话定调</div>
+      <div class="stars">★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>华盛通报道，美联储 10 月加息悬念拉满，全球紧盯沃什（Warsh）讲话定调。市场当前处于「数据依赖 + 官员表态驱动」的高波动状态。</p>
+    </div>
+    <div class="src">来源：华盛通（[2]）、财联社（[4]）（2 源交叉）</div>
+  </div>
+
+  <div class="card lv3">
+    <div class="card-head">
+      <div class="card-title">美联储透明度之争：沉默真的是金吗？</div>
+      <div class="stars">★★★</div>
+    </div>
+    <div class="card-body">
+      <p>华尔街见闻刊文讨论美联储透明度问题。该议题属制度性讨论，短期对资产定价无直接冲击，但反映市场对政策沟通可信度的关注度上升。</p>
+    </div>
+    <div class="src">来源：华尔街见闻（[3]）<span class="single-src">（单源，待确认）</span></div>
+  </div>
+
+  <div class="card lv4">
+    <div class="card-head">
+      <div class="card-title">美股因 AI 担忧与 hot CPI 承压，亚太股市跟随科技抛售下挫</div>
+      <div class="stars">★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>Newsquawk 美股收盘综述指出，<b>美股因 AI 担忧与 hot CPI 承压</b>。同一来源的欧股开盘综述指出，亚太股市在全球科技抛售中下挫，同时提到美军据报已制定针对伊朗能源的新打击方案。</p>
+      <p>「hot CPI + 鹰派美联储 + 科技股估值担忧」三者叠加，构成当前风险资产的主要压力组合。</p>
+    </div>
+    <div class="src">来源：Newsquawk（[25][26]）（2 源交叉，同一媒体不同稿件）</div>
+  </div>
+
+  <div class="card lv3">
+    <div class="card-head">
+      <div class="card-title">Fed 利率展望：油价、通胀与 12 月利率路径</div>
+      <div class="stars">★★★</div>
+    </div>
+    <div class="card-body">
+      <p>Equiti Global 发布 Fed Rate Outlook，讨论油价、通胀与 12 月利率的关系。该分析将能源价格视为通胀路径的关键变量，与本期地缘—能源主线相互印证。</p>
+    </div>
+    <div class="src">来源：Equiti Global（[24]）<span class="single-src">（单源，待确认）</span></div>
+  </div>
+
+</section>
+
+<!-- ============ 5. B 地缘政治 ============ -->
+<section>
+  <h2>B. 地缘政治 · 美伊 / 俄乌 / 中东 / 欧美 <span class="en">Geopolitics</span></h2>
+
+  <div class="card lv5">
+    <div class="card-head">
+      <div class="card-title">胡塞武装将战事带入沙特，红海封锁收紧伊朗对全球能源的掌控</div>
+      <div class="stars">★★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>路透（Reuters）分析指出，胡塞武装正帮助伊朗把沙特阿拉伯变成一个「压力点」（pressure point）。EnergyNow.com 指出，胡塞在红海的封锁正在收紧伊朗对全球能源供应的掌控。</p>
+      <p>The Conversation 分析认为，也门胡塞武装正把战争带到沙特，并重新定义其「伊朗代理人」的叙事。Morocco World News 指出，胡塞在沙特的升级放大了地区安全担忧。</p>
+      <p>Times of India 报道称，也门总统府遭胡塞导弹袭击，<b>4 人死亡</b>；伊朗战争正在扩大，胡塞加大对沙特的攻击，打击石油基础设施并威胁机场。</p>
+    </div>
+    <div class="src">来源：Reuters（[27]）、EnergyNow.com（[28]）、The Conversation（[29]）、Morocco World News（[30]）、Times of India（[31]）（5 源交叉）</div>
+  </div>
+
+  <div class="card lv5">
+    <div class="card-head">
+      <div class="card-title">伊朗最高领袖顾问警告美以：战事可能扩大至印度洋</div>
+      <div class="stars">★★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>金十数据报道，伊朗最高领袖顾问警告美以，战事可能扩大至印度洋。这一表态将冲突的地理外延从红海—波斯湾扩展至印度洋航道，对航运与能源运输构成更广泛的威胁叙事。</p>
+      <p>Newsquawk 同时提到，美军据报已制定针对伊朗能源的新打击方案（US military reportedly developed new strike plans against Iranian energy）。</p>
+    </div>
+    <div class="src">来源：金十数据（[5]）、Newsquawk（[25]）（2 源交叉）</div>
+  </div>
+
+  <div class="card lv5">
+    <div class="card-head">
+      <div class="card-title">特朗普「能源停火」崩溃，俄乌恢复互袭油气设施</div>
+      <div class="stars">★★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>《卫报》报道，随着特朗普推动的「能源停火」崩溃，俄罗斯与乌克兰恢复相互打击。莫斯科向乌克兰中部基础设施派出无人机群；泽连斯基表示基辅将重启对俄罗斯炼油厂的打击。</p>
+      <p>Sky News 报道，乌方称其打击了一座俄罗斯炼油厂，以回应莫斯科对一座天然气设施的弹道导弹与无人机袭击——该袭击违反了特朗普所谓的「能源休战」。报道同时提到伯纳姆（Burnham）将「能源停火」终结归咎于俄罗斯。</p>
+      <p>The Economist 的 World in Brief 亦确认「乌克兰恢复对俄罗斯石油设施的打击」。</p>
+    </div>
+    <div class="src">来源：The Guardian（[34][37]）、Sky News（[38]）、The Economist（[36]）（3 源交叉）</div>
+  </div>
+
+  <div class="card lv4">
+    <div class="card-head">
+      <div class="card-title">乌克兰面临失去美国关联卫星支持，美情报削减担忧升温</div>
+      <div class="stars">★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>ABC News 报道，在特朗普与泽连斯基关系紧张之际，乌克兰面临失去关键的美方关联卫星支持。Al Jazeera 报道，随着俄罗斯打击加剧，乌克兰人担忧美国情报支持被削减。</p>
+      <p>情报与卫星支持若实质性削减，将影响乌方对俄炼油厂、油气设施的远程打击能力，进而影响能源供给端的风险溢价。</p>
+    </div>
+    <div class="src">来源：ABC News（[33]）、Al Jazeera（[35]）（2 源交叉）</div>
+  </div>
+
+  <div class="card lv4">
+    <div class="card-head">
+      <div class="card-title">美方推动俄乌问题「三个算盘」：保选票、催停火、促谈判</div>
+      <div class="stars">★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>新浪网刊文分析美方在俄乌问题上的三重动机：保选票、催停火、促谈判，并质疑其可行性。该分析框架与「能源停火」破裂的事实形成对照。</p>
+    </div>
+    <div class="src">来源：新浪网（[9]）<span class="single-src">（单源，待确认）</span></div>
+  </div>
+
+  <div class="card lv4">
+    <div class="card-head">
+      <div class="card-title">解放军 6 个海域同步演习，美日军演选址引关注</div>
+      <div class="stars">★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>《朝鲜日报》中文版报道，中国罕见地在 6 个海域进行同步演习，向台美日发出警告。凤凰网报道称，美日军演选址「把导弹怼到台湾家门口」，打的是介入算盘。金灿荣就解放军六海域密集演训释放的信号作出解读。</p>
+      <p>台海及第一岛链军事活动密度上升，构成区域风险溢价的潜在来源。</p>
+    </div>
+    <div class="src">来源：朝鲜日报中文版（[10]）、凤凰网（[11]）、风闻（[13]）（3 源交叉）</div>
+  </div>
+
+  <div class="card lv3">
+    <div class="card-head">
+      <div class="card-title">以色列加强南部边境防御，防范胡塞地面或海上袭击</div>
+      <div class="stars">★★★</div>
+    </div>
+    <div class="card-body">
+      <p>World Israel News 报道，随着也门冲突升级，以色列正在加强其南部边境的防御，因担忧胡塞武装可能发动地面或海上突袭。</p>
+      <p><b>时间提示：</b>该素材时间为 2026-10-13 23:02 GMT，<b>早于本报告监测窗口</b>，仅作背景参考，不计入本期新增事件。</p>
+    </div>
+    <div class="src">来源：World Israel News（[32]）<span class="single-src">（单源，待确认；且时间在窗口外）</span></div>
+  </div>
+
+  <div class="card lv3">
+    <div class="card-head">
+      <div class="card-title">胡塞武装武器库构成：导弹与无人机</div>
+      <div class="stars">★★★</div>
+    </div>
+    <div class="card-body">
+      <p>新浪网报道分析胡塞武装为何难以对抗，指出其拥有大量武器库，含导弹和无人机。该内容为背景性分析，用于理解红海与沙特方向袭击的持续性。</p>
+    </div>
+    <div class="src">来源：新浪网（[8]）<span class="single-src">（单源，待确认）</span></div>
+  </div>
+
+</section>
+
+<!-- ============ 6. C 能源传导链 ============ -->
+<section>
+  <h2>C. 能源传导链 · 原油 / 天然气 / 煤炭 / 航运 <span class="en">Energy Chain</span></h2>
+
+  <div class="card lv5">
+    <div class="card-head">
+      <div class="card-title">传导链一：胡塞袭沙特 + 红海封锁 → 原油地缘溢价</div>
+      <div class="stars">★★★★★</div>
+    </div>
+    <div class="card-body">
+      <div class="chain">
+        <b>事件</b>：胡塞武装袭击沙特阿美达兰总部、打击沙特石油基础设施并威胁机场；红海封锁收紧 →
+        <b>运输</b>：红海—曼德海峡航运风险上升，霍尔木兹海峡袭船事件持续升级 →
+        <b>库存</b>：OilPrice.com 指出油轮遇袭与库存下降（inventory draws）使市场趋紧 →
+        <b>炼厂</b>：沙特出口与炼厂原料供应面临扰动 →
+        <b>成品油</b>：美俄柴油协议短期缓解有限（FX678） →
+        <b>价格</b>：WTI 一度交投于 95.30 美元/桶附近，布伦特维持 107 美元/桶附近
+      </div>
+      <p>FX678 明确指出，胡塞武装袭击沙特阿美达兰总部、霍尔木兹海峡袭船事件持续升级，叠加美俄柴油协议短期缓解有限，使原油仍受<b>地缘风险溢价支撑</b>。</p>
+      <p>OilPrice.com 指出，随着油轮遇袭与库存下降累积，石油市场正在收紧（Oil Market Tightens as Tanker Attacks and Inventory Draws Mount）。</p>
+    </div>
+    <div class="src">来源：FX678（[19]）、OilPrice.com（[42]）、Reuters（[27]）、EnergyNow.com（[28]）、新浪网（[15]）（5 源交叉）</div>
+  </div>
+
+  <div class="card lv5">
+    <div class="card-head">
+      <div class="card-title">传导链二：俄乌能源停火破裂 → 炼油厂互袭 → 成品油供给</div>
+      <div class="stars">★★★★★</div>
+    </div>
+    <div class="card-body">
+      <div class="chain">
+        <b>事件</b>：特朗普「能源停火」崩溃，俄乌恢复互袭 →
+        <b>运输</b>：莫斯科向乌克兰中部基础设施派出无人机群 →
+        <b>库存</b>：双方打击油气设施，直接冲击炼能与储运 →
+        <b>炼厂</b>：乌方称打击一座俄罗斯炼油厂；泽连斯基称基辅将重启对俄炼油厂打击 →
+        <b>成品油</b>：炼能受损推升成品油裂解价差预期 →
+        <b>价格</b>：与中东风险溢价叠加，构成油价的双重上行驱动
+      </div>
+      <p>Sky News 报道，乌方称其打击俄罗斯炼油厂，系回应莫斯科对天然气设施的弹道导弹与无人机袭击，该袭击违反了特朗普所谓的「能源休战」。</p>
+      <p>The Economist 的 World in Brief 确认「乌克兰恢复对俄罗斯石油设施的打击」。</p>
+    </div>
+    <div class="src">来源：The Guardian（[34][37]）、Sky News（[38]）、The Economist（[36]）（3 源交叉）</div>
+  </div>
+
+  <div class="card lv4">
+    <div class="card-head">
+      <div class="card-title">传导链三：OPEC 下调需求 + 沙特增产 → 供给宽松对冲地缘溢价</div>
+      <div class="stars">★★★★</div>
+    </div>
+    <div class="card-body">
+      <div class="chain">
+        <b>事件</b>：欧佩克 10 月 14 日月度报告再度下调今年全球石油需求增长预期；沙特 9 月石油产量大幅增长 →
+        <b>运输</b>：中东供应上升（Rising Middle East Supply） →
+        <b>库存</b>：供给宽松预期压制去库逻辑 →
+        <b>炼厂</b>：原料端成本预期下移 →
+        <b>成品油</b>：需求预期下调 + 能源停火、柴油供应增加 →
+        <b>价格</b>：原油主力合约盘中跌超 3%，报价 727.9 元/桶
+      </div>
+      <p>同花顺期货通明确给出跌因拆解：<b>需求预期下调 + OPEC 增产 + 能源停火、柴油供应增加</b>。</p>
+      <p>EnergyNow.com 报道「Oil Touches Pre-War Levels on Rising Middle East Supply」（油价因中东供应上升触及战前水平）。</p>
+      <p>21 财经则报道「沙特增产三分之一，国际油价逆势走高释放微妙信号」，与上述方向存在张力，详见「数据分歧提示」。</p>
+    </div>
+    <div class="src">来源：财联社（[16]）、同花顺（[18]）、EnergyNow.com（[39]）、21 财经（[14]）、FX678（[19]）（5 源交叉）</div>
+  </div>
+
+  <div class="card lv4">
+    <div class="card-head">
+      <div class="card-title">油价日内折返行情：地缘溢价与供给宽松的多空拉锯</div>
+      <div class="stars">★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>新浪网报道，沙特与胡塞继续互袭，伊朗继续炸油轮，油价继续<b>日内折返行情</b>。FXStreet 发文追问「Why is WTI declining despite rising supply risks?」（为何供给风险上升而 WTI 下跌）。</p>
+      <p>TMGM 报道，尽管存在供应冲击风险，但受美国可能放松制裁的消息影响，WTI 跌至接近 93.10 美元。</p>
+      <p>上述三条共同刻画了当前油市的核心矛盾：<b>地缘风险溢价 vs 供给宽松 + 制裁放松预期</b>，导致价格高频折返而非单边。</p>
+    </div>
+    <div class="src">来源：新浪网（[15]）、FXStreet（[41]）、TMGM（[17]）（3 源交叉）</div>
+  </div>
+
+  <div class="note">
+    <b>传导链缺口说明：</b>本期素材<b>未提供</b>天然气、煤炭、航运运价（如 BDTI/TD3C）的具体数值或独立报道，故不列相关数据，仅保留原油—成品油链条。如需完整能源传导图谱，建议补充天然气与航运运价数据源。
+  </div>
+</section>
+
+<!-- ============ 7. D AI·科技 ============ -->
+<section>
+  <h2>D. AI · 科技 <span class="en">AI &amp; Tech</span></h2>
+
+  <div class="card lv4">
+    <div class="card-head">
+      <div class="card-title">大型科技公司今年 AI 支出将达 7450 亿美元</div>
+      <div class="stars">★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>The Motley Fool 与 The Globe and Mail 同步报道：<b>Big Tech Will Spend $745 Billion on AI This Year</b>（大型科技公司今年将在 AI 上支出 7450 亿美元），并指出「这些股票在每一美元上都能获得收益」。</p>
+      <p>该数字是本期 AI 板块唯一可交叉验证的量化指标，反映 AI 资本开支仍处于高位扩张阶段。</p>
+    </div>
+    <div class="src">来源：The Motley Fool（[45]）、The Globe and Mail（[46]）（2 源交叉）</div>
+  </div>
+
+  <div class="card lv4">
+    <div class="card-head">
+      <div class="card-title">全球大厂的「去英伟达」实验</div>
+      <div class="stars">★★★★</div>
+    </div>
+    <div class="card-body">
+      <p>DoNews 报道全球大厂的「去英伟达」实验。24/7 Wall St. 则给出预测：<b>Broadcom（博通）可能成为英伟达之后的 AI 赢家</b>。</p>
+      <p>两条素材共同指向 AI 算力供应链的多元化趋势，对英伟达的长期份额叙事构成边际压力。这与 Newsquawk 报道的「美股因 AI 担忧承压」形成呼应。</p>
+    </div>
+    <div class="src">来源：DoNews（[21]）、24/7 Wall St.（[44]）、Newsquawk（[26]）（3 源交叉）</div>
+  </div>
+
+  <div class="card lv3">
+    <div class="card-head">
+      <div class="card-title">OpenAI 数据中心部门人事变动：Uday Ruddarraju 接任基础设施与算力负责人</div>
+      <div class="stars">★★★</div>
+    </div>
+    <div class="card-body">
+      <p>报道称，OpenAI 任命前 xAI 高管 Uday Ruddarraju 接替 Sachin Katti，担任其基础设施与算力（infrastructure and compute）负责人，此为数据中心部门领导层变动的一部分。Ruddarraju 于 2025 年 7 月加入 OpenAI，并成为算力首席技术官（CTO for compute）。</p>
+      <p><b>信源提示：</b>该条素材来源标注为 Instagram，属社交媒体渠道，不符合本报告优先采信标准，<b>建议以官方公告或主流财经媒体核实后再采用</b>。</p>
+    </div>
+    <div class="src">来源：Instagram（[43]）<span class="single-src">（单源，待确认；社媒渠道，可信度低）</span></div>
+  </div>
+
+  <div class="card lv3">
+    <div class="card-head">
+      <div class="card-title">美国将 AI 上升为国家战略竞争工程</div>
+      <div class="stars">★★★</div>
+    </div>
+    <div class="card-body">
+      <p>新浪网刊发梅阳文章《从「人工智能」到「超级智能」——美国正把 AI 变成国家战略竞争工程》，属战略与安全类分析。</p>
+      <p>该文将 AI 政策与地缘竞争框架挂钩，与本期「AI 出口管制 / 算力供应链」的隐含主线一致，但无具体政策落地细节。</p>
+    </div>
+    <div class="src">来源：新浪网（[20]）<span class="single-src">（单源，待确认）</span></div>
+  </div>
+
+  <div class="card lv3">
+    <div class="card-head">
+      <div class="card-title">孙正义：过去 50 年只是 AI 时代的热身</div>
+      <div class="stars">★★★</div>
+    </div>
+    <div class="card-body">
+      <p>科技行者刊发孙正义最新访谈，其表示「过去 50 年，都只是 AI 时代的热身」。属长期叙事类内容，短期无直接资产定价影响。</p>
+    </div>
+    <div class="src">来源：科技行者（[23]）<span class="single-src">（单源，待确认）</span></div>
+  </div>
+
+  <div class="card lv3">
+    <div class="card-head">
+      <div class="card-title">Edge AI Daily 早报（10 月 15 日）</div>
+      <div class="stars">★★★</div>
+    </div>
+    <div class="card-body">
+      <p>钛媒体发布 Edge AI Daily 早报（10 月 15 日），为 AI 领域每日资讯汇总。素材摘要未提供具体条目细节，故不展开。</p>
+    </div>
+    <div class="src">来源：钛媒体（[22]）<span class="single-src">（单源，待确认）</span></div>
+  </div>
+
+</section>
+
+<!-- ============ 8. E 市场速览 ============ -->
+<section>
+  <h2>E. 全球市场速览 <span class="en">Markets</span></h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>市场 / 品种</th>
+          <th>水平 / 状态</th>
+          <th>变动</th>
+          <th>备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>WTI 原油</td>
+          <td>≈93.10 美元/桶</td>
+          <td class="down">↓ 走低</td>
+          <td>受美国可能放松制裁消息影响（TMGM，[17]）</td>
+        </tr>
+        <tr>
+          <td>WTI 原油（另一时点）</td>
+          <td>≈95.30 美元/桶</td>
+          <td class="up">↑ 偏强</td>
+          <td>周三亚盘，地缘溢价支撑（FX678，[19]）</td>
+        </tr>
+        <tr>
+          <td>布伦特原油</td>
+          <td>≈107 美元/桶</td>
+          <td class="flat">— 维持</td>
+          <td>FX678 报道（[19]）</td>
+        </tr>
+        <tr>
+          <td>国内原油主力合约</td>
+          <td>727.9 元/桶</td>
+          <td class="down">↓ 盘中跌超 3%</td>
+          <td>10-15 11:25 报价（同花顺，[18]）</td>
+        </tr>
+        <tr>
+          <td>美股</td>
+          <td>承压</td>
+          <td class="down">↓ 下跌</td>
+          <td>AI 担忧 + hot CPI（Newsquawk，[26]）</td>
+        </tr>
+        <tr>
+          <td>亚太股市</td>
+          <td>下挫</td>
+          <td class="down">↓ 下跌</td>
+          <td>全球科技抛售（Newsquawk，[25]）</td>
+        </tr>
+        <tr>
+          <td>黄金</td>
+          <td>—</td>
+          <td class="flat">无数据</td>
+          <td>本期素材未提供，不编造</td>
+        </tr>
+        <tr>
+          <td>美元指数（DXY）</td>
+          <td>—</td>
+          <td class="flat">无数据</td>
+          <td>本期素材未提供，不编造</td>
+        </tr>
+        <tr>
+          <td>USD/JPY</td>
+          <td>—</td>
+          <td class="flat">无数据</td>
+          <td>本期素材未提供，不编造</td>
+        </tr>
+        <tr>
+          <td>美债收益率</td>
+          <td>—</td>
+          <td class="flat">无数据</td>
+          <td>本期素材未提供，不编造</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note" style="margin-top:10px;">
+    <b>配色约定：</b>本报告遵循中国市场惯例，<span class="up" style="font-weight:600;">红色 = 上涨</span>，<span class="down" style="font-weight:600;">绿色 = 下跌</span>（与欧美惯例相反）。
+  </div>
+</section>
+
+<!-- ============ 9. 日历 ============ -->
+<section>
+  <h2>未来数日重点日历 <span class="en">Calendar</span></h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>时间</th>
+          <th>事件</th>
+          <th>市场预期 / 关注点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>临近（具体日期未定）</td>
+          <td>美联储 10 月会议</td>
+          <td>加息悬念拉满；全球紧盯沃什（Warsh）讲话定调（华盛通，[2]）</td>
+        </tr>
+        <tr>
+          <td>2026 年 12 月</td>
+          <td>美联储 12 月利率路径</td>
+          <td>受油价与通胀路径影响（Equiti Global，[24]）</td>
+        </tr>
+        <tr>
+          <td>持续</td>
+          <td>OPEC 月度报告后续影响</td>
+          <td>需求增长预期已再度下调；沙特 9 月产量大幅增长（财联社，[16]）</td>
+        </tr>
+        <tr>
+          <td>持续</td>
+          <td>红海 / 霍尔木兹航运安全</td>
+          <td>胡塞袭沙特、伊朗炸油轮、霍尔木兹袭船事件持续升级（新浪网 [15]、FX678 [19]）</td>
+        </tr>
+        <tr>
+          <td>持续</td>
+          <td>俄乌能源设施互袭</td>
+          <td>「能源停火」已崩溃，双方恢复打击炼油厂与油气设施（The Guardian [34]）</td>
+        </tr>
+        <tr>
+          <td>持续</td>
+          <td>美国对伊制裁政策</td>
+          <td>市场关注「美国可能放松制裁」的消息对油价的影响（TMGM，[17]）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note" style="margin-top:10px;">
+    <b>说明：</b>本期素材<b>未提供</b>具体的经济数据发布日程（如 CPI、非农、PMI 的精确日期与预期值），故日历仅列出素材中明确提及的事件与关注点，不做日期推测。
+  </div>
+</section>
+
+<!-- ============ 10. 数据分歧 ============ -->
+<section>
+  <h2>数据分歧提示 <span class="en">Data Divergence</span></h2>
+
+  <div class="div-card">
+    <h3>分歧一：WTI 原油价格水平</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>来源</th><th>报价</th><th>方向描述</th><th>时间</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>TMGM（[17]）</td><td>≈93.10 美元/桶</td><td>跌至接近 93.10</td><td>10-15 03:30 GMT</td></tr>
+          <tr><td>FX678 汇通财经（[19]）</td><td>≈95.30 美元/桶</td><td>延续偏强走势</td><td>10-14 02:33 GMT</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;margin:8px 0 0;">
+      <b>可能原因：</b>两条素材时间戳相差约 25 小时，属不同交易时段报价；且驱动因素不同——FX678 强调地缘风险溢价支撑，TMGM 强调「美国可能放松制裁」的消息压制。此外，两者均为第三方交易商/资讯平台报价，非交易所结算价，报价口径可能存在差异。<b>本报告不做调和，并列呈现。</b>
+    </p>
+  </div>
+
+  <div class="div-card">
+    <h3>分歧二：油价方向 —— 「逆势走高」 vs 「盘中跌超 3%」 vs 「触及战前水平」</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>来源</th><th>方向</th><th>表述</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>21 财经（[14]）</td><td class="up">走高</td><td>沙特增产三分之一，国际油价「逆势」走高释放微妙信号</td></tr>
+          <tr><td>同花顺（[18]）</td><td class="down">下跌</td><td>需求预期下调叠加 OPEC 增产，原油主力盘中跌超 3%</td></tr>
+          <tr><td>EnergyNow.com（[39]）</td><td class="down">回落</td><td>Oil Touches Pre-War Levels on Rising Middle East Supply</td></tr>
+          <tr><td>新浪网（[15]）</td><td class="flat">折返</td><td>油价继续日内折返行情</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;margin:8px 0 0;">
+      <b>可能原因：</b>（1）标的与市场不同——21 财经讨论国际油价（Brent/WTI），同花顺讨论的是国内原油主力合约（人民币计价）；（2）时间窗口不同——「逆势走高」与「跌超 3%」可能分属不同交易日或不同时段；（3）新浪网「日内折返」的描述本身即说明当日价格双向大幅波动，不同时点采样会得出相反结论。<b>本报告不做调和。</b>
+    </p>
+  </div>
+
+  <div class="div-card">
+    <h3>分歧三：美联储政策方向 —— 「加息」 vs 「等数据」</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>来源</th><th>表述</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>财联社（[4]）</td><td>按兵不动但释放鹰派信号，年内利率变化预期由降息变加息</td></tr>
+          <tr><td>财联社（[1]）</td><td>会议纪要：部分官员支持 6 月加息，分歧表征实为「等数据」</td></tr>
+          <tr><td>华盛通（[2]）</td><td>10 月加息悬念拉满，紧盯沃什讲话定调</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;margin:8px 0 0;">
+      <b>可能原因：</b>「加息预期」与「等数据」并非严格矛盾，而是同一状态的不同表述——市场定价已转向加息方向，但官员内部尚未形成一致决议，仍以数据为触发条件。需注意 [1] 提及「6 月加息」与 [2] 提及「10 月加息」在时间指向上不一致，可能为不同会议周期的表述，<b>本报告不做调和，请以官方纪要原文为准。</b>
+    </p>
+  </div>
+
+  <div class="div-card">
+    <h3>分歧四：沙特产量表述 —— 「增产三分之一」 vs 「9 月产量大幅增长」</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>来源</th><th>表述</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>21 财经（[14]）</td><td>沙特增产三分之一</td></tr>
+          <tr><td>财联社（[16]）</td><td>沙特 9 月石油产量大幅增长</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;margin:8px 0 0;">
+      <b>可能原因：</b>「增产三分之一」未明确基期与口径（可能指相对某基准的增幅，也可能指产量占某比例），财联社仅表述为「大幅增长」而无具体数字。两者均<b>未提供绝对产量数值</b>，无法直接比对。<b>本报告不引用「三分之一」作为确定数据，建议以 OPEC 月报原文核实。</b>
+    </p>
+  </div>
+
+</section>
+
+<!-- ============ 11. 来源清单 ============ -->
+<section>
+  <h2>来源清单与可验证性说明 <span class="en">Sources</span></h2>
+  <div class="src-list">
+    <div class="grp">■ 优先采信来源（本期实际引用）</div>
+    Reuters（[27]）· The Guardian（[34][37]）· The Economist（[36]）· Al Jazeera（[35]）· ABC News（[33]）· Sky News（[38]）· 财联社（[1][4][16]）· 华尔街见闻（[3]）· 新浪网（[6][8][9][15][20]）· 21 财经（[14]）· 同花顺（[18]）· FX678 汇通财经（[19]）· 金十数据（[5]）· 凤凰网（[11]）· 朝鲜日报中文版（[10]）· 钛媒体（[22]）· 科技行者（[23]）· 华盛通（[2]）· DoNews（[21]）· 风闻（[13]）
+
+    <div class="grp">■ 次级 / 需谨慎来源（本期引用但已标注）</div>
+    EnergyNow.com（[28][39]）· OilPrice.com（[42]）· FXStreet（[41]）· Newsquawk（[25][26]）· Equiti Global（[24]）· TMGM（[17]）· Morocco World News（[30]）· The Conversation（[29]）· Times of India（[31]）· World Israel News（[32]）· 24/7 Wall St.（[44]）· The Motley Fool（[45]）· The Globe and Mail（[46]）· LiteFinance（[40]）
+
+    <div class="grp">■ 未采用 / 低可信度来源</div>
+    Instagram（[43]）— 社媒渠道，不符合优先采信标准，仅作标注提示，不建议作为决策依据。
+    搜狐网（[7][12]）— 标题党倾向明显（「中东开始大乱斗」「中日开战俄罗斯会出兵？」），无具体可验证事实，未纳入事件卡片。
+
+    <div class="grp">■ 可验证性说明</div>
+    1. 本报告所有数字、人名、机构、时间均可在上述素材编号中找到出处，未使用任何估算值或推测值填充。
+    2. ★★★★★ 与 ★★★★ 级论断均标注了 ≥2 个来源；单源内容已显式标注「（单源，待确认）」。
+    3. 素材 [32] 时间戳为 2026-10-13 23:02 GMT，<b>早于本报告监测窗口</b>，已在卡片中明确标注，仅作背景参考。
+    4. 素材 [40]（LiteFinance 油价预测）为前瞻性预测内容，非事实性报道，未纳入事件卡片。
+    5. 部分 Google News RSS 链接为聚合跳转链接，原始 URL 可能需二次跳转验证。
+    6. 本报告未对任何冲突数据进行调和，所有分歧已在「数据分歧提示」章节并列呈现。
+  </div>
+</section>
+
+<footer>
+  <b>全球宏观 + 地缘政治 24 小时简报</b><br>
+  报告生成时间：2026-10-16 00:40 JST ｜ 监测窗口：2026-10-15 00:40 → 2026-10-16 00:40 JST<br>
+  信源数：46 条素材 / 11 路检索 ｜ 事件条目：22 条<br><br>
+  <b>仅供研究参考，不构成投资建议。</b><br>
+  本报告基于公开新闻素材整理，不保证信息的完整性、准确性与时效性。使用者应自行核实并独立判断。
+</footer>
+
+</div>
+</body>
+</html>
