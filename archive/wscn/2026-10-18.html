@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华尔街见闻 · 24小时要闻简报 | 2026-10-18</title>
+<style>
+:root{
+  --red:#c0392b; --gold:#b8860b; --blue:#1f5f9f;
+  --red-bg:#fdf2f0; --gold-bg:#fff8e6; --blue-bg:#eef4fb;
+  --ink:#1c2321; --ink-2:#4a5652; --ink-3:#8b9793;
+  --line:#e3e8e5; --bg:#f4f6f5; --card:#ffffff; --accent:#0f3d26;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;padding:16px 12px 40px;}
+.wrap{max-width:760px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#0f3d26 0%,#1f6f43 100%);color:#fff;
+  border-radius:14px;padding:26px 24px 22px;box-shadow:0 4px 18px rgba(15,61,38,.18);}
+.header h1{font-size:21px;font-weight:700;letter-spacing:.3px;line-height:1.4;}
+.header .sub{font-size:12.5px;opacity:.82;margin-top:8px;}
+.header .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.header .meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:4px 11px;font-size:11.5px;}
+.legend{background:var(--card);border-radius:12px;padding:14px 16px;margin-top:14px;
+  display:flex;flex-wrap:wrap;gap:10px 20px;border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);}
+.legend b{color:var(--ink);}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle;}
+.dot.r{background:var(--red);} .dot.y{background:var(--gold);} .dot.b{background:var(--blue);}
+.sec{margin-top:14px;}
+.sec-title{font-size:15px;font-weight:700;color:var(--accent);padding-bottom:8px;margin-bottom:10px;
+  border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:8px;}
+.sec-title .cnt{font-size:11px;font-weight:500;color:var(--ink-3);background:var(--bg);border-radius:10px;padding:1px 8px;}
+.card{background:var(--card);border-radius:11px;padding:14px 16px;margin-bottom:10px;
+  border:1px solid var(--line);border-left:5px solid var(--ink-3);box-shadow:0 1px 3px rgba(0,0,0,.03);}
+.card.lv1{border-left-color:var(--red);background:linear-gradient(180deg,var(--red-bg) 0%,#fff 42%);}
+.card.lv2{border-left-color:var(--gold);background:linear-gradient(180deg,var(--gold-bg) 0%,#fff 42%);}
+.card.lv3{border-left-color:var(--blue);background:linear-gradient(180deg,var(--blue-bg) 0%,#fff 42%);}
+.card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:7px;display:flex;gap:8px;align-items:flex-start;}
+.badge{flex:0 0 auto;font-size:10px;font-weight:700;color:#fff;border-radius:4px;padding:2px 6px;margin-top:3px;letter-spacing:.5px;}
+.badge.r{background:var(--red);} .badge.y{background:var(--gold);} .badge.b{background:var(--blue);}
+.card p{font-size:13.5px;color:var(--ink-2);line-height:1.75;}
+.card .src{font-size:11.5px;color:var(--ink-3);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);}
+.tag-inline{display:inline-block;font-size:10.5px;color:var(--accent);background:#eaf3ee;border-radius:4px;padding:1px 6px;margin-right:5px;}
+.top{background:var(--card);border-radius:12px;padding:6px 4px;border:1px solid var(--line);}
+.top ol{list-style:none;}
+.top li{position:relative;padding:11px 16px 11px 48px;font-size:13.5px;line-height:1.6;
+  border-bottom:1px solid var(--line);color:var(--ink-2);counter-increment:t;}
+.top{counter-reset:t;}
+.top li:last-child{border-bottom:none;}
+.top li::before{content:counter(t);position:absolute;left:15px;top:11px;width:20px;height:20px;
+  border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:8px;}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px 11px;}
+.kpi .k{font-size:11px;color:var(--ink-3);margin-bottom:3px;}
+.kpi .v{font-size:14.5px;font-weight:700;color:var(--ink);}
+.up{color:var(--red);} .down{color:#27ae60;}
+.foot{margin-top:20px;padding:14px 16px;background:var(--card);border-radius:11px;
+  border:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.8;}
+.foot b{color:var(--ink-2);}
+@media (max-width:640px){
+  body{font-size:14px;padding:12px 9px 32px;}
+  .header{padding:20px 17px 18px;border-radius:12px;}
+  .header h1{font-size:18px;}
+  .card{padding:12px 13px;}
+  .kpi{grid-template-columns:repeat(2,1fr);}
+}
+@media print{
+  body{background:#fff;padding:0;}
+  .card,.header,.legend,.top,.foot{box-shadow:none;break-inside:avoid;}
+  .header{background:#0f3d26 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>华尔街见闻 · 过去 24 小时要闻简报</h1>
+    <div class="sub">覆盖窗口：2026-10-17 00:00 — 24:00（北京时间） · 一级信源：华尔街见闻（公开接口）</div>
+    <div class="meta">
+      <span>生成时间 2026-10-18 02:54 JST</span>
+      <span>收录 30 条要闻</span>
+      <span>🔴 关键 8 · 🟡 重要 13 · 🔵 关注 9</span>
+      <span>云端投递 · 关机可收</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot r"></i><b>红色 = 最重要</b> 影响全局资产定价，须立即知晓</span>
+    <span><i class="dot y"></i><b>黄色 = 重要</b> 影响单一市场或板块</span>
+    <span><i class="dot b"></i><b>蓝色 = 关注</b> 趋势性/背景性信息</span>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">一页速览 <span class="cnt">Top 5</span></div>
+    <div class="top"><ol><li>费城半导体指数八连跌创2008年来最长，八日蒸发约2万亿美元</li><li>布伦特原油突破110美元，WTI涨3.51%报101.41美元，连涨七日</li><li>10年期美债收益率重上5.12%，美财政部调查未释放削减发债信号</li><li>国常会部署深化拓展“人工智能+”行动，商务部拟对40项技术实施出口管制</li><li>美国2026财年赤字扩大至1.99万亿美元，净利息支出首破万亿美元</li></ol></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">关键指标看板</div>
+    <div class="kpi"><div><div class="k">道指</div><div class="v down">52002.41 <span style="font-size:11px">-0.34%</span></div></div><div><div class="k">标普500</div><div class="v down">7659.44 <span style="font-size:11px">-1.09%</span></div></div><div><div class="k">纳指</div><div class="v down">26140.03 <span style="font-size:11px">-2.14%</span></div></div><div><div class="k">费城半导体指数</div><div class="v down">— <span style="font-size:11px">-3.83%</span></div></div><div><div class="k">10年期美债收益率</div><div class="v up">5.07% <span style="font-size:11px">+3bp</span></div></div><div><div class="k">WTI 11月原油</div><div class="v up">101.41美元/桶 <span style="font-size:11px">+3.51%</span></div></div><div><div class="k">布伦特12月原油</div><div class="v up">109.86美元/桶 <span style="font-size:11px">+3.72%</span></div></div><div><div class="k">COMEX黄金</div><div class="v up">4186.7美元/盎司 <span style="font-size:11px">+0.4%</span></div></div><div><div class="k">美元指数</div><div class="v down">101.837 <span style="font-size:11px">-0.21%</span></div></div><div><div class="k">恒生指数</div><div class="v up">24186.83 <span style="font-size:11px">+0.52%</span></div></div></div>
+  </div>
+
+  <div class="sec"><div class="sec-title">A. 地缘政治<span class="cnt">2 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>美国众议院两党议员提出议案，拟撤销俄罗斯柴油相关许可并制裁俄能源行业</h3><p>众议院外交事务委员会民主党首席委员Gregory Meeks提出《禁止腐败的俄罗斯石油交易法》，拟撤销财政部海外资产控制办公室已发放的第135号等一般许可，禁止未来继续发放豁免，并要求总统在法案生效<strong>30天</strong>内对参与俄罗斯油气开采、炼制及海上运输的主体实施制裁。议案消息公布后，美股午盘之初WTI原油一度接近<strong>100.90美元</strong>，布伦特原油一度逼近<strong>109.60美元</strong>。</p><div class="src"><span class="tag-inline">俄油制裁</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>商务部回应欧盟拟动用“反胁迫”工具：所谓“欧方施压奏效”毫无依据</h3><p>商务部称中欧按遵守世贸组织规则、基于事实和非歧视三项原则就混动汽车达成的谅解是对等互利的，所谓“欧方施压奏效”的说法毫无依据。商务部表示，欧方不能幻想以施压换取好处，更不要低估中方维护自身利益的决心和能力，敦促欧方与中方相向而行。</p><div class="src"><span class="tag-inline">中欧贸易</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">B. 全球宏观与利率<span class="cnt">5 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>美财政部一级交易商调查未释放削减发债信号，10年期美债收益率重上5.12%</h3><p>在征询一级交易商意见的调查中，美国财政部问到长期国债的回购计划、如何提高回购效率、短债发行时点、经济与融资前景，却没把问题直接指向减少长债供给。部分投资者原本期待财政部会借此次问卷更明确地暗示正考虑缩减长债标售规模。11月4日财政部公布的再融资公告成为下一观察点，花旗预计届时会将20年和30年期美债标售规模各削减<strong>30亿美元</strong>。</p><div class="src"><span class="tag-inline">美债</span>来源：华尔街见闻</div></div><div class="card lv1"><h3><span class="badge r">关键</span>美国2026财年联邦赤字扩大至1.99万亿美元，净利息支出首次突破万亿美元</h3><p>赤字较上一财年增长约<strong>12%</strong>，支出增长约<strong>6%</strong>至<strong>7.4万亿美元</strong>，收入增长约<strong>3%</strong>至<strong>5.4万亿美元</strong>。净利息支出增加<strong>814亿美元</strong>至<strong>1.05万亿美元</strong>，首次突破万亿美元门槛；全年总利息支出达<strong>1.360万亿美元</strong>，预计将于2028年底前超过社会保障支出。</p><div class="src"><span class="tag-inline">美国财政</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>美联储主席沃什曼谷发言偏鸽，市场对10月加息押注概率从约27%回落至15%以下</h3><p>沃什在IMF年会对话中重申致力于价格稳定，但明确表示“我不会预判会议结果”。高盛首席经济学家Jan Hatzius团队指出，结合其他官员表态，沃什此番讲话进一步表明美联储将在10月按兵不动，下次加息预计在12月落地。美联储自10月17日起进入10月27日至28日议息会议前的静默期。</p><div class="src"><span class="tag-inline">美联储</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>IMF警告日本可能需要更快加息，日本政策利率已升至1.25%为31年来最高</h3><p>IMF亚太部门主任Krishna Srinivasan表示，日本央行“正在做正确的事”，若通胀上升快于预期“必须更快收紧”。日本央行已于今年6月和9月相继加息，将政策利率推升至<strong>1.25%</strong>。日本10年期国债收益率上月升破<strong>3%</strong>，创30年新高；截至今年7月日本投资者持有约<strong>23万亿日元</strong>（约合<strong>1450亿美元</strong>）法国国债。</p><div class="src"><span class="tag-inline">日本央行</span>来源：华尔街见闻转引路透社</div></div><div class="card lv3"><h3><span class="badge b">关注</span>8月海外资金重返美债市场，英国持仓首破万亿，中国持债创2008年来新低</h3><p>美国财政部国际资本流动报告显示，8月海外投资者净买入美国国债<strong>1089亿美元</strong>，总持仓升至<strong>9.3317万亿美元</strong>。英国持仓史上首次突破万亿美元至<strong>1.0095万亿美元</strong>，加拿大增持<strong>383亿美元</strong>居首。日本持仓减少<strong>356亿美元</strong>至<strong>1.0683万亿美元</strong>、连续四个月下降；中国大陆持仓减少<strong>273亿美元</strong>至<strong>5907亿美元</strong>，连续两个月创2008年8月以来新低。</p><div class="src"><span class="tag-inline">资本流动</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">C. 能源与大商品<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>布伦特原油自5月以来首次突破110美元，WTI连续第七个交易日收涨</h3><p>WTI 11月合约涨<strong>3.51%</strong>报<strong>101.41美元/桶</strong>，连续第七个交易日收涨；布伦特12月合约涨<strong>3.72%</strong>报<strong>109.86美元/桶</strong>，盘中一度逼近110美元。美国国会两党议员提出议案阻击特朗普松绑俄罗斯柴油出口，地缘政治因素进一步支撑油价。</p><div class="src"><span class="tag-inline">原油</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>美国拟提供最多1700万桶战略储备原油，SPR规模已降至1982年10月以来最低</h3><p>能源部16日提出新一轮原油交换计划，交付时间为11月至次年1月，投标方须在2028年至2029年间归还原油并额外交付至少<strong>12.5%</strong>的溢价。该计划属于今年3月承诺提供<strong>1.72亿桶</strong>原油的一部分。美国战略石油储备规模目前为<strong>1.862亿桶</strong>，为1982年10月以来最低水平。今年6月类似交换因溢价过高，最终仅约<strong>50万桶</strong>获企业借用。</p><div class="src"><span class="tag-inline">战略储备</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>IEA加速释放1亿桶原油储备，并承诺优先释放2000万桶柴油</h3><p>IEA成员国已释放<strong>3.3亿桶</strong>，剩余<strong>1亿桶</strong>系补足3月承诺缺口，美欧在是否追加释放上存在分歧。</p><div class="src"><span class="tag-inline">IEA</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>COMEX黄金涨0.4%报4186.7美元/盎司，LME期铜涨60美元报14408美元/吨</h3><p>COMEX 12月黄金期货涨<strong>0.4%</strong>报<strong>4186.7美元/盎司</strong>，COMEX白银期货跌<strong>0.04%</strong>报<strong>57.135美元/盎司</strong>，美元走弱为金价提供支撑。LME期铜涨<strong>60美元</strong>报<strong>14408美元/吨</strong>，期铝涨<strong>14美元</strong>报<strong>3002美元/吨</strong>，期镍涨<strong>142美元</strong>报<strong>15363美元/吨</strong>，期锡涨<strong>259美元</strong>报<strong>50384美元/吨</strong>。</p><div class="src"><span class="tag-inline">贵金属·工业金属</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">D. 市场与资金<span class="cnt">6 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>费城半导体指数连跌八个交易日创2008年以来最长纪录，八日蒸发市值约2万亿美元</h3><p>费城半导体指数连续第八个交易日下跌，创2008年金融危机以来最长连跌纪录，本周累跌<strong>11.4%</strong>，八个交易日累计跌逾<strong>13%</strong>。若按各股较52周高点跌幅计算，整个板块损失市值约达<strong>4万亿美元</strong>，但该指数年内仍累涨约<strong>60%</strong>。美光本周跌<strong>14.6%</strong>，存储芯片指数累跌<strong>17.6%</strong>；CoreWeave周五再跌<strong>11.9%</strong>，本周累计跌超<strong>25%</strong>。</p><div class="src"><span class="tag-inline">半导体</span>来源：华尔街见闻</div></div><div class="card lv1"><h3><span class="badge r">关键</span>美股三大指数集体收跌，纳指跌2.14%领跌，能源与公用事业板块逆势领涨</h3><p>道指跌<strong>0.34%</strong>报<strong>52002.41点</strong>，标普500指数跌<strong>1.09%</strong>报<strong>7659.44点</strong>，纳指跌<strong>2.14%</strong>报<strong>26140.03点</strong>。标普十一大板块六涨五跌，能源板块涨<strong>2.47%</strong>、公用事业板块涨<strong>1.40%</strong>领涨，科技板块跌<strong>2.54%</strong>、通信服务板块跌<strong>2.45%</strong>领跌；存储概念指数跌<strong>6.28%</strong>，CoreWeave跌近<strong>12%</strong>。</p><div class="src"><span class="tag-inline">美股</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>A股尾盘20分钟突然爆量，大资金涌入宽基ETF；沪指涨0.24%报3716.28点</h3><p>沪指涨<strong>0.24%</strong>报<strong>3716.28点</strong>，深证成指跌<strong>0.12%</strong>报<strong>11802.46点</strong>，创业板指跌<strong>0.39%</strong>报<strong>2772.38点</strong>，沪深两市成交<strong>1.56万亿元</strong>、较上一交易日缩量约<strong>776亿元</strong>。低空经济与军工板块爆发，药明康德跌<strong>6.6%</strong>拖累创新药。</p><div class="src"><span class="tag-inline">A股</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>港股恒生指数涨0.52%，恒生科技指数涨1.16%，联想集团涨8%</h3><p>恒生指数涨<strong>0.52%</strong>报<strong>24186.83点</strong>，恒生科技指数涨<strong>1.16%</strong>报<strong>4108.24点</strong>。权重科网股集体反弹，联想集团涨<strong>8%</strong>。</p><div class="src"><span class="tag-inline">港股</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>印尼雅加达综合指数暴跌11.57%并触发熔断，MSCI称印尼或不再适合列为新兴市场</h3><p>印尼雅加达综合指数暴跌<strong>11.57%</strong>并触发熔断，此前MSCI称印尼或已不再适合被列为新兴市场。同日日经225指数涨<strong>1.39%</strong>报<strong>65324.29点</strong>，韩国综指涨<strong>2.05%</strong>报<strong>5668.05点</strong>。</p><div class="src"><span class="tag-inline">亚太市场</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>离岸人民币盘中涨破6.69、逼近6.6830，连续两日刷新2022年7月以来高位</h3><p>美元指数跌<strong>0.21%</strong>报<strong>101.837</strong>，录得逾一个月来首次单周下跌；离岸人民币盘中涨破<strong>6.69</strong>、逼近<strong>6.6830</strong>，连续两日刷新2022年7月以来高位。比特币回升至<strong>8.2万美元</strong>附近企稳，本周早些时候一度跌破8万美元关口。</p><div class="src"><span class="tag-inline">外汇·加密</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">E. AI·科技<span class="cnt">7 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>国常会部署深化拓展“人工智能+”行动，商务部、科技部拟对40项技术实施出口管制</h3><p>国常会要求以落地应用牵引技术创新，夯实发展底座、加强技术攻关和算法创新、促进算电协同、增加高质量数据供给；会议同时原则通过价格法修正草案，明确治理低价无序竞争。商务部、科技部拟对人工智能、生物医药、光伏三个领域<strong>40项</strong>技术实施出口管制，其中拟禁止出口<strong>14项</strong>、限制出口<strong>26项</strong>，人工智能领域涵盖大模型、智能体、算力集群等<strong>23项</strong>技术，光伏领域涵盖多晶硅、硅片、电池制造<strong>12项</strong>技术。</p><div class="src"><span class="tag-inline">AI政策</span>来源：华尔街见闻</div></div><div class="card lv1"><h3><span class="badge r">关键</span>CoreWeave信用风险攀升，部分债券收益率一度突破15%、违约概率定价约60%</h3><p>CoreWeave部分债券收益率周四一度突破<strong>15%</strong>，其违约概率被市场定价至约<strong>60%</strong>，信用风险已进入困境区间；股价周五单日再跌<strong>12%</strong>，较年内高点累计腰斩逾<strong>50%</strong>。三位联合创始人自2025年3月上市以来累计出售价值<strong>33亿美元</strong>股票，其中2026年一年套现<strong>24亿美元</strong>；公司五年期信用违约互换利差一度升至<strong>1194.5个基点</strong>。</p><div class="src"><span class="tag-inline">AI债务</span>来源：华尔街见闻转引彭博</div></div><div class="card lv2"><h3><span class="badge y">重要</span>Anthropic拟向黑石提供逾10%收益率，推进600亿美元芯片融资</h3><p>Anthropic正向黑石集团提供逾<strong>10%</strong>的收益率，以换取后者参与代号“Project North Star”、总规模高达<strong>600亿美元</strong>的债务融资。黑石旗下基金将认购其中<strong>90亿美元</strong>，约占<strong>180亿美元</strong>次级贷款的一半。整体债务结构中约<strong>420亿美元</strong>为优先级债务，由Broadcom提供担保。四个月前Anthropic以<strong>8.5%</strong>利率完成约<strong>44亿美元</strong>融资。</p><div class="src"><span class="tag-inline">AI融资</span>来源：华尔街见闻转引英国《金融时报》</div></div><div class="card lv2"><h3><span class="badge y">重要</span>花旗、美银、摩根大通集体限制AI智能代理访问客户账户</h3><p>花旗明确表示不允许“第三方AI代理或助手登录客户账户，或直接在其数字银行平台上进行交易”；美国银行CEO Brian Moynihan表示正限制AI代理访问消费者存款账户；摩根大通CEO Jamie Dimon称“不会允许任何外部代理进入公司系统”。阿波罗首席经济学家Torsten Slok测算，AI助手可能自动将家庭闲置资金从全国平均仅<strong>0.1%</strong>的活期账户利率，转移至利率达<strong>3.3%至5%</strong>的账户；摩根大通、美国银行和富国银行合计持有<strong>1.6万亿美元</strong>无息存款，占其负债总额的<strong>16%</strong>。</p><div class="src"><span class="tag-inline">AI金融</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>长鑫科技前三季度净利润超1300亿元，同比扭亏为盈</h3><p>长鑫科技预计归母净利润<strong>1310亿元至1325亿元</strong>，较上年同期亏损<strong>52.80亿元</strong>大幅扭亏；营业收入预计<strong>2650亿元至2700亿元</strong>，同比增长逾七倍。公司将业绩改善归因于AI算力需求带动全球DRAM景气度提升、产品供不应求价格大幅上涨。董事长朱一明提议回购<strong>10亿至20亿元</strong>股份。</p><div class="src"><span class="tag-inline">存储芯片</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>苹果首款折叠屏手机iPhone Duo开启预购，首发现货秒空、发货排到明年1月</h3><p>10月16日20时开启预售后苹果官网和App被挤崩，10月23日首发日到店取货迅速售罄，邮寄下单发货时间已排到明年1月下旬。该机256GB版本售价<strong>15999元</strong>，1TB版本<strong>21499元</strong>。得物App显示多个版本预售成交价突破2万元，1TB黑色版本接近<strong>2.9万元</strong>，比发售价高出<strong>7143元</strong>。</p><div class="src"><span class="tag-inline">消费电子</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>三季度全球智能手机出货量暴跌22%，创有纪录以来季度同比最大降幅</h3><p>IDC初步数据显示当季出货量降至<strong>2.553亿部</strong>，同比萎缩<strong>22.0%</strong>。存储芯片成本较去年上涨约<strong>350%</strong>，前五大品牌出货量同比全部下滑，OPPO、vivo降幅均超<strong>30%</strong>。IDC预计市场增长将持续受限至2027年，复苏至少要推迟到2028年。同期中国大陆智能手机出货量<strong>5930万台</strong>，同比下滑<strong>12%</strong>。</p><div class="src"><span class="tag-inline">智能手机</span>来源：华尔街见闻转引IDC</div></div></div><div class="sec"><div class="sec-title">F. 机构观点精选<span class="cnt">5 条</span></div><div class="card lv2"><h3><span class="badge y">重要</span>巴克莱：AI交易“最佳阶段”已过，芯片股暴跌是仓位出清而非基本面崩塌</h3><p>巴克莱认为芯片股暴跌是仓位出清而非基本面崩塌；高盛预测五大超大规模公司明年资本支出约<strong>1.2万亿美元</strong>。英伟达CEO黄仁勋在柏林表示市场动荡终将过去，AI变革才刚刚开始。</p><div class="src"><span class="tag-inline">AI交易</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>摩根士丹利：AI资本开支暗藏“租赁账单”，2027年投资额上调至1.5万亿美元</h3><p>该行指出，除自建数据中心外，算力租赁承诺正成为科技巨头表外的重要支出来源，这部分隐性负债使市场对真实资本开支强度的评估偏低。在折旧年限与租赁合同期限错配的情况下，未来的利润压力可能比当前盈利指引所显示的更晚、也更集中地显现。</p><div class="src"><span class="tag-inline">AI资本开支</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>高盛：对冲基金已清空2025年以来AI净买入，逼空燃料充足</h3><p>数据显示对冲基金连续五个交易日净卖出全球AI股票，2025年以来的净买入头寸被彻底清除，净配置比例从6月峰值<strong>31.7%</strong>降至<strong>26.1%</strong>，多空比从<strong>4.34</strong>降至<strong>3.27</strong>、处于过去一年第7百分位。全球股票净流量达负<strong>2.1个标准差</strong>，多头平仓与空头卖出之比约<strong>3比1</strong>。</p><div class="src"><span class="tag-inline">资金流</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>德银：黄金量化抛压接近绝对耗尽，金价需升至约4370美元才触发下一轮程序化买入</h3><p>金属研究主管Daniel Ghali指出，量化基金风险平价组合的去杠杆规模已达2010年以来完整样本的第<strong>90百分位</strong>，CTA基金被迫回补约<strong>20%</strong>的黄金净空头头寸，白银、铂金、钯金分别需增加<strong>7%</strong>、<strong>13%</strong>、<strong>15%</strong>。模拟显示几乎所有价格情景下算法系统目前均偏向买入黄金，但金价需升至约<strong>4370美元</strong>才能触发下一轮大规模程序化买入。</p><div class="src"><span class="tag-inline">黄金</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>穆迪分析：伊朗战争已给美国家庭带来近2000美元成本</h3><p>首席经济学家Mark Zandi估算，自2月28日美以对伊朗发动打击以来，综合经济负担约<strong>2650亿美元</strong>，其中能源与交通成本约<strong>1100美元</strong>、加息导致的借贷成本约<strong>540美元</strong>、军事支出分摊约<strong>360美元</strong>。这笔成本已吞噬美国普通家庭过去八个月收入增幅的约一半。白宫迅速驳斥该测算。</p><div class="src"><span class="tag-inline">地缘成本</span>来源：华尔街见闻</div></div></div>
+
+  <div class="sec">
+    <div class="sec-title">今日关注</div>
+    <div class="card lv3" style="border-left-color:var(--accent);background:#fff;"><p>• 美联储自10月17日起进入议息会议前静默期，10月27日至28日会议按兵不动预期升温</p><p>• 11月4日美国财政部再融资公告，花旗预计20年与30年期美债标售规模各削减30亿美元</p><p>• 科技巨头财报季开启，检验AI相关营收能否匹配持续攀升的资本开支</p><p>• 双11大促进入首个周末，京东、淘天、飞猪等平台活动持续放量</p></div>
+  </div>
+
+  <div class="foot">
+    <b>数据来源与可验证性说明</b><br>
+    主信源：华尔街见闻（wallstreetcn.com）公开内容接口，覆盖窗口内全球资讯流与正文。<br>
+    主信源为华尔街见闻，部分条目转引路透社、英国《金融时报》、彭博社与IDC。Anthropic向黑石提供逾10%收益率、CoreWeave创始人套现等条目为单一媒体转引，尚未获当事方确认；穆迪分析伊朗战争成本测算遭白宫驳斥，属单一机构估算。费城半导体指数点位素材未给出，KPI中留空。<br><br>
+    <b>重要性分级标准</b><br>
+    <span style="color:var(--red)">■ 红（关键）</span>：影响全局资产定价或地缘格局 ·
+    <span style="color:var(--gold)">■ 黄（重要）</span>：影响单一市场、板块或主要资产 ·
+    <span style="color:var(--blue)">■ 蓝（关注）</span>：趋势性、背景性信息<br><br>
+    <b>免责声明</b>：本简报仅供研究参考，不构成任何投资建议。数字以华尔街见闻披露口径为准，请以原始报道为最终依据。<br>
+    <span style="color:#b0b8b4">本报告由 GitHub Actions 云端生成（电脑关机时亦可投递）。</span>
+  </div>
+</div>
+</body>
+</html>
