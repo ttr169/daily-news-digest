@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华尔街见闻 · 24小时要闻简报 | 2026-10-19</title>
+<style>
+:root{
+  --red:#c0392b; --gold:#b8860b; --blue:#1f5f9f;
+  --red-bg:#fdf2f0; --gold-bg:#fff8e6; --blue-bg:#eef4fb;
+  --ink:#1c2321; --ink-2:#4a5652; --ink-3:#8b9793;
+  --line:#e3e8e5; --bg:#f4f6f5; --card:#ffffff; --accent:#0f3d26;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;padding:16px 12px 40px;}
+.wrap{max-width:760px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#0f3d26 0%,#1f6f43 100%);color:#fff;
+  border-radius:14px;padding:26px 24px 22px;box-shadow:0 4px 18px rgba(15,61,38,.18);}
+.header h1{font-size:21px;font-weight:700;letter-spacing:.3px;line-height:1.4;}
+.header .sub{font-size:12.5px;opacity:.82;margin-top:8px;}
+.header .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.header .meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:4px 11px;font-size:11.5px;}
+.legend{background:var(--card);border-radius:12px;padding:14px 16px;margin-top:14px;
+  display:flex;flex-wrap:wrap;gap:10px 20px;border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);}
+.legend b{color:var(--ink);}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle;}
+.dot.r{background:var(--red);} .dot.y{background:var(--gold);} .dot.b{background:var(--blue);}
+.sec{margin-top:14px;}
+.sec-title{font-size:15px;font-weight:700;color:var(--accent);padding-bottom:8px;margin-bottom:10px;
+  border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:8px;}
+.sec-title .cnt{font-size:11px;font-weight:500;color:var(--ink-3);background:var(--bg);border-radius:10px;padding:1px 8px;}
+.card{background:var(--card);border-radius:11px;padding:14px 16px;margin-bottom:10px;
+  border:1px solid var(--line);border-left:5px solid var(--ink-3);box-shadow:0 1px 3px rgba(0,0,0,.03);}
+.card.lv1{border-left-color:var(--red);background:linear-gradient(180deg,var(--red-bg) 0%,#fff 42%);}
+.card.lv2{border-left-color:var(--gold);background:linear-gradient(180deg,var(--gold-bg) 0%,#fff 42%);}
+.card.lv3{border-left-color:var(--blue);background:linear-gradient(180deg,var(--blue-bg) 0%,#fff 42%);}
+.card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:7px;display:flex;gap:8px;align-items:flex-start;}
+.badge{flex:0 0 auto;font-size:10px;font-weight:700;color:#fff;border-radius:4px;padding:2px 6px;margin-top:3px;letter-spacing:.5px;}
+.badge.r{background:var(--red);} .badge.y{background:var(--gold);} .badge.b{background:var(--blue);}
+.card p{font-size:13.5px;color:var(--ink-2);line-height:1.75;}
+.card .src{font-size:11.5px;color:var(--ink-3);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);}
+.tag-inline{display:inline-block;font-size:10.5px;color:var(--accent);background:#eaf3ee;border-radius:4px;padding:1px 6px;margin-right:5px;}
+.top{background:var(--card);border-radius:12px;padding:6px 4px;border:1px solid var(--line);}
+.top ol{list-style:none;}
+.top li{position:relative;padding:11px 16px 11px 48px;font-size:13.5px;line-height:1.6;
+  border-bottom:1px solid var(--line);color:var(--ink-2);counter-increment:t;}
+.top{counter-reset:t;}
+.top li:last-child{border-bottom:none;}
+.top li::before{content:counter(t);position:absolute;left:15px;top:11px;width:20px;height:20px;
+  border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:8px;}
+.kpi div{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px 11px;}
+.kpi .k{font-size:11px;color:var(--ink-3);margin-bottom:3px;}
+.kpi .v{font-size:14.5px;font-weight:700;color:var(--ink);}
+.up{color:var(--red);} .down{color:#27ae60;}
+.foot{margin-top:20px;padding:14px 16px;background:var(--card);border-radius:11px;
+  border:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.8;}
+.foot b{color:var(--ink-2);}
+@media (max-width:640px){
+  body{font-size:14px;padding:12px 9px 32px;}
+  .header{padding:20px 17px 18px;border-radius:12px;}
+  .header h1{font-size:18px;}
+  .card{padding:12px 13px;}
+  .kpi{grid-template-columns:repeat(2,1fr);}
+}
+@media print{
+  body{background:#fff;padding:0;}
+  .card,.header,.legend,.top,.foot{box-shadow:none;break-inside:avoid;}
+  .header{background:#0f3d26 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>华尔街见闻 · 过去 24 小时要闻简报</h1>
+    <div class="sub">覆盖窗口：2026-10-17 03:15 — 2026-10-19 03:15（JST） · 一级信源：华尔街见闻（公开接口）</div>
+    <div class="meta">
+      <span>生成时间 2026-10-19 03:15 JST</span>
+      <span>收录 27 条要闻</span>
+      <span>🔴 关键 5 · 🟡 重要 9 · 🔵 关注 13</span>
+      <span>云端投递 · 关机可收</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot r"></i><b>红色 = 最重要</b> 影响全局资产定价，须立即知晓</span>
+    <span><i class="dot y"></i><b>黄色 = 重要</b> 影响单一市场或板块</span>
+    <span><i class="dot b"></i><b>蓝色 = 关注</b> 趋势性/背景性信息</span>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">一页速览 <span class="cnt">Top 5</span></div>
+    <div class="top"><ol><li>伊朗武装部队在霍尔木兹海峡开火拦截“违规”船只，两艘超级油轮触雷爆炸，其一载超200万桶原油</li><li>AI信用裂缝引爆跨资产风暴：CoreWeave单日跌15%，纳指100单周重挫近6%，对冲基金清仓AI净敞口</li><li>美国9月CPI环比涨0.6%、核心CPI同比2.6%、PPI环比涨1.3%，但10年期美债收益率反降至5.08%附近</li><li>美联储主席沃什暗示10月暂停加息，加息概率从逾50%降至13%左右</li><li>现货布伦特一度逼近130美元/桶，期货停滞104—107美元，原油期现严重脱节</li></ol></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">关键指标看板</div>
+    <div class="kpi"><div><div class="k">纳斯达克100指数</div><div class="v down">单周跌近6% <span style="font-size:11px">-6%</span></div></div><div><div class="k">10年期美债收益率</div><div class="v down">5.08%—5.09% <span style="font-size:11px">回落至数周低点</span></div></div><div><div class="k">现货布伦特原油</div><div class="v up">一度逼近130美元/桶 <span style="font-size:11px">逼近130</span></div></div><div><div class="k">布伦特原油期货</div><div class="v down">104—107美元/桶 <span style="font-size:11px">区间停滞</span></div></div><div><div class="k">黄金</div><div class="v up">重回4150美元上方 <span style="font-size:11px">重回4150</span></div></div><div><div class="k">比特币</div><div class="v down">短暂跌破82,000美元后企稳 <span style="font-size:11px">跌破82,000</span></div></div><div><div class="k">美国9月CPI</div><div class="v up">环比+0.6%，核心同比2.6% <span style="font-size:11px">+0.6%</span></div></div><div><div class="k">美国9月PPI</div><div class="v up">环比+1.3% <span style="font-size:11px">+1.3%</span></div></div><div><div class="k">10月加息概率</div><div class="v down">约13% <span style="font-size:11px">自逾50%回落</span></div></div><div><div class="k">CoreWeave股价</div><div class="v down">单日跌15% <span style="font-size:11px">-15%</span></div></div></div>
+  </div>
+
+  <div class="sec"><div class="sec-title">A. 地缘政治<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>伊朗武装部队在霍尔木兹海峡开火拦截“违规”船只，两艘超级油轮触雷爆炸</h3><p>当地时间17日18时15分，伊朗武装部队从锡里克地区附近向霍尔木兹海峡试图“违规”通行的船只开火并将其拦截。伊朗革命卫队海军称，两艘超级油轮在海峡触雷后爆炸起火，其中一艘载有超过<strong>200万桶</strong>原油，在关闭所有导航和雷达系统后试图在美军支持下通过。伊朗海军称海峡并非处于“开放”状态，相关方必须与伊朗武装力量协调以确保航行安全。</p><div class="src"><span class="tag-inline">霍尔木兹海峡</span>来源：华尔街见闻转引央视新闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>伊朗称已针对可能的新“冒险行径”制定应对方案，不再遵循对方熟悉的规则</h3><p>伊朗方面表示已针对可能的新“冒险行径”制定应对方案，并称不再遵循对方所熟悉的规则。此前伊朗海军称“违规”穿越海峡而受损的油轮近期数量呈上升趋势，一艘“违规”油轮在阿曼湾靠近海峡东部入口处起火并失去航行能力。</p><div class="src"><span class="tag-inline">美伊</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>也门胡塞武装对利雅得机场及沙特阿美总部袭击常态化，霍尔木兹海峡附近两艘船只沉没</h3><p>据华尔街见闻综述，也门胡塞武装对利雅得机场及沙特阿美总部的袭击已常态化，霍尔木兹海峡附近有两艘船只沉没。瑞银估计，离开阿曼湾的原油和成品油流量已大幅下降。</p><div class="src"><span class="tag-inline">中东</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>俄乌“能源停火”协议数日内破裂，双方继续互击能源基础设施</h3><p>特朗普此前宣布的俄乌“能源停火”协议在几天内即宣告破裂，乌克兰与俄罗斯针对能源基础设施的互相打击仍在继续。</p><div class="src"><span class="tag-inline">俄乌</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">B. 全球宏观与利率<span class="cnt">4 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>美国9月CPI、PPI双双超预期，10年期美债收益率却回落至5.08%附近</h3><p>9月美国总体CPI环比上涨<strong>0.6%</strong>，核心CPI同比升至<strong>2.6%</strong>；PPI环比大涨<strong>1.3%</strong>，创2022年3月以来最大增幅。初请失业金人数连续第五周低于<strong>20万</strong>人，零售销售同样超出预期。但美债收益率曲线走出牛市平坦化，10年期美债收益率周四一度回落至<strong>5.08%</strong>，分析归因于AI债券发行停滞缓解久期供给压力及避险资金涌入长端。</p><div class="src"><span class="tag-inline">美国通胀</span>来源：华尔街见闻</div></div><div class="card lv1"><h3><span class="badge r">关键</span>沃什暗示10月暂停加息，加息概率从逾50%骤降至13%左右</h3><p>美联储主席沃什在曼谷讲话中拒绝就未来会议做出预先承诺，称世界已基本符合美联储预期，同时警告AI投资热潮短期内具有通胀性、带来经济红利的道路将非常颠簸。市场将其解读为10月暂停加息的明确信号，10月加息概率从数据发布后的<strong>50%</strong>以上打压至<strong>13%</strong>左右。</p><div class="src"><span class="tag-inline">美联储</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>美元指数一度触及2025年5月以来最高，随后回吐涨幅</h3><p>通胀数据公布后，彭博追踪的10月加息概率一度飙升至<strong>55%</strong>，美元指数顺势突破18个月区间，触及2025年5月以来最高水平；随着债市定价经济放缓，美元随后回吐涨幅。AI交易平仓催生新货币动态：外资从台股撤出创纪录资金，韩元和新台币承压，日元、欧元等传统融资货币相对走强。</p><div class="src"><span class="tag-inline">外汇</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>下周中国三季度GDP、金融街论坛与APEC财长会多线并进</h3><p>10月19日中国公布三季度GDP及9月工业、社零、地产等数据，华创证券张瑜预计GDP同比回升至<strong>4.5%</strong>附近。同日2026金融街论坛年会开幕，证监会主席吴清、央行副行长兼外汇局局长朱鹤新出席，国家金融管理部门将集中发布系列改革政策。第33届APEC财长会10月20—21日首度在中国香港举行，财政部部长蓝佛安率团出席。</p><div class="src"><span class="tag-inline">中国数据</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">C. 能源与大商品<span class="cnt">3 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>原油期现严重脱节：现货布伦特一度逼近130美元，期货停滞104—107美元</h3><p>尽管供应端频频亮红灯，原油定价出现罕见割裂：现货基准的即期布伦特原油价格一度逼近每桶<strong>130美元</strong>，柴油裂解价差接近<strong>100美元</strong>，但布伦特原油期货价格停滞在<strong>104至107美元</strong>区间。分析认为部分原因在于市场预期美国可能放宽对“影子油轮舰队”的限制，或IEA将加速释放紧急储备。专家Jeff Currie警告，一旦期货向现货靠拢，通胀辩论将迅速重燃。</p><div class="src"><span class="tag-inline">原油</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>黄金重回4150美元上方，4100美元再成支撑位</h3><p>在实际收益率冲高回落的背景下，黄金重回<strong>4150美元</strong>上方，<strong>4100美元</strong>再次成为支撑位。美银Hartnett维持超配黄金、大宗商品及新兴市场的长期配置立场。</p><div class="src"><span class="tag-inline">黄金</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>12月WTI期货逼近100美元，能源价格压力尚未缓解</h3><p>高盛分析师Mark Wilson警告，能源价格压力尚未出现类似债券市场的缓解，12月WTI期货逼近<strong>100美元</strong>，利率风险仍不可低估。</p><div class="src"><span class="tag-inline">能源</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">D. 市场与资金<span class="cnt">6 条</span></div><div class="card lv1"><h3><span class="badge r">关键</span>AI信用裂缝引爆跨资产风暴：CoreWeave单日跌15%，纳指100单周重挫近6%</h3><p>CoreWeave未担保2032年期债券利差首次突破<strong>1000个基点</strong>，股价单日暴跌<strong>15%</strong>，创有记录以来第三大单日跌幅；其2032年期债券跌至面值<strong>80美分</strong>以下，五年期CDS收盘报<strong>1117个基点</strong>的历史新高，隐含约<strong>63%</strong>的五年内违约概率。对冲基金清仓自2025年1月以来积累的所有AI净敞口，纳斯达克100指数单周重挫近<strong>6%</strong>。</p><div class="src"><span class="tag-inline">AI信用</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>高盛：AI云大厂信贷利差升至年内最宽，股市尚有约15%下行空间未消化</h3><p>高盛AI超大规模云计算商信贷利差指数（GSUCHS30）已扩张至年内最宽水平，上一次利差接近当前水平时相关股票价格较现在低约<strong>15%</strong>。高盛AI受益股篮子较6月高点累计下跌约<strong>25%</strong>；NeoClouds五日跌幅达<strong>24.8%</strong>，光学网络跌<strong>21.4%</strong>，存储芯片跌<strong>16.6%</strong>。超大规模云计算商资本支出同比增速在2026年三季度达到峰值<strong>116%</strong>，预计至2027年底降至约<strong>20%</strong>。</p><div class="src"><span class="tag-inline">高盛观点</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>对冲基金亚洲基本面多空基金月内跌7%，年内收益从40%骤降至16%</h3><p>高盛Prime数据显示，亚洲基本面多空基金月内跌幅达<strong>7%</strong>，年初至今收益从6月高点的<strong>40%</strong>骤降至<strong>16%</strong>；TMT多空基金月内下跌<strong>5%</strong>，年内收益从24%收窄至12%。全球AI股票连续六个交易日遭净卖出，六日累计净流量Z值跌破<strong>-3</strong>，为ChatGPT发布以来最极端的仓位削减幅度。</p><div class="src"><span class="tag-inline">对冲基金</span>来源：华尔街见闻</div></div><div class="card lv2"><h3><span class="badge y">重要</span>美银Hartnett：“卖出信号”结束但非买入信号，11月中旬重返科技股关键看芯片价格</h3><p>美银牛熊指标从<strong>8.1</strong>急降至<strong>7.4</strong>，跌破8.0阈值，正式结束5月26日触发的卖出信号。Hartnett列出重返风险资产的两个前提：美联储10月28日加息以恢复信誉、AI融资担忧缓解，目前两者均未兑现。他警告若半导体价格回落，将是AI信贷进一步收紧、资本开支增长见顶的信号。</p><div class="src"><span class="tag-inline">美银</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>全球股票基金单周仍流入200亿美元，货币市场基金流出467亿美元</h3><p>据路透引用的LSEG Lipper数据，全球股市暴跌当周全球股票基金仍录得<strong>200亿美元</strong>资金流入，连续第四周净买入，债券基金吸引<strong>78亿美元</strong>；唯一流出项为货币市场基金，规模达<strong>467亿美元</strong>。美银EPFR数据则显示权益类基金净流入<strong>644亿美元</strong>、债券流入118亿美元、现金外流531亿美元。</p><div class="src"><span class="tag-inline">资金流</span>来源：华尔街见闻转引路透/LSEG Lipper、美银EPFR</div></div><div class="card lv3"><h3><span class="badge b">关注</span>中信证券：A股市场调整接近尾声</h3><p>中信证券发布观点认为，A股市场调整接近尾声。</p><div class="src"><span class="tag-inline">A股</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">E. AI·科技<span class="cnt">5 条</span></div><div class="card lv2"><h3><span class="badge y">重要</span>AI基础设施板块单日蒸发约800亿美元市值，甲骨文、戴尔、Nebius同步下挫</h3><p>2026年10月14日，CoreWeave股价单日暴跌<strong>15.5%</strong>，其2032年到期无担保债价格跌破面值<strong>80%</strong>、收益率逼近<strong>15%</strong>，利差跨过<strong>1000个基点</strong>的违约警示线。同日甲骨文、戴尔、Nebius同步下挫，AI基础设施板块合计蒸发约<strong>800亿美元</strong>市值。市场正把“AI基建”拆分为可被投资级资金承接的与必须自担风险的两种资产。</p><div class="src"><span class="tag-inline">AI基建</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>黄仁勋为CoreWeave背书称资本成本“实际上在下降”，但多头基金仍净卖出</h3><p>英伟达CEO黄仁勋称CoreWeave“实力每天都在提升”、资本成本“实际上在下降”，带动新兴云计算股收复部分跌幅，标普500指数从50日均线附近反弹。但据高盛数据，当日多头基金仍以<strong>40%</strong>的优势净卖出，科技板块卖出偏斜高达<strong>70%</strong>，反弹更多是防御性轮动。</p><div class="src"><span class="tag-inline">英伟达</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>DeepSeek公布API网页搜索与抓取费用：每1000次成功请求5元</h3><p>DeepSeek公布API网页搜索与抓取费用，每<strong>1000次</strong>成功请求收费<strong>5元</strong>，并开放自研搜索API。</p><div class="src"><span class="tag-inline">DeepSeek</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>孙正义：眼光要看到10年后，阿里这些投资相比AI“微不足道”</h3><p>孙正义表示眼光要看到10年后，并称阿里这些投资相比AI“微不足道”。</p><div class="src"><span class="tag-inline">软银</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>下周英伟达GTC柏林大会，黄仁勋21日演讲，德国总理默茨19日晚提前会面</h3><p>英伟达GTC AI大会10月20—22日在柏林举行，黄仁勋21日发表主题演讲；德国总理默茨将于10月19日晚与黄仁勋会面，议题指向德国AI工业算力合作。财报方面，奈飞21日放榜，特斯拉、Meta、泛林集团22日密集发布，Meta的AI资本开支指引将直接定调市场情绪。</p><div class="src"><span class="tag-inline">日程</span>来源：华尔街见闻</div></div></div><div class="sec"><div class="sec-title">F. 机构观点精选<span class="cnt">3 条</span></div><div class="card lv2"><h3><span class="badge y">重要</span>高盛：要么债市悲观过度，要么股市过于乐观，给出五项应对策略</h3><p>高盛策略师Louis Miller认为市场仍在通过轮动而非指数大幅下跌消化压力，提出五项策略：做多“去AI化”宽基市场（SPXXAI自10月6日以来跑赢标普500达<strong>586个基点</strong>）、做多质量因子（GSP1QUAL三个月涨<strong>20%</strong>，RSI超80）、中期医疗保健交易、做多巴西非相关性机会、对冲中国台湾半导体敞口。台积电上调全年指引并加速产能扩张后股价仍跌<strong>2.3%</strong>。</p><div class="src"><span class="tag-inline">高盛</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>高盛Wilson：垃圾评级AI资产止跌前，反弹只是仓位修复而非基本面重估</h3><p>Wilson指出，做多“AI赢家”、做空“AI风险资产”的策略年内一度斩获逾<strong>90%</strong>收益，但自6月底已近乎折半。他认为市场领导权将从“AI支出受益者”切换至“最大AI投资方”，并强调CoreWeave的7月低点是下周最值得盯盘的技术关口。</p><div class="src"><span class="tag-inline">高盛</span>来源：华尔街见闻</div></div><div class="card lv3"><h3><span class="badge b">关注</span>美银Hartnett：10年期实际利率接近3%，历史上与科网泡沫破裂等风险事件高度吻合</h3><p>Hartnett维持防御立场，依据包括：美国10年期实际利率接近<strong>3%</strong>；私募股权ETF（PSP）和商业发展公司ETF（BIZD）均已回落至2026年上半年低点；Oracle 5年期CDS近乎垂直拉升而整体投资级科技债利差几乎未动。他选择增加小盘股、REITs及可选消费配置，暂不加仓科技股。</p><div class="src"><span class="tag-inline">美银</span>来源：华尔街见闻</div></div></div>
+
+  <div class="sec">
+    <div class="sec-title">今日关注</div>
+    <div class="card lv3" style="border-left-color:var(--accent);background:#fff;"><p>• 10月19日中国三季度GDP及9月工业、社零、地产数据；金融街论坛开幕，吴清、朱鹤新出席并发布系列改革政策</p><p>• 10月20—21日APEC财长会首度在香港举行，财政部部长蓝佛安率团出席</p><p>• 10月21日黄仁勋GTC柏林主题演讲；德国总理默茨19日晚提前会面</p><p>• 特斯拉、Meta、泛林集团22日财报，Meta的AI资本开支指引；宁德时代、寒武纪、海光信息三季报</p><p>• CoreWeave 7月低点技术关口与垃圾评级AI资产能否止跌；半导体价格走势</p><p>• 日本9月全国CPI（市场预期综合同比升至2.1%）、韩国10月前20天进出口数据</p></div>
+  </div>
+
+  <div class="foot">
+    <b>数据来源与可验证性说明</b><br>
+    主信源：华尔街见闻（wallstreetcn.com）公开内容接口，覆盖窗口内全球资讯流与正文。<br>
+    主信源为华尔街见闻，地缘条目转引央视新闻，资金流数据转引路透/LSEG Lipper与美银EPFR。伊朗开火与油轮触雷细节为伊朗方面单方声明，未经独立核实；高盛、美银各项指标与预测均为机构观点，非既成事实。素材中未给出的数字一律未写入。<br><br>
+    <b>重要性分级标准</b><br>
+    <span style="color:var(--red)">■ 红（关键）</span>：影响全局资产定价或地缘格局 ·
+    <span style="color:var(--gold)">■ 黄（重要）</span>：影响单一市场、板块或主要资产 ·
+    <span style="color:var(--blue)">■ 蓝（关注）</span>：趋势性、背景性信息<br><br>
+    <b>免责声明</b>：本简报仅供研究参考，不构成任何投资建议。数字以华尔街见闻披露口径为准，请以原始报道为最终依据。<br>
+    <span style="color:#b0b8b4">本报告由 GitHub Actions 云端生成（电脑关机时亦可投递）。</span>
+  </div>
+</div>
+</body>
+</html>
