@@ -1,0 +1,61 @@
+name: 周度投递健康检查（看门狗）
+
+# 补上「移除当日终检」后留下的缺口，但**每周最多一封**，不制造日内噪声。
+#
+# 背景：2026-10 之前两个 workflow 各有一个「当日终检」步骤，因末班班次延迟到
+# 次日凌晨执行 + JST/CST 日期口径不一致，导致每天稳定误报 2 封失败邮件
+# （Issue #1–#56）。那两个步骤已移除。
+#
+# 本 workflow 的判定逻辑（见 watchdog.py）：
+#   - 用 IMAP 收件箱做账本，按**邮件实际投递时间**归日，不看主题日期；
+#   - 回看最近 7 天，某通道缺 >= MAX_MISS（默认 2）天才告警；
+#   - 全部正常时完全静默：不发邮件、不开 Issue。
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'   # 每周一 09:00 JST
+  workflow_dispatch:
+    inputs:
+      window_days:
+        description: '回看天数'
+        required: false
+        default: '7'
+      max_miss:
+        description: '允许的最大缺失天数（达到即告警）'
+        required: false
+        default: '2'
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: watchdog
+  cancel-in-progress: false
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # watchdog 的核心逻辑只用标准库（imaplib / smtplib）：
+      # 即使 pip 装不上（如 notify_failure.py 注释里提到的场景），
+      # 邮件通道依然可用，只有「开 Issue」会降级。
+      - name: 安装依赖（失败不阻断）
+        run: pip install -r requirements.txt || echo "依赖安装失败，watchdog 将以标准库模式运行"
+
+      - name: 周度健康检查
+        env:
+          QQ_SMTP_USER: ${{ secrets.QQ_SMTP_USER }}
+          QQ_SMTP_CODE: ${{ secrets.QQ_SMTP_CODE }}
+          MAIL_TO:      ${{ secrets.MAIL_TO }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WINDOW_DAYS:  ${{ github.event.inputs.window_days || '7' }}
+          MAX_MISS:     ${{ github.event.inputs.max_miss || '2' }}
+        run: python watchdog.py

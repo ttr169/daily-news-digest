@@ -1,0 +1,63 @@
+name: 清理历史误报告警 Issue
+
+# 一次性 + 可复用的清理任务。
+#
+# 背景：2026-09-11 ~ 2026-10-22 期间，两个 workflow 的「当日终检」步骤
+# 因末班班次延迟执行 + JST/CST 日期口径不一致，每天稳定误报 2 封失败告警，
+# 累计产生 56 个误报 Issue（#1–#56）。终检步骤已于 commit aa25403 移除。
+#
+# 本 workflow 把这些历史误报一次性关闭（state_reason = not_planned），
+# 保留记录不删除，以便回溯。
+#
+# 触发方式：
+#   - push 本文件时自动执行一次（用于立即清理）；
+#   - 以后手动 Run workflow 可再次执行（只关标题前缀匹配的，不碰其他 Issue）。
+
+on:
+  push:
+    paths:
+      - '.github/workflows/cleanup-issues.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 关闭所有【简报生成失败】误报 Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const PREFIX = '【简报生成失败】';
+            const closed = [];
+
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100,
+            });
+
+            for (const issue of issues) {
+              if (issue.pull_request) continue;
+              if (!issue.title.startsWith(PREFIX)) continue;
+
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+                state_reason: 'not_planned',
+              });
+              closed.push(issue.number);
+            }
+
+            const msg = closed.length
+              ? `已关闭 ${closed.length} 个误报 Issue：#${closed.join(', #')}`
+              : '没有需要关闭的误报 Issue。';
+            core.info(msg);
+            await core.summary.addRaw(`### 清理结果\n\n${msg}\n`).write();
