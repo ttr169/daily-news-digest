@@ -11,7 +11,10 @@ on:
   #   - 闸门 ②（digest.py，IMAP）：自己收件箱里已有当日简报 → 跳过。
   #     ⚠️ 闸门 ② 是**跨通道**的：本机 WorkBuddy 早上投递过、或某个计划任务延迟到
   #     下午才执行，都能被识别，不会重复发信。这也是能放心加「午后兜底」的原因。
-  #   - 全部落空时，由最后一班（20:33 JST）的「当日终检」告警（见文件末尾）。
+  #   - 全部落空时，由 20:33 JST 的末班兜底补发（该班次同样走完整生成流程）。
+  #   - ⚠️ 2026-10-22 已移除「当日终检告警」：它每天都会误报（末班自己刚发出的邮件
+  #     在 IMAP 里还检索不到，且日期口径有 JST/北京差异），导致每天额外 2 封假失败邮件。
+  #     现在正常情况下每天只收 1 封成功邮件；真失败仍由下方的「失败告警」兜住。
   #   - 分钟取 :13/:33/:53，避开整点前后的调度波峰，被服务到的概率更高。
   schedule:
     - cron: '33 23 * * *'   # 08:33 JST  主跑
@@ -20,7 +23,7 @@ on:
     - cron: '33 0 * * *'    # 09:33 JST  补跑 3
     - cron: '53 0 * * *'    # 09:53 JST  补跑 4
     - cron: '33 4 * * *'    # 13:33 JST  午后兜底（早上全部落空时补上）
-    - cron: '33 11 * * *'   # 20:33 JST  终检班次（仍无投递则告警）
+    - cron: '33 11 * * *'   # 20:33 JST  末班兜底（前述班次全部落空时补发）
   workflow_dispatch:
     inputs:
       dry_run:
@@ -135,26 +138,3 @@ jobs:
           MAIL_TO:      ${{ secrets.MAIL_TO }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python notify_failure.py
-
-      # 当日终检：最后一班（20:33 JST）跑完，邮箱账本里仍然没有今天的简报
-      # = 当天所有通道全线失手。主动告警，不让它静默漏跑。
-      # 判据用 digest.py --check（查收件箱）而不是 archive 文件：
-      # 本机 WorkBuddy 投递成功时仓库里不会有归档，用文件判会误报。
-      - name: 当日终检告警（最后一班仍无投递）
-        if: |
-          always()
-          && github.event.schedule == '33 11 * * *'
-          && steps.run_digest.outcome != 'failure'
-        env:
-          QQ_SMTP_USER: ${{ secrets.QQ_SMTP_USER }}
-          QQ_SMTP_CODE: ${{ secrets.QQ_SMTP_CODE }}
-          MAIL_TO:      ${{ secrets.MAIL_TO }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FAIL_REASON:  "今天所有定时班次都已过，但邮箱账本里仍没有当日简报 —— 定时通道可能被 GitHub 调度器整轮丢弃了。"
-        run: |
-          if python digest.py --check; then
-            echo "✅ 当日终检：邮箱账本确认今日已投递。"
-          else
-            echo "⚠️ 当日终检：邮箱账本里没有今天的简报，发送告警。"
-            python notify_failure.py || true
-          fi
